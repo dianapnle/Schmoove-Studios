@@ -1325,7 +1325,7 @@ Create and return a new iunstructor for a studio specified by id.
 
 ### Updated an Instructor
 
-Update and return an existing review.
+Update and return an existing instructor.
 
 * Require Authentication: true
 * Require proper authorization: Studio must belong to current user
@@ -1483,7 +1483,7 @@ Return studios filtered by query parameters.
 
 ## Add Query Filters to Get All Class Events
 
-Return studios filtered by query parameters.
+Return class events filtered by query parameters.
 
 * Require Authentication: false
 * Request
