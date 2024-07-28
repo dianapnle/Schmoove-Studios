@@ -498,7 +498,7 @@ Returns all the classess of current studio.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/servers/:serverId/classes
+  * URL: /api/studios/:studioId/classes
   * Body: none
 
 * Successful Response
