@@ -282,7 +282,9 @@ Returns all the studios.
           "createdAt": "2021-10-05T14:48:00.000Z",
           "updatedAt": "2021-10-05T14:48:00.000Z"
         }
-      ]
+      ],
+      "page": 1,
+      "size": 20
     }
     ```
 
@@ -755,7 +757,9 @@ Return all the events a specific class has.
           "startTime": "2023-10-05T14:48:00.000Z",
           "endTime": "2023-10-05T14:48:00.000Z"
         }
-      ]
+      ],
+      "page": 1,
+      "size": 20
     }
     ```
 
