@@ -65,7 +65,7 @@ Returns the information about the current user that is logged in.
         "email": "john.smith@gmail.com",
         "is_instructor": true,
         "username": "JohnSmith",
-        "createdAt": "2021-11-19 20:39:36"
+        "createdAt": "2011-10-05T14:48:00.000Z"
       }
     }
     ```
@@ -269,8 +269,8 @@ Returns all the studios.
           "logo": "img url",
           "pic": "img url",
           "description": "This studio offers great variety of classes!",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36"
+          "createdAt": "2011-10-05T14:48:00.000Z",
+          "updatedAt": "2011-10-05T14:48:00.000Z"
         },
         {
           "id": 2,
@@ -876,8 +876,8 @@ Update and return an existing class event.
       "classId": 1,
       "userId": 2,
       "price": 35.00,
-      "startTime": "2021-11-22 20:39:36",
-      "endTime": "2021-11-23 10:06:40"
+      "startTime": "2011-10-05T14:48:00.000Z",
+      "endTime": "2011-10-05T14:48:00.000Z"
     }
     ```
 
@@ -974,8 +974,8 @@ Return all the reviews that the studio has.
            "userId": 1,
            "rating": 5,
            "review": "Great!",
-           "createdAt": "2021-11-19 20:39:36",
-           "updatedAt": "2021-11-19 20:39:36"
+           "createdAt": "2011-10-05T14:48:00.000Z",
+           "updatedAt": "2011-10-05T14:48:00.000Z"
         },
         {
            "id": 2,
@@ -983,8 +983,8 @@ Return all the reviews that the studio has.
            "userId": 2,
            "review": "Meh",
            "rating": 2,
-           "createdAt": "2021-11-19 20:39:36",
-           "updatedAt": "2021-11-19 20:39:36"
+           "createdAt": "2011-10-05T14:48:00.000Z",
+           "updatedAt": "2011-10-05T14:48:00.000Z"
         }
       ]
     }
@@ -1034,8 +1034,8 @@ Create and return a new review for a studio specified by id.
       "studioId": 1,
       "rating": 1,
       "review": "I did not like this place.",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
+      "createdAt": "2011-10-05T14:48:00.000Z",
+      "updatedAt": "2011-10-05T14:48:00.000Z"
     }
     ```
 
@@ -1101,8 +1101,8 @@ Update and return an existing review.
       "userId": 2,
       "rating": 3,
       "review": "I decently enjoyed my time here. Could use improvements.",
-      "createdAt": "2021-11-22 20:39:36",
-      "updatedAt": "2021-11-23 10:06:40"
+      "createdAt": "2011-10-05T14:48:00.000Z",
+      "updatedAt": "2011-10-05T14:48:00.000Z"
     }
     ```
 
