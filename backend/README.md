@@ -341,7 +341,6 @@ Creates and returns a new studio.
 
     ```json
     {
-      "ownerId": 1,
       "name": "Studio 1",
       "logo": "img url",
       "pic": "img url",
@@ -1181,7 +1180,7 @@ Return all users that indicate they are an instructor on the platform.
 * Required Authentication: true
 * Request
   * Method: GET
-  * URL: /api/userinstructors
+  * URL: /api/instructors
   * Body: none
 
 * Successful Response
@@ -1276,6 +1275,7 @@ Create and return a new iunstructor for a studio specified by id.
 
     ```json
     {
+      "userId": 3,
       "profilePic": "img url"
     }
     ```
