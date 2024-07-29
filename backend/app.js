@@ -6,6 +6,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
+
 const app = express();
 
 //Create a variable called isProduction that will be true if the environment is in production or not by checking the environment key in the configuration file (backend/config/index.js)
@@ -32,18 +33,18 @@ app.use(
         policy: "cross-origin"
     }));
 
-app.use(routes); // Connect all the routes
 
 // Set the _csrf token and create req.csrfToken method
 app.use(
     csurf({
-        cookie: {
+         cookie: {
             secure: isProduction,
             sameSite: isProduction && "Lax",
             httpOnly: true
         }
     }));
 
+app.use(routes); // Connect all the routes
 
 
 
