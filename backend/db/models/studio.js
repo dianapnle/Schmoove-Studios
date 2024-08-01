@@ -11,16 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Studio.belongsTo(models.User, {foreignKey: "ownerId"})
     }
   }
   Studio.init({
-    name: DataTypes.STRING,
-    logo: DataTypes.TEXT,
-    pic: DataTypes.TEXT,
-    description: DataTypes.TEXT
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      isAlpha: true,
+      validate: {
+        len: {args:[0,49], msg: "Name must be less than 50 characters"}
+    }
+  },
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    logo: {
+      type:DataTypes.TEXT,
+      allowNull: false
+    },
+    pic: {
+      type:DataTypes.TEXT,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Studio',
+    validate: true
   });
   return Studio;
 };
