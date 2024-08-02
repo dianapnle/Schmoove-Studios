@@ -12,27 +12,54 @@ module.exports = {
     await ClassDanceStyle.bulkCreate([
       {
         classId: 1,
-        danceStyleId: 11
+        danceStyleId: 1,
+        createdAt: new Date("2024-08-01T00:00:00Z")
       },
       {
         classId: 1,
-        danceStyleId: 12
+        danceStyleId: 6,
+        createdAt: new Date("2024-08-02T00:00:00Z")
       },
       {
         classId: 2,
-        danceStyleId: 1
+        danceStyleId: 2,
+        createdAt: new Date("2024-08-03T00:00:00Z")
+      },
+      {
+        classId: 2,
+        danceStyleId: 6,
+        createdAt: new Date("2024-08-04T00:00:00Z")
       },
       {
         classId: 3,
-        danceStyleId: 3
+        danceStyleId: 1,
+        createdAt: new Date("2024-08-05T00:00:00Z")
+      },
+      {
+        classId: 3,
+        danceStyleId: 4,
+        createdAt: new Date("2024-08-06T00:00:00Z")
       },
       {
         classId: 4,
-        danceStyleId: 5
+        danceStyleId: 3,
+        createdAt: new Date("2024-08-07T00:00:00Z")
       },
       {
         classId: 4,
-        danceStyleId: 7
+        danceStyleId: 4,
+        createdAt: new Date("2024-08-08T00:00:00Z")
+      }
+      ,
+      {
+        classId: 5,
+        danceStyleId: 2,
+        createdAt: new Date("2024-08-09T00:00:00Z")
+      },
+      {
+        classId: 5,
+        danceStyleId: 5,
+        createdAt: new Date("2024-08-10T00:00:00Z")
       }
     ], { validate: true })
   },
@@ -41,7 +68,7 @@ module.exports = {
     options.tableName = 'ClassDanceStyles';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      danceStyleId: { [Op.in]: [11, 12, 1, 3, 5, 7] }
+      createdAt: { [Op.in]: [new Date("2024-08-01T00:00:00Z"), new Date("2024-08-02T00:00:00Z"), new Date("2024-08-03T00:00:00Z"), new Date("2024-08-04T00:00:00Z"), new Date("2024-08-05T00:00:00Z"), new Date("2024-08-06T00:00:00Z"), new Date("2024-08-07T00:00:00Z"), new Date("2024-08-08T00:00:00Z"), new Date("2024-08-09T00:00:00Z"), new Date("2024-08-10T00:00:00Z")] }
     }, {})
   }
 };

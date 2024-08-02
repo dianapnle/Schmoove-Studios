@@ -17,14 +17,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      classId: {
+        type: Sequelize.INTEGER,
+        references: { model: "Classes" }
+      },
       price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
       startTime: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       endTime: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

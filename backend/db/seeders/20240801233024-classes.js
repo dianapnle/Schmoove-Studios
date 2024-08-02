@@ -12,28 +12,34 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await Class.bulkCreate([
       {
-        name: "Throwback 2000's",
-        description: "Who doesn't love throw backs? Music will be focused on grooving to music made in the 2000's!",
+        name: "Beginner Heels with Courtney",
+        description: "Class focuses on heels technique with slower-paced dances.",
         studioId: 1,
         instructorId: 1,
       },
       {
-        name: "Tyla-Themed",
-        description: "Time to get your groove on with songs to Tyla!!!",
-        studioId: 2,
-        instructorId: 2,
+        name: "Intermediate Heels with Courtney",
+        description: "Class focuses on heels technique, across the floors, with decently-paced dances.",
+        studioId: 1,
+        instructorId: 1,
       },
       {
-        name: "Beyonce-Themed",
-        description: "Get ready to dance to the one and only QUEEN BEE!",
+        name: "Beginner Hip Hop with John",
+        description: "Get your grooves on with John!",
+        studioId: 2,
+        instructorId: 4,
+      },
+      {
+        name: "Advanced Hip Hop with Joseph",
+        description: "Throw backs with Joseph!",
         studioId: 3,
         instructorId: 3,
       },
       {
-        name: "Let's Get ROCKing",
-        description: "Music focuses on bands!!",
-        studioId: 1,
-        instructorId: 4,
+        name: "Intermediate Jazzfunk with Josephine",
+        description: "Get your jazz on with Josephine! Choreo will be decently-paced.",
+        studioId: 3,
+        instructorId: 2,
       }
     ], { validate: true });
   },
@@ -42,7 +48,7 @@ module.exports = {
     options.tableName = 'Classes';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ["Throwback 2000's", "Tyla-Themed", "Beyonce-Themed", "Let's Get ROCKing"] }
+      name: { [Op.in]: ["Beginner Heels with Courtney", "Intermediate Heels with Courtney", "Beginner Hip Hop with John", "Advanced Hip Hop with Joseph", "Intermediate Jazzfunk with Josephine"] }
     }, {})
   }
 };

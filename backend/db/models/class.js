@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Class.belongsTo(models.Studio, {foreignKey: "studioId"})
       Class.belongsTo(models.Instructor, {foreignKey: "instructorId"})
       Class.hasMany(models.ClassDanceStyle, {foreignKey: "classId",  onDelete: "CASCADE", hooks: true})
+      Class.hasMany(models.ClassEvent, {foreignKey: "classId",  onDelete: "CASCADE", hooks: true})
+      Class.hasMany(models.Booking, {foreignKey: "classId", onDelete: "CASCADE", hooks: true})
     }
   }
   Class.init({

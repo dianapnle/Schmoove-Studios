@@ -11,12 +11,50 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      ClassEvent.belongsTo(models.Class, {foreignKey: "classId"})
     }
   }
   ClassEvent.init({
-    price: DataTypes.DECIMAL,
-    startTime: DataTypes.DATE,
-    endTime: DataTypes.DATE
+    price:{
+      allowNull: false,
+      type:DataTypes.DECIMAL,
+      isNumeric: true,
+      validate: {
+        min: {args: ["0.0"], msg: "Price per day must be positive"}
+      }
+    },
+    classId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    startTime: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      validate: {
+        isAfter(value) {
+          //take off the z of the string and make another date object with same time as current
+          const modifiedValue = new Date(value.substring(0, value.length-1))
+          //new Date () gives current time with time stamp, dateString gives the date only without time, then create another date object with it
+          //to normalize both and compare
+          let current = new Date((new Date().toDateString()))
+          if(modifiedValue < current){
+            throw new Error("startTime cannot be in the past")
+          }
+        }
+      }
+    },
+    endTime: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      validate: {
+        isGreaterThanstartDate(value) {
+          //both values should be in utc time
+          if (value <= this.startTime) {
+            throw new Error("endTime cannot be on or before startTime");
+          }
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'ClassEvent',
