@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('ClassDanceStyles', {
@@ -18,10 +18,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       classId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: "Classes" }
       },
       danceStyleId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: "DanceStyles" }
       },
       createdAt: {
         allowNull: false,

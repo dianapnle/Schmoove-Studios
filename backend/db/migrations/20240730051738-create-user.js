@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
@@ -33,6 +33,10 @@ module.exports = {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true
+      },
+      isInstructor: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,

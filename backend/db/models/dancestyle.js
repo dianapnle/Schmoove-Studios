@@ -11,11 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      DanceStyle.hasMany(models.ClassDanceStyle, {foreignKey: "danceStyleId", onDelete: "CASCADE", hooks: true})
     }
   }
   DanceStyle.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {args:[0,49], msg: "Name must be less than 50 characters"}
+    }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'DanceStyle',

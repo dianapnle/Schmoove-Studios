@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Studio, {foreignKey: "ownerId", onDelete: "CASCADE", hooks: true});
+      User.hasMany(models.Instructor, {foreignKey: "userId", onDelete: "CASCADE", hooks: true})
+      User.hasMany(models.Review, {foreignKey: "userId"});
     }
   }
   User.init({
@@ -50,6 +53,10 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256],
         isEmail: true
       }
+    },
+    isInstructor: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,

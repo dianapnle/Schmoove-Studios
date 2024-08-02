@@ -11,10 +11,24 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Instructor.belongsTo(models.User, {foreignKey: "userId"})
+      Instructor.belongsTo(models.Studio, {foreignKey: "studioId"})
+      Instructor.hasMany(models.Class, {foreignKey: "instructorId", onDelete: "CASCADE", hooks: true})
     }
   }
   Instructor.init({
-    profilePic: DataTypes.TEXT
+    profilePic: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    studioId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Instructor',

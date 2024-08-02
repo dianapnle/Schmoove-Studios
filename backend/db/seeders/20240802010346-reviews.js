@@ -1,0 +1,47 @@
+'use strict';
+
+const { Review } = require("../models");
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    Review.bulkCreate([
+      {
+          userId: 1,
+          studioId: 1,
+          review: "Great studio!!!!",
+          rating: 5,
+          createdAt: new Date("2024-08-02T01:09:13Z"),
+          updatedAt: new Date("2024-08-02T01:09:13Z")
+      },
+      {
+        userId: 2,
+        studioId: 1,
+        review: "I enjoyed my time there :) very clean studio",
+        rating: 5,
+        createdAt: new Date("2024-08-02T01:09:13Z"),
+        updatedAt: new Date("2024-08-02T01:09:13Z")
+      },
+      {
+        userId: 3,
+        studioId: 1,
+        review: "The dance studio is a lot smaller than expected. The room heated up really fast with no ac..",
+        rating: 3,
+        createdAt: new Date("2024-08-01T00:00:00Z"),
+        updatedAt: new Date("2024-08-01T00:00:00Z")
+    }
+  ], { validate: true });
+  },
+
+  async down (queryInterface, Sequelize) {
+    options.tableName = 'Reviews';
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {
+      createdAt: { [Op.in]: [new Date("2024-08-02T01:09:13Z"), new Date("2024-08-02T01:09:13Z"), new Date("2024-08-01T00:00:00Z")] }
+    }, {})
+  }
+};

@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Reviews', {
@@ -19,6 +19,16 @@ module.exports = {
       },
       rating: {
         type: Sequelize.INTEGER
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references:  { model: "Users" }
+      },
+      studioId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references:  { model: "Studios" }
       },
       review: {
         type: Sequelize.TEXT
