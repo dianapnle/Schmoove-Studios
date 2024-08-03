@@ -273,6 +273,17 @@ router.delete("/:studioId", requireAuth, validateStudioUser, async (req, res) =>
 router.get("studios/:studioId/classes", async (req, res) => {
     const { studioId } = req.params;
 
+    const search = await Studio.findByPk(Number(spotId));
+    //if there is no studio that matches the given studioid from parameter -> throw an error
+    if (search === null) {
+        const err = new Error()
+        err.message = "Studio couldn't be found";
+        res.status(404);
+        return res.json({
+          message: err.message
+      })
+    };
+
     const classes = await Class.findAll({
         where: { studioId: studioId },
         attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
@@ -306,7 +317,7 @@ const validateClass = [
 ];
 
 
-//create a class
+//create a class for a studio
 router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser, async (req, res) => {
   const { name, instructorId, description } = req.body;
   const { studioId } = req.params;
@@ -331,5 +342,100 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser
 
 
 
+
+//Get all reviews of a specific studio
+router.get("studios/:studioId/reviews", async (req, res) => {
+  const { studioId } = req.params;
+
+  const search = await Studio.findByPk(Number(studioId));
+  //if there is no studio that matches the given studioid from parameter -> throw an error
+  if (search === null) {
+      const err = new Error()
+      err.message = "Studio couldn't be found";
+      res.status(404);
+      return res.json({
+        message: err.message
+    })
+  };
+
+  const reviews = await Review.findAll({
+      where: { studioId: studioId },
+      attributes: ['id', 'studioId', 'userId', 'rating', 'description', 'createdAt', 'updatedAt']
+  })
+
+  res.status(200);
+  return res.json({
+    Reviews:  reviews
+  });
+})
+
+
+const validateReview = [
+  check('review')
+  .exists({ checkFalsy: true })
+  .withMessage('Review text is required'),
+  check('rating')
+  .exists({ checkFalsy: true })
+  .withMessage('Must be an integer from 1 to 5')
+  .isInt( {min: 1, max: 5})
+  .withMessage('Must be an integer from 1 to 5'),
+  handleValidationErrors
+];
+
+
+async function checkExist (req, res, next) {
+  //use param studio to look for the spot
+  const studioId = req.params.studioId;
+
+  const search = await Studio.findByPk(Number(spotId));
+  //if there is no studio that matches the given studioid from parameter -> throw an error
+  if (search === null) {
+    const err = new Error();
+    err.message = "Studio couldn't be found";
+    err.status = 404;
+    return next(err);
+  };
+  //use the studioId to pull the review's userid to check if it matches with req.user
+  const result = await Review.findOne(
+    {where: {
+      studioId: studioId,
+      userId: req.user.id
+    }} );
+
+
+  //if it does match and its not null-> throw an error
+  if (result) {
+    const err = new Error('User already has a review for this spot');
+    err.title = 'Already exists';
+    err.status = 500;
+    return next(err);
+  }
+
+  return next();
+}
+
+//create a review for a studio
+router.post('/:studioId/classes', requireAuth, validateReview, checkExist, async (req, res) => {
+
+  const studioId = req.params.studioId;
+  const {review, rating} = req.body;
+
+  const newReview = await Review.create({
+    userId: req.user.id,
+    studioId: Number(studioId),
+    review: review,
+    rating: Number(rating),
+  })
+  res.status(201);
+  return res.json({
+    id: newReview.id,
+    userId: newReview.userId,
+    studioId: newReview.studioId,
+    review: newReview.review,
+    rating: newReview.rating,
+    createdAt: newReview.createdAt,
+    updatedAt: newReview.updatedAt
+  })
+});
 
   module.exports = router;
