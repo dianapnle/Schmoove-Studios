@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User, Studio } = require('../db/models');
+const { User, Studio, Class } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -89,7 +89,7 @@ const requireAuth = function (req, _res, next) {
 
 
 //authorize user
-async function  validateUser (req, res, next) {
+async function  validateStudioUser (req, res, next) {
   //use param studio id to look for the studio
     const studioId = req.params.studioId;
 
@@ -102,7 +102,7 @@ async function  validateUser (req, res, next) {
       return next(err);
     };
 
-    console.log(search, search.ownerId, req.user.id)
+
     if (req.user.id === search.ownerId) {
       return next()
     }
@@ -113,4 +113,36 @@ async function  validateUser (req, res, next) {
   };
 
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, validateUser };
+
+//authorize user
+async function  validateClassUser (req, res, next) {
+  //use param class id to look for class
+    const classId = req.params.classId;
+
+    const search = await Class.findByPk(Number(classId));
+    //if there is no class that matches the given classid from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Class couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+
+
+    //use the studioId from class to pull the owner id  of studio to check if it matches with req.user
+    const result = await Studio.findByPk(Number(search.studioId))
+    //if it does match -> continue on to next function
+    if (req.user.id === result.ownerId) {
+      return next()
+    }
+
+
+    //else throw authorization error
+    const err = new Error('Forbidden');
+    err.title = 'Authorization required';
+    err.status = 403;
+    return next(err);
+  };
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, validateStudioUser, validateClassUser };

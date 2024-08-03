@@ -1,8 +1,8 @@
 //holds route paths to /api/spots
 const express = require('express');
 const { Op } = require('sequelize');
-const { Studio, Class, ClassDanceStyle, Review } = require('../../db/models');
-const { requireAuth, validateUser } = require('../../utils/auth');
+const { Studio, Class, ClassDanceStyle, Review, Instructor } = require('../../db/models');
+const { requireAuth, validateStudioUser } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -224,7 +224,7 @@ router.post('/', requireAuth, validateStudio, async (req, res) => {
 
 
 //edit a studio
-router.put("/:studioId", requireAuth, validateStudio, validateUser, async (req, res) => {
+router.put("/:studioId", requireAuth, validateStudio, validateStudioUser, async (req, res) => {
     const { name, logo, pic, description } = req.body;
     //use param spot id to look for the spot
     const studioId = req.params.studioId;
@@ -254,7 +254,7 @@ router.put("/:studioId", requireAuth, validateStudio, validateUser, async (req, 
 
 
 //delete a studio
-router.delete("/:studioId", requireAuth, validateUser, async (req, res) => {
+router.delete("/:studioId", requireAuth, validateStudioUser, async (req, res) => {
     //use param studio id to look for the studio
     const studioId = req.params.studioId;
     await Studio.destroy({
@@ -269,6 +269,65 @@ router.delete("/:studioId", requireAuth, validateUser, async (req, res) => {
 
 
 
+//Get all classes of a specific studio
+router.get("studios/:studioId/classes", async (req, res) => {
+    const { studioId } = req.params;
+
+    const classes = await Class.findAll({
+        where: { studioId: studioId },
+        attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
+        include: [
+          {
+            model: Instructor, attributes: ['id', 'firstName', 'lastName', 'profilePic']
+          }
+        ]
+    })
+
+    res.status(200);
+    return res.json({
+      Classes:  classes
+    });
+})
+
+
+
+
+const validateClass = [
+  check('name')
+  .exists({ checkFalsy: true })
+  .withMessage('Name must be between 1 to 100 characters'),
+  check('instructorId')
+  .exists({ checkFalsy: true })
+  .withMessage('Must pick an instructor'),
+  check('description')
+  .exists({ checkFalsy: true })
+  .withMessage('Description is required'),
+  handleValidationErrors
+];
+
+
+//create a class
+router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser, async (req, res) => {
+  const { name, instructorId, description } = req.body;
+  const { studioId } = req.params;
+
+  const el = await Class.create({
+    name: name,
+    description: description,
+    instructorId: instructorId,
+    studioId: studioId
+  });
+
+  res.status(201);
+  return res.json({
+    id: el.id,
+    studioId: el.studioId,
+    description: el.description,
+    instructorId: el.instructorId,
+    name: el.name
+  }
+  );
+});
 
 
 
