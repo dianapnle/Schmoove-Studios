@@ -47,7 +47,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/auth/me
+  * URL: /api/
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -63,7 +63,7 @@ Returns the information about the current user that is logged in.
         "firstName": "John",
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
-        "is_instructor": true,
+        "isInstructor": true,
         "username": "JohnSmith",
         "createdAt": "2011-10-05T14:48:00.000Z"
       }
@@ -116,7 +116,7 @@ information.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith",
-        "is_instructor": true
+        "isInstructor": true
       }
     }
     ```
@@ -169,7 +169,7 @@ user's information.
       "email": "john.smith@gmail.com",
       "username": "JohnSmith",
       "password": "secret password",
-      "is_instructor": true
+      "isInstructor": true
     }
     ```
 
@@ -187,7 +187,7 @@ user's information.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith",
-        "is_instructor": true
+        "isInstructor": true
       }
     }
     ```
@@ -236,7 +236,7 @@ user's information.
         "username": "Username is required",
         "firstName": "First Name is required",
         "lastName": "Last Name is required",
-        "is_instructor": "Must be a boolean value"
+        "isInstructor": "lease indicate whether you are an instructor or not."
       }
     }
     ```
@@ -1479,7 +1479,7 @@ Return studios filtered by query parameters.
       "errors": {
         "page": "Page must be greater than or equal to 1",
         "size": "Size must be greater than or equal to 1",
-        "styleId": "Cannot be found",
+        "styleId": "Style cannot be found",
       }
     }
     ```

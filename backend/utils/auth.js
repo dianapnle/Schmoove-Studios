@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Studio } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -88,4 +88,28 @@ const requireAuth = function (req, _res, next) {
 
 
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth };
+//authorize user
+const validateUser = function (req, _res, next) {
+  //use param studio id to look for the studio
+    const studioId = req.params.studioId;
+
+    const search = Studio.findByPk(Number(studioId));
+    //if there is no studio that matches the given studioid from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Studio couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+
+    if (req.user.id === search.ownerId) {
+      return next()
+    }
+    const err = new Error('Forbidden');
+    err.title = 'Authorization required';
+    err.status = 403;
+    return next(err);
+  };
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, validateUser };

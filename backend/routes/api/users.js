@@ -49,6 +49,9 @@ const validateSignup = [
     check('lastName')
     .exists({ checkFalsy: true })
     .withMessage('Last Name is required'),
+    check('isInstructor')
+    .exists({ checkFalsy: true })
+    .withMessage('Please indicate whether you are an instructor or not.'),
     handleValidationErrors
 ]
 
@@ -57,16 +60,17 @@ const validateSignup = [
 
 // Sign up
 router.post('/', validateSignup, async (req, res) => {
-    const { email, password, firstName, lastName, username } = req.body;
+    const { email, password, firstName, lastName, username, isInstructor } = req.body;
       const hashedPassword = bcrypt.hashSync(password);
-      const user = await User.create({ email, username, hashedPassword, firstName, lastName });
+      const user = await User.create({ email, username, hashedPassword, firstName, lastName, isInstructor });
 
       const safeUser = {
         id: user.id,
         email: user.email,
         username: user.username,
         firstName: user.firstName,
-        lastName: user.lastName
+        lastName: user.lastName,
+        isInstructor: user.isInstructor
       };
 
       await setTokenCookie(res, safeUser);
@@ -76,5 +80,7 @@ router.post('/', validateSignup, async (req, res) => {
       });
     }
   );
+
+
 
 module.exports = router;

@@ -49,7 +49,8 @@ router.post('/', validateLogin, async (req, res, next) => {
         email: user.email,
         username: user.username,
         firstName: user.firstName,
-        lastName: user.lastName
+        lastName: user.lastName,
+        isInstructor: user.isInstructor
       };
 
       await setTokenCookie(res, safeUser);
@@ -61,7 +62,7 @@ router.post('/', validateLogin, async (req, res, next) => {
   );
 
 
-  // Restore session user
+  // Get the current user
   router.get('/', (req, res) => {
       const { user } = req;
       if (user) {
@@ -70,6 +71,7 @@ router.post('/', validateLogin, async (req, res, next) => {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
+          isInstructor: user.isInstructor,
           username: user.username
         };
         res.status(200);
