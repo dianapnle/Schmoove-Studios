@@ -148,6 +148,7 @@ router.get('/:studioId', studioExist, async(req, res) => {
     );
 
     const modifiedResult = studio.toJSON();
+
       const sum = await Review.sum('rating',
         {where: {studioId: studioId} }
       )
@@ -234,3 +235,37 @@ router.delete("/:studioId", requireAuth, validateUser, async (req, res) => {
       message:"Successfully deleted"
       });
   });
+
+
+
+// get studios by current user
+router.get('/current', requireAuth, async (req, res) => {
+    const studios = await Studio.findAll({
+      where: {
+          ownerId: req.user.id
+      },
+      attributes: ['id', 'ownerId', 'name', 'logo', 'pic', 'description'],
+    });
+
+  const modifiedResult = []
+  for (const entry of studios) {
+   const modifiedEntry = entry.toJSON();
+   //find the sum stars each studio using reviews
+   const sumStars = await Review.sum('rating', {
+     where: {studioId: entry.id}
+   })
+   const count = await Review.count( { where: {studioId: entry.id } });
+   const average = count > 0 ? (sum/count) : 0;
+
+   modifiedEntry.numReviews = count;
+   modifiedEntry.avgStarRating = average;
+   modifiedResult.push(modifiedEntry)
+}
+    return res.json({
+      Studios:  modifiedResult
+    });
+  });
+
+
+
+  module.exports = router;
