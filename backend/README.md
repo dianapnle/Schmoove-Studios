@@ -1239,7 +1239,6 @@ Return all the instructors that the studio has.
            "id": 2,
            "studioId": 1,
            "userId": 2,
-           "review": "Meh",
            "profilePic": "img url"
         }
       ]

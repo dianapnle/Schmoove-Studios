@@ -3,6 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const studiosRouter = require('./studios.js');
 const classesRouter = require('./classes.js')
+const instructorsRouter = require('./instructors.js')
 
 
 const { restoreUser } = require("../../utils/auth.js");
@@ -21,4 +22,5 @@ router.use('/studios', studiosRouter);
 
 router.use('/classes', classesRouter)
 
+router.use('/instructors', instructorsRouter)
 module.exports = router;

@@ -438,4 +438,32 @@ router.post('/:studioId/classes', requireAuth, validateReview, checkExist, async
   })
 });
 
+
+
+//get all instructors for a studio
+router.get("studios/:studioId/instructors", async (req, res) => {
+  const { studioId } = req.params;
+
+  const search = await Studio.findByPk(Number(studioId));
+  //if there is no studio that matches the given studioid from parameter -> throw an error
+  if (search === null) {
+      const err = new Error()
+      err.message = "Studio couldn't be found";
+      res.status(404);
+      return res.json({
+        message: err.message
+    })
+  };
+
+  const instructors = await Instructor.findAll({
+      where: { studioId: studioId },
+      attributes: ['id', 'studioId', 'userId', 'profilepic']
+  })
+
+  res.status(200);
+  return res.json({
+    Instructors:  instructors
+  });
+})
+
   module.exports = router;
