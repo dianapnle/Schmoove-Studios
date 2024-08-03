@@ -89,11 +89,11 @@ const requireAuth = function (req, _res, next) {
 
 
 //authorize user
-const validateUser = function (req, _res, next) {
+async function  validateUser (req, res, next) {
   //use param studio id to look for the studio
     const studioId = req.params.studioId;
 
-    const search = Studio.findByPk(Number(studioId));
+    const search = await Studio.findByPk(Number(studioId));
     //if there is no studio that matches the given studioid from parameter -> throw an error
     if (search === null) {
       const err = new Error();
@@ -102,6 +102,7 @@ const validateUser = function (req, _res, next) {
       return next(err);
     };
 
+    console.log(search, search.ownerId, req.user.id)
     if (req.user.id === search.ownerId) {
       return next()
     }

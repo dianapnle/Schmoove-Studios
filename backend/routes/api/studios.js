@@ -51,6 +51,39 @@ router.get('/', async (req, res) => {
     //if there are query parameters
     if (Object.keys(req.query).length !== 0) {
         validateQueryParams()
+        if (req.params) {
+            let {page, size, dancestyleId} = req.query
+
+            page = Number(page)
+            size = Number(size)
+
+            //if the given value is not a number OR less than 1, set default to 1
+            if (isNaN(page) || page < 1) page = 1;
+
+            if (isNaN(size) || size < 1) size = 20;
+            // If the size parameter is greater than 20, then the size should be set and limited to 20
+            if (size > 20) size = 20;
+
+
+            const studios = await Studio.findAll({
+                include: [{
+                    model: Class,
+                    include: [{
+                          model: ClassDanceStyle,
+                          where: {danceStyleId: dancestyleId},
+                          required: true
+                    }],
+                    required: true
+                }],
+                 ...pagination });
+
+            res.status(200);
+            return res.json({
+                Studios: studios,
+                page: page,
+                size: size
+            });
+        }
     }
 
     let page = 1;
@@ -62,40 +95,7 @@ router.get('/', async (req, res) => {
     pagination.offset=size * (page - 1);
 
 
-    if (req.params) {
 
-        let {page, size, dancestyleId} = req.query
-
-        page = Number(page)
-        size = Number(size)
-
-        //if the given value is not a number OR less than 1, set default to 1
-        if (isNaN(page) || page < 1) page = 1;
-
-        if (isNaN(size) || size < 1) size = 20;
-        // If the size parameter is greater than 20, then the size should be set and limited to 20
-        if (size > 20) size = 20;
-
-
-        const studios = await Studio.findAll({
-            include: [{
-                model: Class,
-                include: [{
-                      model: ClassDanceStyle,
-                      where: {danceStyleId: dancestyleId},
-                      required: true
-                }],
-                required: true
-            }],
-             ...pagination });
-
-        res.status(200);
-        return res.json({
-            Studios: studios,
-            page: page,
-            size: size
-        });
-    }
     // if no req.params/search filters
     const studios = await Studio.findAll({
             ...pagination
@@ -137,6 +137,37 @@ async function validateQueryParams (req, res, next) {
       return next();
     };
   };
+
+
+// get studios by current user
+router.get('/current', requireAuth, async (req, res) => {
+
+    const studios = await Studio.findAll({
+      where: { ownerId: req.user.id},
+      attributes: ['id', 'ownerId', 'name', 'logo', 'pic', 'description'],
+    });
+
+  const modifiedResult = []
+  for (const entry of studios) {
+
+   const modifiedEntry = entry.toJSON();
+   //find the sum stars each studio using reviews
+   const sumStars = await Review.sum('rating', {
+     where: {studioId: entry.id}
+   })
+   const count = await Review.count( { where: {studioId: entry.id } });
+   const average = count > 0 ? (sumStars/count) : 0;
+
+   modifiedEntry.numReviews = count;
+   modifiedEntry.avgStarRating = average;
+   modifiedResult.push(modifiedEntry)
+}
+    return res.json({
+      Studios:  modifiedResult
+    });
+  });
+
+
 
 
   //Get details of a studio based on id
@@ -238,33 +269,7 @@ router.delete("/:studioId", requireAuth, validateUser, async (req, res) => {
 
 
 
-// get studios by current user
-router.get('/current', requireAuth, async (req, res) => {
-    const studios = await Studio.findAll({
-      where: {
-          ownerId: req.user.id
-      },
-      attributes: ['id', 'ownerId', 'name', 'logo', 'pic', 'description'],
-    });
 
-  const modifiedResult = []
-  for (const entry of studios) {
-   const modifiedEntry = entry.toJSON();
-   //find the sum stars each studio using reviews
-   const sumStars = await Review.sum('rating', {
-     where: {studioId: entry.id}
-   })
-   const count = await Review.count( { where: {studioId: entry.id } });
-   const average = count > 0 ? (sum/count) : 0;
-
-   modifiedEntry.numReviews = count;
-   modifiedEntry.avgStarRating = average;
-   modifiedResult.push(modifiedEntry)
-}
-    return res.json({
-      Studios:  modifiedResult
-    });
-  });
 
 
 
