@@ -1,12 +1,49 @@
 //holds route paths to /api/spots
 const express = require('express');
 const { Op } = require('sequelize');
-const { Studio, Class, ClassDanceStyle } = require('../../db/models');
+const { Studio, Class, ClassDanceStyle, Review } = require('../../db/models');
 const { requireAuth, validateUser } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-var Sequelize = require('sequelize');
+
+
+
+const validateStudio = [
+    check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Name must be between 2 and 50 characters in length'),
+    check('logo')
+    .exists({ checkFalsy: true })
+    .withMessage('Logo img url is required'),
+    check('pic')
+    .exists({ checkFalsy: true })
+    .withMessage('Picture img url is required'),
+    check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Description is required'),
+    handleValidationErrors
+  ];
+
+
+
+//check if studio exists
+async function studioExist (req, res, next) {
+    //use param studio id to look for the studio
+    const studioId = req.params.studioId;
+
+    const search = await Studio.findByPk(Number(studioId));
+    //if there is no studio that matches the given studioid from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Studio couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+    return next()
+}
+
+
 
 
 //get all studios with query params
@@ -103,3 +140,97 @@ async function validateQueryParams (req, res, next) {
 
 
   //Get details of a studio based on id
+router.get('/:studioId', studioExist, async(req, res) => {
+    //use param studio id to look for the studio
+    const { studioId } = req.params;
+    const studio = await Studio.findByPk(studioId,
+        { attributes: ['id', 'ownerId', 'name', 'logo', 'pic', 'description'] }
+    );
+
+    const modifiedResult = studio.toJSON();
+      const sum = await Review.sum('rating',
+        {where: {studioId: studioId} }
+      )
+      const count = await Review.count(
+       { where: {studioId: studioId } }
+      );
+
+      const average = count > 0 ? (sum/count) : 0;
+
+      modifiedResult.numReviews = count;
+      modifiedResult.avgStarRating = average;
+
+      res.status(200);
+      return res.json(modifiedResult);
+});
+
+
+//create a studio
+router.post('/', requireAuth, validateStudio, async (req, res) => {
+    const { name, logo, pic, description } = req.body;
+
+    const studio = await Studio.create({
+      ownerId: req.user.id,
+      name: name,
+      description: description,
+      logo: logo,
+      pic: pic
+    });
+
+    res.status(201);
+    return res.json({
+      id: studio.id,
+      ownerId: studio.ownerId,
+      description: studio.description,
+      logo: studio.logo,
+      pic: studio.pic
+    }
+    );
+});
+
+
+
+
+//edit a studio
+router.put("/:studioId", requireAuth, validateStudio, validateUser, async (req, res) => {
+    const { name, logo, pic, description } = req.body;
+    //use param spot id to look for the spot
+    const studioId = req.params.studioId;
+
+    let result = await Studio.findByPk(Number(studioId));
+
+     await result.update({
+      id: studioId,
+      ownerId: req.user.id,
+      name: name,
+      description: description,
+      logo: logo,
+      pic: pic
+    });
+
+    res.status(200);
+
+    return res.json ({
+      id: result.id,
+      ownerId: result.ownerId,
+      name: result.name,
+      description: result.description,
+      logo: result.logo,
+      pic: result.pic
+    });
+  });
+
+
+//delete a studio
+router.delete("/:studioId", requireAuth, validateUser, async (req, res) => {
+    //use param studio id to look for the studio
+    const studioId = req.params.studioId;
+    await Studio.destroy({
+      where: {id: studioId}
+    })
+
+    res.status(200);
+    return res.json({
+      message:"Successfully deleted"
+      });
+  });
