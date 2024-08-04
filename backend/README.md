@@ -90,7 +90,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/auth/login
+  * URL: /api/session
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -157,7 +157,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/auth/signup
+  * URL: /api/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -193,31 +193,31 @@ user's information.
     ```
 
 * Error response: User already exists with the specified email
-  * Status Code: 500
+  * Status Code: 400
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "message": "User already exists",
+      "message": "Bad request",
       "errors": {
-        "email": "User with that email already exists"
+        "email": "Email must be unique"
       }
     }
     ```
 
-* Error response: User already exists with the specified username
-  * Status Code: 500
+* Error response: User already exists with the specified email
+  * Status Code: 400
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "message": "User already exists",
+      "message": "Bad request",
       "errors": {
-        "username": "Username is already in use."
+        "username": "Username must be unique"
       }
     }
     ```
@@ -236,7 +236,7 @@ user's information.
         "username": "Username is required",
         "firstName": "First Name is required",
         "lastName": "Last Name is required",
-        "isInstructor": "lease indicate whether you are an instructor or not."
+        "isInstructor": "Please indicate whether you are an instructor or not."
       }
     }
     ```
