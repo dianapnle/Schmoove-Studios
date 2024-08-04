@@ -1,7 +1,7 @@
 //holds route paths to /api/classes
 const express = require('express');
 const { Op } = require('sequelize');
-const { Class, ClassDanceStyle, ClassEvent } = require('../../db/models');
+const { Class, ClassDanceStyle, ClassEvent, DanceStyle, Instructor, User } = require('../../db/models');
 const { requireAuth, validateClassUser} = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
@@ -93,7 +93,7 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
 
     let result = await Class.findByPk(Number(classId));
 
-    ClassDanceStyle.destroy({
+    await ClassDanceStyle.destroy({
         where: { classId: classId}
     });
 
@@ -102,7 +102,7 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
         stylesToBulkCreate.push({classId: classId, danceStyleId: styleId})
        }
 
-    ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+    await ClassDanceStyle.bulkCreate(stylesToBulkCreate);
 
 
      await result.update({
@@ -117,7 +117,7 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
     res.status(201);
     return res.json({
       id: result.id,
-      instructorId: result.ownerId,
+      instructorId: result.instructorId,
       description: result.description,
       name: result.name,
       studioId: result.studioId
@@ -130,7 +130,12 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
 router.delete('/:classId', requireAuth, validateClassUser, async (req, res) => {
     //use param class id to look for the class
     const classId = req.params.classId;
-     await Class.destroy({
+    
+    await ClassDanceStyle.destroy({
+        where: {classid: classId}
+     })
+
+    await Class.destroy({
        where: {id: classId}
         })
 

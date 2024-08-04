@@ -388,7 +388,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle
    }
 
 
-   ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+   await ClassDanceStyle.bulkCreate(stylesToBulkCreate);
 
   res.status(201);
   return res.json({
@@ -518,7 +518,7 @@ router.get("/:studioId/instructors", async (req, res) => {
   const instructors = await Instructor.findAll({
       where: { studioId: studioId },
       include: { model: User, attributes: ["firstName", "lastName"] },
-      attributes: ['id', 'studioId', 'userId', 'profilepic']
+      attributes: ['id', 'studioId', 'userId', 'profilePic']
   })
 
   const modifiedResult = [];
