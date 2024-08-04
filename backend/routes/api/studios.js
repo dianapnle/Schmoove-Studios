@@ -212,6 +212,7 @@ router.post('/', requireAuth, validateStudio, async (req, res) => {
     res.status(201);
     return res.json({
       id: studio.id,
+      name: studio.name,
       ownerId: studio.ownerId,
       description: studio.description,
       logo: studio.logo,

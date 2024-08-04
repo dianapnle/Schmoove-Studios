@@ -247,7 +247,7 @@ user's information.
 
 Returns all the studios.
 
-* Require Authentication: true
+* Require Authentication: false
 * Request
   * Method: GET
   * URL: /api/studios
@@ -327,7 +327,7 @@ Returns the details of a studio specified by its id.
 
     ```json
     {
-      "message": "Studio could not be found"
+      "message": "Studio couldn't be found"
     }
     ```
 
