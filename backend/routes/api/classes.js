@@ -102,7 +102,7 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
         stylesToBulkCreate.push({classId: classId, danceStyleId: styleId})
        }
 
-    const styles = ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+    ClassDanceStyle.bulkCreate(stylesToBulkCreate);
 
 
      await result.update({

@@ -388,7 +388,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle
    }
 
 
-   const styles = ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+   ClassDanceStyle.bulkCreate(stylesToBulkCreate);
 
   res.status(201);
   return res.json({
