@@ -32,11 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       validate: {
         isAfter(value) {
-          //take off the z of the string and make another date object with same time as current
-          const modifiedValue = new Date(value.substring(0, value.length-1))
-          //new Date () gives current time with time stamp, dateString gives the date only without time, then create another date object with it
-          //to normalize both and compare
-          let current = new Date((new Date().toDateString()))
+          const modifiedValue = new Date(value)
+          let current = new Date()
           if(modifiedValue < current){
             throw new Error("startTime cannot be in the past")
           }
