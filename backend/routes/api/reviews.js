@@ -1,4 +1,4 @@
-//holds route paths to /api/spots
+//holds route paths to /api/reviews
 const express = require('express');
 const { Op } = require('sequelize');
 const { Studio, Class, ClassDanceStyle, Review } = require('../../db/models');

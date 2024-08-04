@@ -1,4 +1,4 @@
-//holds route paths to /api/spots
+//holds route paths to /api/instructors
 const express = require('express');
 const { Op } = require('sequelize');
 const { User, Instructor } = require('../../db/models');

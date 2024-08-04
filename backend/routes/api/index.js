@@ -4,6 +4,7 @@ const usersRouter = require('./users.js');
 const studiosRouter = require('./studios.js');
 const classesRouter = require('./classes.js')
 const instructorsRouter = require('./instructors.js')
+const dancestylesRouter = require('./dancestyles.js')
 
 
 const { restoreUser } = require("../../utils/auth.js");
@@ -20,7 +21,9 @@ router.use('/users', usersRouter);
 
 router.use('/studios', studiosRouter);
 
-router.use('/classes', classesRouter)
+router.use('/classes', classesRouter);
+
+router.use('/dancestyles', dancestylesRouter)
 
 router.use('/instructors', instructorsRouter)
 module.exports = router;

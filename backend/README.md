@@ -498,7 +498,7 @@ Deletes an existing studio.
 
 Returns all the classess of current studio.
 
-* Require Authentication: true
+* Require Authentication: false
 * Request
   * Method: GET
   * URL: /api/studios/:studioId/classes
@@ -720,7 +720,7 @@ Delete an existing class.
 
 Return all the events a specific class has.
 
-* Require Authentication: true
+* Require Authentication: false
 * Request
   * Method: GET
   * URL: /api/classes/:classId
@@ -949,7 +949,7 @@ Delete an existing class event.
 
 Return all the reviews that the studio has.
 
-* Require Authentication: true
+* Require Authentication: false
 * Request
   * Method: GET
   * URL: /api/studios/:studioId/reviews
@@ -1173,7 +1173,7 @@ Delete an existing review for a Studio.
 
 ### Get all instructors
 Return all users that indicate they are an instructor on the platform.
-* Required Authentication: true
+* Required Authentication: false
 * Request
   * Method: GET
   * URL: /api/instructors

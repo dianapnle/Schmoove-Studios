@@ -1,4 +1,4 @@
-//holds route paths to /api/spots
+//holds route paths to /api/classes
 const express = require('express');
 const { Op } = require('sequelize');
 const { Studio, Class, ClassDanceStyle, Review, Instructor } = require('../../db/models');
@@ -63,6 +63,22 @@ router.delete('/:classId', requireAuth, validateClassUser, async (req, res) => {
       });
 
 });
+
+
+//find a class' dance styles
+router.get('/:classId/classDanceStyle', async (req, res) => {
+    const classId = req.params.classId;
+
+    const classDanceStyles = await ClassDanceStyle.findAll({
+        where: { classId: classId },
+        attributes: ['classId', 'danceStyleId']
+    })
+    res.status(200);
+    return res.json({
+        ClassDanceStyles: classDanceStyles
+    })
+})
+
 
 
 module.exports = router;

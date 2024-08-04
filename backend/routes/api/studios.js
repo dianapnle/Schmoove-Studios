@@ -1,4 +1,4 @@
-//holds route paths to /api/spots
+//holds route paths to /api/studios
 const express = require('express');
 const { Op } = require('sequelize');
 const { Studio, Class, ClassDanceStyle, Review, Instructor } = require('../../db/models');
@@ -181,6 +181,7 @@ router.get('/current', requireAuth, async (req, res) => {
    modifiedEntry.avgStarRating = average;
    modifiedResult.push(modifiedEntry)
 }
+    res.status(200)
     return res.json({
       Studios:  modifiedResult
     });
