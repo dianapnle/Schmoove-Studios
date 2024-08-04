@@ -291,10 +291,10 @@ router.delete("/:studioId", requireAuth, validateStudioUser, async (req, res) =>
 
 
 //Get all classes of a specific studio
-router.get("studios/:studioId/classes", async (req, res) => {
+router.get("/:studioId/classes", async (req, res) => {
     const { studioId } = req.params;
 
-    const search = await Studio.findByPk(Number(spotId));
+    const search = await Studio.findByPk(Number(studioId));
     //if there is no studio that matches the given studioid from parameter -> throw an error
     if (search === null) {
         const err = new Error()
@@ -310,7 +310,9 @@ router.get("studios/:studioId/classes", async (req, res) => {
         attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
         include: [
           {
-            model: Instructor, attributes: ['id', 'firstName', 'lastName', 'profilePic']
+            model: Instructor,
+            include: { model: User, attributes: ["firstName", "lastName"] },
+            attributes: ['id', 'profilePic']
           }
         ]
     })
@@ -365,7 +367,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser
 
 
 //Get all reviews of a specific studio
-router.get("studios/:studioId/reviews", async (req, res) => {
+router.get(":studioId/reviews", async (req, res) => {
   const { studioId } = req.params;
 
   const search = await Studio.findByPk(Number(studioId));
@@ -408,7 +410,7 @@ async function checkExist (req, res, next) {
   //use param studio to look for the spot
   const studioId = req.params.studioId;
 
-  const search = await Studio.findByPk(Number(spotId));
+  const search = await Studio.findByPk(Number(studioId));
   //if there is no studio that matches the given studioid from parameter -> throw an error
   if (search === null) {
     const err = new Error();
@@ -462,7 +464,7 @@ router.post('/:studioId/classes', requireAuth, validateReview, checkExist, async
 
 
 //get all instructors for a studio
-router.get("studios/:studioId/instructors", async (req, res) => {
+router.get(":studioId/instructors", async (req, res) => {
   const { studioId } = req.params;
 
   const search = await Studio.findByPk(Number(studioId));
