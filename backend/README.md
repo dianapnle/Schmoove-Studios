@@ -867,7 +867,6 @@ Update and return an existing class event.
     {
       "id": 1,
       "classId": 1,
-      "userId": 2,
       "price": 35.00,
       "startTime": "2011-10-05T14:48:00.000Z",
       "endTime": "2011-10-05T14:48:00.000Z"

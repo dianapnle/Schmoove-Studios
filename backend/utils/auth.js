@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User, Studio, Class, Instructor } = require('../db/models');
+const { User, Studio, Class, Instructor, ClassEvent, DanceStyle, CLassDanceStyle } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -168,6 +168,36 @@ async function  validateInstructorUser (req, res, next) {
       return next()
     }
 
+    //else throw authorization error
+    const err = new Error('Forbidden');
+    err.title = 'Authorization required';
+    err.status = 403;
+    return next(err);
+  };
+
+
+//authorize user
+async function  validateClassEventUser (req, res, next) {
+  //use class event id to look for class event
+    const eventId = req.params.eventId;
+
+    const search = await ClassEvent.findByPk(Number(eventId));
+    //if there is no event that matches the given event id from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Class event couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+
+
+    //use the classId pull the studio id  of class to check if it matches with req.user
+    const result = await Class.findByPk(Number(search.classId))
+    const el = await Studio.findByPk(Number(result.studioId))
+    //if it does match -> continue on to next function
+    if (req.user.id === el.ownerId) {
+      return next()
+    }
 
     //else throw authorization error
     const err = new Error('Forbidden');
@@ -177,4 +207,4 @@ async function  validateInstructorUser (req, res, next) {
   };
 
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, validateStudioUser, validateClassUser, validateInstructorUser };
+  module.exports = { setTokenCookie, restoreUser, requireAuth, validateStudioUser, validateClassUser, validateInstructorUser, validateClassEventUser };

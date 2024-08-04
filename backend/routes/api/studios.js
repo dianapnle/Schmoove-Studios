@@ -292,51 +292,58 @@ router.delete("/:studioId", requireAuth, validateStudioUser, async (req, res) =>
 
 //Get all classes of a specific studio
 router.get("/:studioId/classes", async (req, res) => {
-    const { studioId } = req.params;
+  const { studioId } = req.params;
 
-    const search = await Studio.findByPk(Number(studioId));
-    //if there is no studio that matches the given studioid from parameter -> throw an error
-    if (search === null) {
-        const err = new Error()
-        err.message = "Studio couldn't be found";
-        res.status(404);
-        return res.json({
-          message: err.message
-      })
-    };
-
-    const classes = await Class.findAll({
-        where: { studioId: studioId },
-        attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
-        include: [
-          {
-            model: Instructor,
-            include: { model: User, attributes: ["firstName", "lastName"] },
-            attributes: ['id', 'profilePic']
-          },
-          {
-            model: ClassDanceStyle,
-            attributes: ['classId', 'danceStyleId']
-          }
-        ]
+  const search = await Studio.findByPk(Number(studioId));
+  //if there is no studio that matches the given studioid from parameter -> throw an error
+  if (search === null) {
+      const err = new Error()
+      err.message = "Studio couldn't be found";
+      res.status(404);
+      return res.json({
+        message: err.message
     })
+  };
 
-    const modifiedResult = [];
-    for (const entry of classes) {
-        // flatten user data into instructor
-        const modifiedEntry = entry.toJSON();
-        modifiedEntry["Instructor"]["firstName"] = modifiedEntry["Instructor"]["User"]["firstName"];
-        modifiedEntry["Instructor"]["lastName"] = modifiedEntry["Instructor"]["User"]["lastName"];
-        delete modifiedEntry["Instructor"]["User"];
+  const classes = await Class.findAll({
+      where: { studioId: studioId },
+      attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
+      include: [
+        {
+          model: Instructor,
+          include: { model: User, attributes: ["firstName", "lastName"] },
+          attributes: ['id', 'profilePic']
+        },
+        {
+          model: ClassDanceStyle,
+          include: { model: DanceStyle, attributes: ["id", "name"]},
+        }
+      ]
+  })
 
-        modifiedResult.push(modifiedEntry);
-    }
+  const modifiedResult = [];
+  for (const entry of classes) {
+      // flatten user data into instructor
+      const modifiedEntry = entry.toJSON();
+      modifiedEntry["Instructor"]["firstName"] = modifiedEntry["Instructor"]["User"]["firstName"];
+      modifiedEntry["Instructor"]["lastName"] = modifiedEntry["Instructor"]["User"]["lastName"];
+      delete modifiedEntry["Instructor"]["User"];
 
-    res.status(200);
-    return res.json({
-      Classes:  modifiedResult
-    });
+      // flatten DanceStyle information
+      modifiedEntry["DanceStyles"] = []
+      for(const danceEntry of modifiedEntry["ClassDanceStyles"]) {
+          modifiedEntry["DanceStyles"].push(danceEntry["DanceStyle"])
+      }
 
+      delete modifiedEntry["ClassDanceStyles"]
+
+      modifiedResult.push(modifiedEntry);
+  }
+
+  res.status(200);
+  return res.json({
+    Classes:  modifiedResult
+  });
 })
 
 

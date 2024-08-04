@@ -2,7 +2,7 @@
 const express = require('express');
 const { Op } = require('sequelize');
 const { Class, ClassDanceStyle, ClassEvent } = require('../../db/models');
-const { requireAuth, validateClassUser} = require('../../utils/auth');
+const { requireAuth, validateClassUser, validateClassEventUser} = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -42,6 +42,49 @@ router.get("/:eventId", classEventExist, async (req, res) => {
        endTime: el.endTime
     })
 });
+
+
+//edit a class event
+router.put('/:eventId', requireAuth, validateClassEvent, validateClassEventUser, async (req, res) => {
+    const { price, startTime, endTime } = req.body;
+    const { eventId } = req.params
+
+    let result = await ClassEvent.findByPk(Number(eventId));
+
+     await result.update({
+      id: eventId,
+      classId: result.classId,
+      price: price,
+      startTime: startTime,
+      endTime: endTime
+    });
+
+
+    res.status(201);
+    return res.json({
+      id: result.id,
+      classId: result.classId,
+      price: result.price,
+      startTime: result.startTime,
+      endTime: result.endTime
+    }
+    );
+});
+
+//delete class event
+router.delete('/:eventId', requireAuth, validateClassEventUser, async (req, res) => {
+    //use param class  eventid to look for the class
+    const eventId = req.params.eventId;
+     await ClassEvent.destroy({
+       where: {id: eventId}
+        })
+
+    return res.json({
+         message:"Successfully deleted"
+      });
+
+});
+
 
 
 module.exports = router;
