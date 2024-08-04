@@ -365,8 +365,7 @@ Creates and returns a new studio.
       "name": "Studio 1",
       "logo": "img url",
       "pic": "img url",
-      "description": "This studio offers great variety of classes!",
-      "createdAt": "2024-10-05T14:48:00.000Z"
+      "description": "This studio offers great variety of classes!"
     }
     ```
 
