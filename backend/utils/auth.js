@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User, Studio, Class } = require('../db/models');
+const { User, Studio, Class, Instructor } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -145,4 +145,36 @@ async function  validateClassUser (req, res, next) {
   };
 
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth, validateStudioUser, validateClassUser };
+
+  //authorize user
+async function  validateInstructorUser (req, res, next) {
+  //use param instructor id to look for instructor
+    const instructorId = req.params.instructorId;
+
+    const search = await Instructor.findByPk(Number(instructorId));
+    //if there is no instructor that matches the given instructorid from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Instructor couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+
+
+    //use the studioId pull the owner id  of studio to check if it matches with req.user
+    const result = await Studio.findByPk(Number(search.studioId))
+    //if it does match -> continue on to next function
+    if (req.user.id === result.ownerId) {
+      return next()
+    }
+
+
+    //else throw authorization error
+    const err = new Error('Forbidden');
+    err.title = 'Authorization required';
+    err.status = 403;
+    return next(err);
+  };
+
+
+  module.exports = { setTokenCookie, restoreUser, requireAuth, validateStudioUser, validateClassUser, validateInstructorUser };

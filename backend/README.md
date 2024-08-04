@@ -1306,7 +1306,7 @@ Create and return a new iunstructor for a studio specified by id.
     }
     ```
 
-* Error response: Couldn't find a Instructor with the specified id
+* Error response: Couldn't find a Studio with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -1314,7 +1314,7 @@ Create and return a new iunstructor for a studio specified by id.
 
     ```json
     {
-      "message": "Instructor couldn't be found"
+      "message": "Studio couldn't be found"
     }
     ```
 
@@ -1334,6 +1334,7 @@ Update and return an existing instructor.
 
     ```json
     {
+      "userId": 1,
       "profilePic": "img url"
     }
     ```

@@ -466,4 +466,46 @@ router.get("studios/:studioId/instructors", async (req, res) => {
   });
 })
 
+
+const validateInstructor = [
+  check('profilePic')
+  .exists({ checkFalsy: true })
+  .withMessage('Profile pic img url is required'),
+  handleValidationErrors
+];
+
+
+
+//create an instructor for a studio
+router.post('/:studioId/classes', requireAuth, validateInstructor, validateStudioUser, async (req, res) => {
+  const { userId, profilePic } = req.body;
+  const { studioId } = req.params;
+
+  const search = await Studio.findByPk(Number(studioId));
+  //if there is no studio that matches the given studioid from parameter -> throw an error
+  if (search === null) {
+      const err = new Error()
+      err.message = "Studio couldn't be found";
+      res.status(404);
+      return res.json({
+        message: err.message
+    })
+  };
+
+  const el = await Instructor.create({
+    userId: userId,
+    profilePic: profilePic,
+    studioId: studioId
+  });
+
+  res.status(201);
+  return res.json({
+    id: el.id,
+    studioId: el.studioId,
+    userId: el.userId,
+    profilePic: el.profilePic
+  }
+  );
+});
+
   module.exports = router;
