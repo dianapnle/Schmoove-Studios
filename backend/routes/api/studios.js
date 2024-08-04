@@ -247,7 +247,7 @@ router.post('/', requireAuth, validateStudio, async (req, res) => {
 //edit a studio
 router.put("/:studioId", requireAuth, validateStudio, validateStudioUser, async (req, res) => {
     const { name, logo, pic, description } = req.body;
-    //use param spot id to look for the spot
+    //use param studio id to look for the studio
     const studioId = req.params.studioId;
 
     let result = await Studio.findByPk(Number(studioId));
@@ -407,7 +407,7 @@ const validateReview = [
 
 
 async function checkExist (req, res, next) {
-  //use param studio to look for the spot
+  //use param studio to look for the studio
   const studioId = req.params.studioId;
 
   const search = await Studio.findByPk(Number(studioId));
@@ -428,7 +428,7 @@ async function checkExist (req, res, next) {
 
   //if it does match and its not null-> throw an error
   if (result) {
-    const err = new Error('User already has a review for this spot');
+    const err = new Error('User already has a review for this studio');
     err.title = 'Already exists';
     err.status = 500;
     return next(err);
