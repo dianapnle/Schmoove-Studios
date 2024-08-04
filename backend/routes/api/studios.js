@@ -567,7 +567,7 @@ router.post('/:studioId/instructors', requireAuth, validateInstructor, validateS
   const el = await Instructor.create({
     userId: userId,
     profilePic: profilePic,
-    studioId: studioId
+    studioId: Number(studioId)
   });
 
   res.status(201);
