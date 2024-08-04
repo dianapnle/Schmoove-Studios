@@ -294,7 +294,7 @@ Returns all the studios.
 
 Returns the details of a studio specified by its id.
 
-* Require Authentication: true
+* Require Authentication: false
 * Request
   * Method: GET
   * URL: /api/studios/:studioId

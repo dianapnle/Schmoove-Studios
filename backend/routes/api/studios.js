@@ -98,7 +98,6 @@ router.get('/', async (req, res) => {
 
     // if no req.params/search filters
 
-
     const studios = await Studio.findAll({
             ...pagination
           });
@@ -124,7 +123,7 @@ router.get('/', async (req, res) => {
               Studios:  modifiedResult,
               page: page,
               size: size
-        });
+      });
 
 })
 
