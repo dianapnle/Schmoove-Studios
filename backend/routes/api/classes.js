@@ -59,10 +59,27 @@ router.get("/:classId", classExist, async (req, res) => {
 
 //edit a class
 router.put('/:classId', requireAuth, validateClass, validateClassUser, async (req, res) => {
-    const { name, instructorId, description } = req.body;
+    const { name, instructorId, description, danceStyles } = req.body;
     const { classId } = req.params
 
     let result = await Class.findByPk(Number(classId));
+
+    ClassDanceStyle.bulkDelete({
+        where: { classId: classId}
+    });
+
+    let stylesToBulkCreate = []
+    for (styleId of danceStyles) {
+        stylesToBulkCreate.push({classId: classId, danceStyleId: styleId})
+       }
+
+    let add = [];
+
+    const styles = ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+
+    for (el in styles) {
+          add.push(el.danceStyleId)
+    }
 
      await result.update({
       id: classId,
@@ -79,7 +96,8 @@ router.put('/:classId', requireAuth, validateClass, validateClassUser, async (re
       instructorId: result.ownerId,
       description: result.description,
       name: result.name,
-      studioId: result.studioId
+      studioId: result.studioId,
+      danceStyles: add
     }
     );
 });
@@ -100,24 +118,10 @@ router.delete('/:classId', requireAuth, validateClassUser, async (req, res) => {
 });
 
 
-//find a class' dance styles
-router.get('/:classId/classDanceStyle', async (req, res) => {
-    const classId = req.params.classId;
-
-    const classDanceStyles = await ClassDanceStyle.findAll({
-        where: { classId: classId },
-        attributes: ['classId', 'danceStyleId']
-    });
-
-    res.status(200);
-    return res.json({
-        ClassDanceStyles: classDanceStyles
-    })
-})
 
 
 //get all events a class has
-router.get('/:classId', async (req, res) => {
+router.get('/:classId/events', async (req, res) => {
     const classId = req.params.classId;
 
     const events = await ClassEvent.findAll({

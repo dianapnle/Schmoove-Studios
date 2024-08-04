@@ -365,8 +365,10 @@ const validateClass = [
 
 //create a class for a studio
 router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser, async (req, res) => {
-  const { name, instructorId, description } = req.body;
+  const { name, instructorId, description, danceStyles } = req.body;
   const { studioId } = req.params;
+
+  let stylesToBulkCreate = [];
 
   const el = await Class.create({
     name: name,
@@ -375,13 +377,24 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser
     studioId: studioId
   });
 
+  for (styleId of danceStyles) {
+    stylesToBulkCreate.push({classId: el.id, danceStyleId: styleId})
+   }
+
+   let add = [];
+   const styles = ClassDanceStyle.bulkCreate(stylesToBulkCreate);
+   for (el in styles) {
+      add.push(el.danceStyleId)
+   }
+
   res.status(201);
   return res.json({
     id: el.id,
     studioId: el.studioId,
     description: el.description,
     instructorId: el.instructorId,
-    name: el.name
+    name: el.name,
+    danceStyles: add
   });
 });
 

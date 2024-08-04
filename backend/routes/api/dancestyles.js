@@ -18,7 +18,7 @@ router.get('/:danceStyleId', async (req, res) => {
     })
     res.status(200);
     return res.json({
-        DanceStyle: dancestyle
+        DanceStyles: dancestyle
     })
 })
 

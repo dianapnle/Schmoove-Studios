@@ -562,7 +562,8 @@ Create and return a new class for a studio specified by id.
       "name": "Intermediate heels",
       "studioId": 1,
       "description": "Well-paced heels choreography",
-      "instructorId": 1
+      "instructorId": 1,
+      "danceStyles": [1,2]
     }
     ```
 
@@ -578,7 +579,8 @@ Create and return a new class for a studio specified by id.
       "name": "Intermediate heels",
       "studioId": 1,
       "description": "Well-paced heels choreography",
-      "instructorId": 1
+      "instructorId": 1,
+      "danceStyles": [1,2]
     }
     ```
 
@@ -594,7 +596,8 @@ Create and return a new class for a studio specified by id.
       "errors": {
         "name": "Length must be between 1-100",
         "description": "Description is required",
-        "instructorId": "Must pick an instructor"
+        "instructorId": "Must pick an instructor",
+        "danceStyles": "Must pick styles"
       }
     }
     ```
@@ -630,7 +633,8 @@ Update and return an existing class.
       "name": "Intermediate/advanced heels",
       "studioId": 1,
       "description": "Choreography with across the floors",
-      "instructorId": 1
+      "instructorId": 1,
+      "danceStyles": [1,2]
     }
     ```
 
@@ -646,7 +650,8 @@ Update and return an existing class.
       "name": "Intermediate/advanced heels",
       "studioId": 1,
       "description": "Choreography with across the floors",
-      "instructorId": 1
+      "instructorId": 1,
+      "danceStyles": [1,2]
     }
     ```
 
@@ -662,7 +667,8 @@ Update and return an existing class.
       "errors": {
         "name": "Name must be between 1-100 characters",
         "description": "Description is required",
-        "instructorId": "Must pick an instructor"
+        "instructorId": "Must pick an instructor",
+        "danceStyles": "Must pick styles"
       }
     }
     ```
