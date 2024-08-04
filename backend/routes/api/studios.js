@@ -313,6 +313,10 @@ router.get("/:studioId/classes", async (req, res) => {
             model: Instructor,
             include: { model: User, attributes: ["firstName", "lastName"] },
             attributes: ['id', 'profilePic']
+          },
+          {
+            model: ClassDanceStyle,
+            attributes: ['classId', 'danceStyleId']
           }
         ]
     })
@@ -332,7 +336,7 @@ router.get("/:studioId/classes", async (req, res) => {
     return res.json({
       Classes:  modifiedResult
     });
-    
+
 })
 
 
@@ -378,7 +382,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser
 
 
 //Get all reviews of a specific studio
-router.get(":studioId/reviews", async (req, res) => {
+router.get("/:studioId/reviews", async (req, res) => {
   const { studioId } = req.params;
 
   const search = await Studio.findByPk(Number(studioId));
@@ -449,7 +453,7 @@ async function checkExist (req, res, next) {
 }
 
 //create a review for a studio
-router.post('/:studioId/classes', requireAuth, validateReview, checkExist, async (req, res) => {
+router.post('/:studioId/reviews', requireAuth, validateReview, checkExist, async (req, res) => {
 
   const studioId = req.params.studioId;
   const {review, rating} = req.body;
@@ -475,7 +479,7 @@ router.post('/:studioId/classes', requireAuth, validateReview, checkExist, async
 
 
 //get all instructors for a studio
-router.get(":studioId/instructors", async (req, res) => {
+router.get("/:studioId/instructors", async (req, res) => {
   const { studioId } = req.params;
 
   const search = await Studio.findByPk(Number(studioId));
@@ -491,12 +495,24 @@ router.get(":studioId/instructors", async (req, res) => {
 
   const instructors = await Instructor.findAll({
       where: { studioId: studioId },
+      include: { model: User, attributes: ["firstName", "lastName"] },
       attributes: ['id', 'studioId', 'userId', 'profilepic']
   })
 
+  const modifiedResult = [];
+  for (const entry of instructors) {
+    // flatten user data into instructor
+    const modifiedEntry = entry.toJSON();
+    modifiedEntry["firstName"] = modifiedEntry["User"]["firstName"];
+    modifiedEntry["lastName"] = modifiedEntry["User"]["lastName"];
+    delete modifiedEntry["User"];
+
+    modifiedResult.push(modifiedEntry);
+  }
+
   res.status(200);
   return res.json({
-    Instructors:  instructors
+    Instructors: modifiedResult
   });
 })
 
@@ -511,7 +527,7 @@ const validateInstructor = [
 
 
 //create an instructor for a studio
-router.post('/:studioId/classes', requireAuth, validateInstructor, validateStudioUser, async (req, res) => {
+router.post('/:studioId/instructors', requireAuth, validateInstructor, validateStudioUser, async (req, res) => {
   const { userId, profilePic } = req.body;
   const { studioId } = req.params;
 
