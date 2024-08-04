@@ -97,15 +97,35 @@ router.get('/', async (req, res) => {
 
 
     // if no req.params/search filters
+
+
     const studios = await Studio.findAll({
             ...pagination
           });
-    res.status(200);
-    return res.json({
-        Studios: studios,
-        page: page,
-        size: size
-    });
+
+    const modifiedResult = []
+        for (const entry of studios) {
+
+          const modifiedEntry = entry.toJSON();
+           //find the sum stars each studio using reviews
+           const sumStars = await Review.sum('rating', {
+             where: {studioId: entry.id}
+           })
+           const count = await Review.count( { where: {studioId: entry.id } });
+           const average = count > 0 ? (sumStars/count) : 0;
+
+           modifiedEntry.numReviews = count;
+           modifiedEntry.avgStarRating = average;
+           modifiedResult.push(modifiedEntry)
+        }
+
+      res.status(200);
+      return res.json({
+              Studios:  modifiedResult,
+              page: page,
+              size: size
+        });
+
 })
 
 
