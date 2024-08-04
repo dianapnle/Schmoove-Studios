@@ -387,11 +387,8 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle
     stylesToBulkCreate.push({classId: el.id, danceStyleId: styleId})
    }
 
-   let add = [];
+
    const styles = ClassDanceStyle.bulkCreate(stylesToBulkCreate);
-   for (el in styles) {
-      add.push(el.danceStyleId)
-   }
 
   res.status(201);
   return res.json({
@@ -399,8 +396,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle
     studioId: el.studioId,
     description: el.description,
     instructorId: el.instructorId,
-    name: el.name,
-    danceStyles: add
+    name: el.name
   });
 });
 
