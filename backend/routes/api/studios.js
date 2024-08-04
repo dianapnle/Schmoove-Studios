@@ -317,10 +317,22 @@ router.get("/:studioId/classes", async (req, res) => {
         ]
     })
 
+    const modifiedResult = [];
+    for (const entry of classes) {
+        // flatten user data into instructor
+        const modifiedEntry = entry.toJSON();
+        modifiedEntry["Instructor"]["firstName"] = modifiedEntry["Instructor"]["User"]["firstName"];
+        modifiedEntry["Instructor"]["lastName"] = modifiedEntry["Instructor"]["User"]["lastName"];
+        delete modifiedEntry["Instructor"]["User"];
+
+        modifiedResult.push(modifiedEntry);
+    }
+
     res.status(200);
     return res.json({
-      Classes:  classes
+      Classes:  modifiedResult
     });
+    
 })
 
 

@@ -48,7 +48,11 @@ router.get("/:classId", classExist, async (req, res) => {
 
     res.status(200);
     return res.json({
-        Class: el
+        id: el.id,
+        studioId: el.studioId,
+        instructorId: el.instructorId,
+        name: el.name,
+        description: el.description
     })
 });
 
@@ -116,7 +120,7 @@ router.get('/:classId/classDanceStyle', async (req, res) => {
 router.get('/:classId', async (req, res) => {
     const classId = req.params.classId;
 
-    const events = await Class.findAll({
+    const events = await ClassEvent.findAll({
         where: { classId: classId },
         attributes: ['id', 'classId', 'price', 'startTime', 'endTime']
     });
