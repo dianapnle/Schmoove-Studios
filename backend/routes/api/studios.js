@@ -1,7 +1,7 @@
 //holds route paths to /api/studios
 const express = require('express');
 const { Op } = require('sequelize');
-const { Studio, Class, ClassDanceStyle, Review, Instructor } = require('../../db/models');
+const { Studio, Class, ClassDanceStyle, Review, Instructor, User } = require('../../db/models');
 const { requireAuth, validateStudioUser } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
@@ -359,8 +359,7 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser
     description: el.description,
     instructorId: el.instructorId,
     name: el.name
-  }
-  );
+  });
 });
 
 

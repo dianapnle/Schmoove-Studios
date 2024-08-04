@@ -1,7 +1,7 @@
 //holds route paths to /api/classes
 const express = require('express');
 const { Op } = require('sequelize');
-const { Studio, Class, ClassDanceStyle, Review, Instructor } = require('../../db/models');
+const { Class, ClassDanceStyle, ClassEvent } = require('../../db/models');
 const { requireAuth, validateClassUser} = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
@@ -20,6 +20,37 @@ const validateClass = [
     .withMessage('Description is required'),
     handleValidationErrors
   ];
+
+//check if class exists
+async function classExist (req, res, next) {
+    //use param class id to look for the class
+    const classId = req.params.classId;
+
+    const search = await Class.findByPk(Number(classId));
+    //if there is no class that matches the given classid from parameter -> throw an error
+    if (search === null) {
+      const err = new Error();
+      err.message = "Class couldn't be found";
+      err.status = 404;
+      return next(err);
+    };
+    return next()
+}
+
+
+
+//get a specific class based on id
+router.get("/:classId", classExist, async (req, res) => {
+    const { classId } = req.params;
+    const el = await Class.findByPk(classId, {
+        attributes: ['id', 'studioId', 'description', 'instructorId', 'name']
+    })
+
+    res.status(200);
+    return res.json({
+        Class: el
+    })
+});
 
 
 //edit a class
@@ -72,7 +103,8 @@ router.get('/:classId/classDanceStyle', async (req, res) => {
     const classDanceStyles = await ClassDanceStyle.findAll({
         where: { classId: classId },
         attributes: ['classId', 'danceStyleId']
-    })
+    });
+
     res.status(200);
     return res.json({
         ClassDanceStyles: classDanceStyles
@@ -80,5 +112,55 @@ router.get('/:classId/classDanceStyle', async (req, res) => {
 })
 
 
+//get all events a class has
+router.get('/:classId', async (req, res) => {
+    const classId = req.params.classId;
+
+    const events = await Class.findAll({
+        where: { classId: classId },
+        attributes: ['id', 'classId', 'price', 'startTime', 'endTime']
+    });
+
+    res.status(200);
+    return res.json({
+        ClassEvents: events
+    })
+})
+
+
+const validateEvent = [
+    check('price')
+    .exists({ checkFalsy: true })
+    .withMessage('Price is required'),
+    check('startTime')
+    .exists({ checkFalsy: true })
+    .withMessage('Start time is required'),
+    check('endTime')
+    .exists({ checkFalsy: true })
+    .withMessage('End time is required'),
+    handleValidationErrors
+  ];
+
+
+//create a class event
+router.post('/:classId/events', requireAuth, validateEvent, validateClassUser, async (req, res) => {
+    const classId = req.params.classId;
+    const { price, startTime, endTime } = req.body
+
+    const event = await ClassEvent.create({
+        classId: classId,
+        price: price,
+        startTime: startTime,
+        endTime: endTime
+    });
+
+    res.status(201);
+    return res.json({
+      id: event.id,
+      price: event.price,
+      startTime: event.startTime,
+      endTime: event.endTime
+    });
+});
 
 module.exports = router;
