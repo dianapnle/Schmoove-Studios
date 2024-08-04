@@ -8,6 +8,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
+const validateClassEvent = [];
 
 //check if class event exists
 async function classEventExist (req, res, next) {

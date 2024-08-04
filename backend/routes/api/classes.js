@@ -43,8 +43,25 @@ async function classExist (req, res, next) {
 router.get("/:classId", classExist, async (req, res) => {
     const { classId } = req.params;
     const el = await Class.findByPk(classId, {
-        attributes: ['id', 'studioId', 'description', 'instructorId', 'name']
+        attributes: ['id', 'studioId', 'description', 'instructorId', 'name'],
+        include: [ { model: Instructor } ],
+        include: [
+          {
+            model: Instructor,
+            include: { model: User, attributes: ["firstName", "lastName"] },
+            attributes: ['id', 'profilePic']
+          },
+          {
+            model: ClassDanceStyle,
+            include: { model: DanceStyle, attributes: ["id", "name"]},
+          }
+      ]
     })
+
+    const danceStyles = [];
+    for (const danceEntry of el.ClassDanceStyles) {
+      danceStyles.push(danceEntry["DanceStyle"]);
+    }
 
     res.status(200);
     return res.json({
@@ -52,19 +69,31 @@ router.get("/:classId", classExist, async (req, res) => {
         studioId: el.studioId,
         instructorId: el.instructorId,
         name: el.name,
-        description: el.description
+        description: el.description,
+        Instructor: {
+          "id": el.Instructor.id,
+          "profilePic": el.Instructor.profilePic,
+          "firstName": el.Instructor.User.firstName,
+          "lastName": el.Instructor.User.lastName,
+        },
+        DanceStyles: danceStyles,
     })
 });
 
+const validateDanceStyle = [
+    check('danceStyles')
+    .exists({ checkFalsy: true })
+    .withMessage('danceStyles are required'),
+  ];
 
 //edit a class
-router.put('/:classId', requireAuth, validateClass, validateClassUser, async (req, res) => {
+router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validateClassUser, async (req, res) => {
     const { name, instructorId, description, danceStyles } = req.body;
     const { classId } = req.params
 
     let result = await Class.findByPk(Number(classId));
 
-    ClassDanceStyle.bulkDelete({
+    ClassDanceStyle.destroy({
         where: { classId: classId}
     });
 

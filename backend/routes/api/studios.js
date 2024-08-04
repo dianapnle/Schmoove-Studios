@@ -1,7 +1,7 @@
 //holds route paths to /api/studios
 const express = require('express');
 const { Op } = require('sequelize');
-const { Studio, Class, ClassDanceStyle, Review, Instructor, User } = require('../../db/models');
+const { Studio, Class, ClassDanceStyle, Review, Instructor, User, DanceStyle } = require('../../db/models');
 const { requireAuth, validateStudioUser } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
@@ -363,8 +363,14 @@ const validateClass = [
 ];
 
 
+const validateDanceStyle = [
+  check('danceStyles')
+  .exists({ checkFalsy: true })
+  .withMessage('danceStyles are required'),
+];
+
 //create a class for a studio
-router.post('/:studioId/classes', requireAuth, validateClass, validateStudioUser, async (req, res) => {
+router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle, validateStudioUser, async (req, res) => {
   const { name, instructorId, description, danceStyles } = req.body;
   const { studioId } = req.params;
 
