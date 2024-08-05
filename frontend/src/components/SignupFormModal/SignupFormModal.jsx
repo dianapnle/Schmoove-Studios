@@ -14,7 +14,7 @@ function SignupFormModal () {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
-    const [ isInstructor, setIsInstructor ] = useState(false);
+    const [ isInstructor, setIsInstructor ] = useState(true);
     const [ errors, setErrors ] = useState({});
     const { closeModal } = useModal();
     const [ hasSubmitted, setHasSubmitted] = useState(false)
