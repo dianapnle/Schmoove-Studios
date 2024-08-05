@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import logo from '../../../images/newspiritedlogo.png'
+import logo from '../../../images/logo.png'
 
 
 function Navigation({ isLoaded }) {

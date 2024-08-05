@@ -52,7 +52,7 @@ export const restoreUser = () => async (dispatch) => {
 //thunk action creator to sign up user to the backend
 export const signup = (user) => async (dispatch) => {
     //extract the needed params from the input
-    const { username, firstName, lastName, email, password } = user
+    const { username, firstName, lastName, email, password, isInstructor } = user
     const response = await csrfFetch(`/api/users`, {
         method: "POST",
         body: JSON.stringify({

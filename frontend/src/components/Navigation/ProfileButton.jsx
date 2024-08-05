@@ -2,13 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
-import * as sessionActions from '../../src/store/session';
+import * as sessionActions from '../../store/session';
 // import OpenModalButton from "../../src/components/OpenModalButton"
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { getCurrentUserSpots } from '../../src/store/spots';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
@@ -49,7 +48,7 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   const handleSubmit =  () => {
-               dispatch(getCurrentUserSpots())
+               dispatch()
   };
 
   return (

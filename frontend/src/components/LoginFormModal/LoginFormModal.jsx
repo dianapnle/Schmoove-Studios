@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import * as sessionActions from '../../src/store/session';
+import * as sessionActions from '../../store/session';
 import { useDispatch} from 'react-redux';
-import { useModal } from '../../src/context/Modal';
+import { useModal } from '../../context/Modal';
 import './LoginForm.css';
 
 function LoginFormModal () {
@@ -23,7 +23,7 @@ function LoginFormModal () {
 
     const demoUser = (e) => {
       const credential = 'demousername';
-      const password = 'ilikebananas1';
+      const password = 'password';
       e.preventDefault();
       return dispatch(sessionActions.login({ credential, password }))
       .then(() => {

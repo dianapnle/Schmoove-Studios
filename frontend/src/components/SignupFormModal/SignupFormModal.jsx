@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import * as sessionActions from '../../src/store/session';
+import * as sessionActions from '../../store/session';
 import { useDispatch} from 'react-redux';
-import { useModal } from '../../src/context/Modal';
+import { useModal } from '../../context/Modal';
 import './SignupForm.css';
 
 function SignupFormModal () {
@@ -14,6 +14,7 @@ function SignupFormModal () {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
+    const [ isInstructor, setIsInstructor ] = useState("");
     const [ errors, setErrors ] = useState({});
     const { closeModal } = useModal();
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -49,7 +50,8 @@ function SignupFormModal () {
               username,
               firstName,
               lastName,
-              password
+              password,
+              isInstructor
             })
           )
             .then(closeModal)
@@ -115,6 +117,14 @@ function SignupFormModal () {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder='Email'
             />
+            </label>
+            </div>
+            <div>
+            <label> Indicate if you are an instructor:
+            <select id="instructortorf">
+              <option value="true" onChange={(e) => setIsInstructor(e.target.value)}>True</option>
+              <option value="false" onChange={(e) => setIsInstructor(e.target.value)}>False </option>
+            </select>
             </label>
             </div>
             <div>

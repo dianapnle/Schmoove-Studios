@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useModal } from '../../src/context/Modal';
+import { useModal } from '../../context/Modal';
 import './OpenModalMenu.css'
 
 function OpenModalMenuItem({
