@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import logo from '../../../images/logo.png'
+import CreateStudioModal from '../StudiosCRUD/CreateStudio';
+import OpenModalMenuItem from './OpenModalMenuItem';
 
 
 function Navigation({ isLoaded }) {
@@ -12,13 +14,20 @@ function Navigation({ isLoaded }) {
     <>
     <div className={`overall-block`}>
       <div className={`home-block`}>
-        <NavLink to="/" className={`home-button`}><img src={logo} style={{ height: "50px"}}/></NavLink>
+        <NavLink to="/" className={`home-button`}><img src={logo} style={{ height: "75px"}}/></NavLink>
       </div>
       <div className={`profile-area`}>
       {isLoaded && sessionUser && (
-        <div className={`createspotlink`}>
-          <NavLink to="/spots/new" className={`create-spot-link`}>Create a New Spot</NavLink>
+        <div className={`createstudiolink`}>
+          {/* <NavLink to="/studios/new" className={`create-studio-link`}>Create a New Studio</NavLink> */}
+          <div className={``}>
+            <OpenModalMenuItem
+              itemText="Create a New Studio"
+              modalComponent={<CreateStudioModal />}
+            />
+          </div>
         </div>
+
       )}
       {isLoaded && (
         <div className={`profile-block`}>
