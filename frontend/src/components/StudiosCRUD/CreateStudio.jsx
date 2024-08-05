@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import { thunkCreateStudio } from "../../store/studios";
+import './CreateStudio.css'
 
 
 
@@ -22,10 +23,10 @@ const CreateStudioModal = () => {
     useEffect(() => {
         const errors = {};
 
-        if (!name) errors.name = 'Name must be between 2 and 50 characters in length';
+        if (name.length < 2 || name.length > 50) errors.name = 'Name must be between 2 and 50 characters in length';
         if (!description) errors.description = 'Description is required';
-        if (pic && (!pic.endsWith('.png') && !pic.endsWith('.jpg') && !pic.endsWith('.jpeg'))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
-        if (logo && (!logo.endsWith('.png') && !logo.endsWith('.jpg') && !logo.endsWith('.jpeg'))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
+        if ((!pic) || ( pic && (!pic.endsWith('.png') && !pic.endsWith('.PNG')  && !pic.endsWith('.JPEG') && !pic.endsWith('.jpg') && !pic.endsWith('.JPG') && !pic.endsWith('.jpeg')))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
+        if ((!logo) || (logo && (!logo.endsWith('.png') && !logo.endsWith('.PNG') && !logo.endsWith('.jpg') && !logo.endsWith('.JPG') && !logo.endsWith('.jpeg') && !logo.endsWith('.JPEG')))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
         setErrors(errors)
 
       }, [description, name, pic, logo])
@@ -61,9 +62,11 @@ const CreateStudioModal = () => {
     return (
         <div className='modal-login'>
         <h1>Create A Studio</h1>
-<form onSubmit={handleSubmit}>
+        <br></br>
+        <form onSubmit={handleSubmit}>
+        <div className="area">
         <label>
-          <div>Studio Name</div>
+          <div className="labels">Studio Name</div>
           <input
             type="text"
             value={name}
@@ -73,8 +76,10 @@ const CreateStudioModal = () => {
           />
           </label>
           {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
+          </div>
+          <div className="area">
           <label>
-          <div>Logo</div>
+          <div className="labels">Logo</div>
           <input
             type="text"
             value={logo}
@@ -84,8 +89,10 @@ const CreateStudioModal = () => {
           />
           </label>
           {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
+          </div>
+          <div className="area">
           <label>
-          <div>Pic</div>
+          <div className="labels">Pic</div>
           <input
             type="text"
             value={pic}
@@ -94,18 +101,21 @@ const CreateStudioModal = () => {
             onChange={(e) => setPic(e.target.value)}
           />
           </label>
-          {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
+          {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}
+          </div>
+          <div className="area">
           <label>
-          <div>Description</div>
+          <div className="labels">Description</div>
           <input
             type="text"
             value={description}
-            className="description"
+            className="input-field"
              placeholder="Description"
             onChange={(e) => setDescription(e.target.value)}
           />
           </label>
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+          </div>
           <div className="buttons-container">
         <button type="submit" className="submit-btn" >Create Studio</button>
         </div>

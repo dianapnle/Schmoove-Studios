@@ -45,28 +45,38 @@
 .overall-block {
     display: flex;
     justify-content: space-between;
-    background-color: #dbffe6;
-    border-bottom: 3px rgb(88, 84, 42) solid;
+    background-color: rgb(116,156,198)    ;
+    border-bottom: 3px rgb(79, 77, 77) solid;
 }
 
 .profile-area {
     display: inline-flex;
+    margin-top: 20px;
 }
 
-.createspotlink {
+.createstudiolink {
     align-content: center;
+}
+
+.createstudiolink .itemText {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: white;
 }
 
 .ulClassName {
     display: block;
 }
 
+.menu-items:hover {
+    font-size: 100px;
+    border: rgb(223, 223, 148) 1px solid;
+}
 
 .profileButtonBox{
     margin-right: 30px;
     justify-self: flex-end;
     position: relative;
-
 }
 
 .profileButtonList {
@@ -86,6 +96,7 @@
 
 .profile-block {
     margin: 10px;
+    /* border: 1px red solid */
 }
 
 .logout-button{
@@ -98,6 +109,11 @@
 }
 
 .dropdown:hover {
-    background-color: #F0F0F0;
+    background-color: #cbc6c6;
     cursor: pointer;
+}
+
+
+.profile-area {
+    /* border: rgb(106, 100, 193)  1px solid; */
 }

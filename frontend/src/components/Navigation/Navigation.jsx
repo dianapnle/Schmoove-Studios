@@ -18,16 +18,12 @@ function Navigation({ isLoaded }) {
       </div>
       <div className={`profile-area`}>
       {isLoaded && sessionUser && (
-        <div className={`createstudiolink`}>
-          {/* <NavLink to="/studios/new" className={`create-studio-link`}>Create a New Studio</NavLink> */}
-          <div className={``}>
+          <div className={`createstudiolink`}>
             <OpenModalMenuItem
               itemText="Create a New Studio"
               modalComponent={<CreateStudioModal />}
             />
           </div>
-        </div>
-
       )}
       {isLoaded && (
         <div className={`profile-block`}>

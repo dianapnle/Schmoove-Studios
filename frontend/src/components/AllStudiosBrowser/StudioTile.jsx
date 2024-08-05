@@ -17,10 +17,10 @@ function StudioTile ({studio}) {
                 <img className={`studiopic`} src={`${studio.pic}`}/>
                 <div>
                     <div className={`top-text`}>
-                        <div className={`location`}>{studio.name}, {studio.description}</div>
+                        <div className={`studioname`}>{studio.name}</div>
                         {studio.avgStarRating === 0.0
-                ? <div>★ New</div>
-                : <div className={`rating`}>★ {studio.avgStarRating?.toFixed(1)}</div>
+                ? <div className="rating"><span className="star">★</span> New</div>
+                : <div className={`rating`}><span className="star">★</span> {studio.avgStarRating?.toFixed(1)}</div>
                 }
                     </div>
                 </div>

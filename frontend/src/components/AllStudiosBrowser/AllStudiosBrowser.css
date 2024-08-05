@@ -14,8 +14,6 @@
 }
 
 
-
-
 .child {
     display: flex;
     justify-content: center;
@@ -39,6 +37,7 @@
     max-width: 1000px;
     padding-left: 90px;
 }
+
 
 .create-spots-button {
     width: 100px;

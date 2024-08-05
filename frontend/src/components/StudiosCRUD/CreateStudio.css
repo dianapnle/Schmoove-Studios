@@ -1,0 +1,66 @@
+.modal-login h1 {
+    color: rgb(78, 105, 169);
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+
+  .modal-login, .delete-modal {
+    display: inline-grid;
+    margin: auto;
+    width: 400px;
+    background-color: rgb(208, 218, 247);
+    text-align: center;
+    justify-content: center
+  }
+
+
+  .modal-login form {
+    display: flex;
+    flex-direction: column;
+    width: 200px
+  }
+
+  .modal-login label {
+    color: rgb(51, 51, 53);
+    margin-top: 20px;
+    /* margin-bottom: 10px; */
+  }
+
+
+.labels {
+    font-weight: bold;
+}
+
+  .errors {
+    font-size: 12.5px;
+    margin: 0px;
+    color: red
+  }
+
+  .input-field {
+    width: 100%;
+    height: 20px;
+    margin: 5px 0;
+    color: rgb(57, 57, 62);
+  }
+
+  input:focus {
+    border: 1px solid;
+  }
+
+  .area {
+    height: 84px
+  }
+
+  .buttons-container {
+    height: 35px
+  }
+
+  .submit-btn, .delete-post-button, .no-post-button {
+    color: rgb(51, 51, 53);
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 1px 1px 1px rgb(68, 66, 66);
+  }

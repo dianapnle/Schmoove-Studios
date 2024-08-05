@@ -6,6 +6,8 @@ import LoginFormModal from './components/LoginFormModal/LoginFormModal';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 import StudiosBrowser from './components/AllStudiosBrowser/AllStudiosBrowser';
+import StudioDetail from './components/StudiosCRUD/StudioDetail';
+import ManageStudiosBrowser from './components/StudiosCRUD/ManageStudiosBrowser';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -36,7 +38,15 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginFormModal />
-      }
+      },
+      {
+        path: "studios/:studioId",
+        element: <StudioDetail />
+      },
+      {
+        path: "studios/current",
+        element: <ManageStudiosBrowser />
+      },
     ]
   }
 ]);

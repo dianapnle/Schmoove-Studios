@@ -109,6 +109,15 @@ export const getStudioDetail= (studioId) => async (dispatch) => {
     }
 }
 
+export const getCurrentUserStudios = () => async (dispatch) => {
+  const response = await csrfFetch('/api/studios/current');
+  if (response.ok) {
+      const studios = await response.json();
+      //object with key value of array for Studios
+      dispatch(getAllStudios(studios))
+      return studios
+  }
+}
 
 const initialState = {};
 
