@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import LoginFormModal from './components/LoginFormModal/LoginFormModal';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
+import StudiosBrowser from './components/AllStudiosBrowser/AllStudiosBrowser';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <StudiosBrowser />
       },
       {
         path: '/login',

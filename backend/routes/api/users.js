@@ -51,6 +51,7 @@ const validateSignup = [
     .withMessage('Last Name is required'),
     check('isInstructor')
     .exists({ checkNull: true })
+    .notEmpty()
     .withMessage('Please indicate whether you are an instructor or not.'),
     handleValidationErrors
 ]

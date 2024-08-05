@@ -14,10 +14,10 @@ function SignupFormModal () {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
-    const [ isInstructor, setIsInstructor ] = useState("");
+    const [ isInstructor, setIsInstructor ] = useState(false);
     const [ errors, setErrors ] = useState({});
     const { closeModal } = useModal();
-    const [hasSubmitted, setHasSubmitted] = useState(false)
+    const [ hasSubmitted, setHasSubmitted] = useState(false)
 
     const toggle = () => {
       if (username.length < 4 || password.length < 6 || lastName.length === 0 || email.length === 0 || firstName.length === 0 || confirmPassword.length < 6) {
@@ -121,9 +121,9 @@ function SignupFormModal () {
             </div>
             <div>
             <label> Indicate if you are an instructor:
-            <select id="instructortorf">
-              <option value="true" onChange={(e) => setIsInstructor(e.target.value)}>True</option>
-              <option value="false" onChange={(e) => setIsInstructor(e.target.value)}>False </option>
+            <select id="instructor" onChange={(e) => setIsInstructor(e.target.value === "true")}>
+              <option value="true">True</option>
+              <option value="false">False </option>
             </select>
             </label>
             </div>
