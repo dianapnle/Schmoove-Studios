@@ -1,7 +1,7 @@
 //holds route paths to /api/instructors
 const express = require('express');
 const { Op } = require('sequelize');
-const { User, Instructor } = require('../../db/models');
+const { User, Instructor, Class } = require('../../db/models');
 const { requireAuth, validateInstructorUser} = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
@@ -56,11 +56,26 @@ router.put('/:instructorId', requireAuth, validateInstructor, validateInstructor
     );
 })
 
+async function checkNoClass (req, res, next) {
+  const instructorId = Number(req.params.instructorId);
 
+  // ensure the instructor doesn't own any classes before deleting - otherwise error
+  const classes = await Class.findAll({
+      where: { instructorId: instructorId }
+  })
+  if ( classes.length !== 0 ) {
+      const err = new Error()
+      err.message = `instructor owns ${classes.length} classes that need to be reassigned`;
+      err.status = 400
+      return next(err)
+  }
+
+  return next();
+}
 
 
 //delete instructor
-router.delete('/:instructorId', requireAuth, validateInstructorUser, async (req, res) => {
+router.delete('/:instructorId', requireAuth, validateInstructorUser, checkNoClass, async (req, res) => {
     //use param
     const instructorId = req.params.instructorId;
      await Instructor.destroy({
