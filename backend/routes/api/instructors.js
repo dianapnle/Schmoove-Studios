@@ -9,6 +9,9 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 const validateInstructor = [
+    check('userId')
+    .exists({ checkFalsy: true })
+    .withMessage('userId is required'),
     check('profilePic')
     .exists({ checkFalsy: true })
     .withMessage('Profile pic img url is required'),
