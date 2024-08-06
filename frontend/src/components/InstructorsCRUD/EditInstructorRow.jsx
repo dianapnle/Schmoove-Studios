@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import { thunkGetAllInstructors, thunkGetAllStudioInstructors, thunkCreateInstructor, thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
+import { thunkGetAllStudioInstructors, thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
 // import './CreateStudio.css'
 
 
@@ -12,40 +12,25 @@ const EditInstructorRow = ({instructorId}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [ name, setName] = useState('')
-    const [ logo, setLogo ] = useState('')
-    const [ pic, setPic ] = useState('')
-    const [ description, setDescription] = useState('')
+    const [ profilePic, setProfilePic ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
 
     const sessionUser = useSelector(state => state.session.user);
+    const instructor = useSelector(state => state.instructors.id)
 
     useEffect(() => {
-        //grab the studio's instructors and prepopulate the forms
-
-         dispatch(getStudioDetail(studioId)).then((response) => {
-           setDescription(response.description);
-           setLogo(response.logo);
-           setPic(response.pic);
-           setName(response.name);
-         })
-
-    }, [dispatch, studioId])
-
-
-
+         setProfilePic(instructor.profilePic);
+  }, [dispatch])
 
 
     useEffect(() => {
         const errors = {};
 
-        if (name.length < 2 || name.length > 50) errors.name = 'Name must be between 2 and 50 characters in length';
-        if (!description) errors.description = 'Description is required';
-        if ((!pic) || ( pic && (!pic.endsWith('.png') && !pic.endsWith('.PNG')  && !pic.endsWith('.JPEG') && !pic.endsWith('.jpg') && !pic.endsWith('.JPG') && !pic.endsWith('.jpeg')))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
-        if ((!logo) || (logo && (!logo.endsWith('.png') && !logo.endsWith('.PNG') && !logo.endsWith('.jpg') && !logo.endsWith('.JPG') && !logo.endsWith('.jpeg') && !logo.endsWith('.JPEG')))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
+        if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
         setErrors(errors)
 
-      }, [description, name, pic, logo])
+      }, [profilePic])
 
 
     if (sessionUser) {
@@ -59,87 +44,50 @@ const EditInstructorRow = ({instructorId}) => {
         }
 
 
-        const studio = {
-            ownerId: sessionUser.id,
-            name,
-            logo,
-            pic,
-            description
+        const updatedInstructor = {
+            userId: instructor.userId,
+            studioId: instructor.studioId,
+            profilePic
           }
 
 
-        dispatch(thunkUpdateStudio(studio, studioId));
-        closeModal();
+        dispatch(thunkUpdateInstructor(updatedInstructor, instructorId));
         setErrors({});
         setHasSubmitted(false)
       };
 
+      const handleDelete = async (e) => {
+        e.preventDefault();
+        setHasSubmitted(true);
+        dispatch(thunkDeleteInstructor(instructorId));
+        setHasSubmitted(false)
+      }
+
 
     return (
         <div className='modal-login'>
-        <h1>Update Instructor</h1>
         <br></br>
-        <form onSubmit={handleSubmit}>
-        <div className="area">
-        <label>
-          <div className="labels">Studio Name</div>
-          <input
-            type="text"
-            value={name}
-            className="input-field"
-            placeholder="Studio Name"
-            onChange={(e) => setName(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
-          </div>
+        <form>
+            <div>
+                {instructor.firstName}
+            </div>
           <div className="area">
           <label>
-          <div className="labels">Logo</div>
-          <input
-            type="text"
-            value={logo}
-            className="input-field"
-             placeholder="Logo"
-            onChange={(e) => setLogo(e.target.value)}
-          />
+          <div className="labels">Profile Pic Url</div>
+            <input
+              type="text"
+              value={profilePic}
+              className="input-field"
+              placeholder="Profile Picture"
+              onChange={(e) => setProfilePic(e.target.value)}
+            />
           </label>
-          {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
-          </div>
-          <div className="area">
-          <label>
-          <div className="labels">Pic</div>
-          <input
-            type="text"
-            value={pic}
-            className="input-field"
-             placeholder="Picture"
-            onChange={(e) => setPic(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}
-          </div>
-          <div className="area">
-          <label>
-          <div className="labels">Description</div>
-          <input
-            type="text"
-            value={description}
-            className="input-field"
-             placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+          {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
           </div>
           <div className="buttons-container">
-        <button type="submit" className="submit-btn" >Update Studio</button>
+        <button type="submit" className="submit-btn" onClick={handleSubmit}>Save</button> <button type="submit" className="submit-btn" onClick={handleDelete}>Delete</button>
         </div>
           </form>
-        <span className="sp sp-t"></span>
-			<span className="sp sp-r"></span>
-			<span className="sp sp-b"></span>
-			<span className="sp sp-l"></span>
 
         </div>
     )}
