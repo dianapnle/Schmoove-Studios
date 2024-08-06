@@ -3,13 +3,15 @@ import  thunk  from 'redux-thunk';
 import sessionReducer from "./session"
 import studiosReducer from './studios';
 import instructorsReducer from './instructors';
+import usersReducer from './users';
 
 
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     studios: studiosReducer,
-    instructors: instructorsReducer
+    instructors: instructorsReducer,
+    users: usersReducer
 });
 
 

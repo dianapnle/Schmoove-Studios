@@ -1,16 +1,12 @@
 import { csrfFetch } from "./csrf";
 
-const GET_ALL_INSTRUCTORS = "studios/getAllInstructors";
 const GET_ALL_STUDIO_INSTRUCTORS = "studios/getStudioInstructors";
-const DELETE_INSTRUCTOR = "studios/deleteStudio"
-const UPDATE_INSTRUCTOR = "studios/updateStudio"
-const CREATE_INSTRUCTOR = "studios/createStudio"
+const DELETE_INSTRUCTOR = "studios/deleteInstructor"
+const UPDATE_INSTRUCTOR = "studios/updateInstructor"
+const CREATE_INSTRUCTOR = "studios/createInstructor"
 
 
-const getAllInstructors = () => ({
-    type: GET_ALL_INSTRUCTORS,
-    payload: payload,
-  });
+
 
 const getAllStudioInstructors = (studioId) => ({
   type: GET_ALL_STUDIO_INSTRUCTORS,
@@ -19,35 +15,20 @@ const getAllStudioInstructors = (studioId) => ({
 
 
 const createInstructor= (payload) => ({
-  type: CREATE_STUDIO,
+  type: CREATE_INSTRUCTOR,
   payload: payload
 })
 
-const deleteInstructor = (studioId) => ({
-  type: DELETE_STUDIO,
-  payload: studioId
+const deleteInstructor = (instructorId) => ({
+  type: DELETE_INSTRUCTOR,
+  payload: instructorId
 })
 
 const updateInstructor = (payload) => ({
-  type: UPDATE_STUDIO,
+  type: UPDATE_INSTRUCTOR,
   payload: payload
 })
 
-
-
-
-
-export const thunkGetAllInstructors = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/instructors`);
-    if (res.ok) {
-      const data = await res.json();
-      console.log(data)
-      if (data.errors) {
-        return;
-      }
-      dispatch(getAllInstructors(data));
-    }
-  };
 
 
 
@@ -102,12 +83,13 @@ export const thunkCreateInstructor = (payload, studioId) => async (dispatch) => 
   }
 }
 
-export const thunkDeleteInstructor= (instructorId) => async (dispatch) => {
+
+export const thunkDeleteInstructor = (instructorId) => async (dispatch) => {
   const res = await csrfFetch(`/api/instructors/${instructorId}`, {
     method: 'DELETE'
   });
   if (res.ok) {
-    dispatch(deleteInstructor(studioId))
+    dispatch(deleteInstructor(instructorId))
   } else {
     const error = await res.json();
     throw new Error(error.message);
@@ -130,16 +112,6 @@ function instructorsReducer(state = initialState, action) {
                 ...nextState
             };
         }
-        case GET_ALL_INSTRUCTORS: {
-            let nextState = {};
-              action.payload.Users.forEach((value) => {
-                    nextState[value.id] = value;
-              })
-              return {
-                  ...state,
-                  ...nextState
-              };
-          }
         case CREATE_INSTRUCTOR: {
           let newState=structuredClone(state);
           const instructor = action.payload;

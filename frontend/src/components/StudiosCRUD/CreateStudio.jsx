@@ -120,10 +120,7 @@ const CreateStudioModal = () => {
         <button type="submit" className="submit-btn" >Create Studio</button>
         </div>
           </form>
-        <span className="sp sp-t"></span>
-			<span className="sp sp-r"></span>
-			<span className="sp sp-b"></span>
-			<span className="sp sp-l"></span>
+
 
         </div>
     )}

@@ -17,7 +17,7 @@ const EditInstructorRow = ({instructorId}) => {
     const [ errors, setErrors ] = useState({})
 
     const sessionUser = useSelector(state => state.session.user);
-    const instructor = useSelector(state => state.instructors.id)
+    const instructor = useSelector(state => state.instructors[instructorId])
 
     useEffect(() => {
          setProfilePic(instructor.profilePic);

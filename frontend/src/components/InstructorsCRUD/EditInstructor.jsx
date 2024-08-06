@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import EditInstructorRow from "./EditInstructorRow";
-import { thunkGetAllInstructors, thunkGetAllStudioInstructors, thunkCreateInstructor, thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
+import { thunkGetAllStudioInstructors, thunkCreateInstructor } from "../../store/instructors";
+import { thunkGetAllInstructors } from "../../store/users";
 // import './CreateStudio.css'
 
 
@@ -18,22 +19,15 @@ const EditInstructorModal = ({studioId}) => {
     const [ errors, setErrors ] = useState({})
 
     const sessionUser = useSelector(state => state.session.user);
-    const allInstructors = useSelector(state => state.instructors);
-
-    const filteredInstructors = [];
-
-    for (const instructor of Object.values(allInstructors)) {
-      if (studioId === instructor.studioId) {
-          filteredInstructors.push(instructor)
-      }
-    }
+    const allInstructors = useSelector(state => state.users);
+    const filteredInstructors = useSelector(state => state.instructors)
 
 
     useEffect(() => {
         //grab the studio's instructors AND all instructors
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
-        thunkGetAllInstructors()
+          dispatch(thunkGetAllInstructors())
          })
 
     }, [dispatch, studioId])
@@ -108,7 +102,7 @@ const EditInstructorModal = ({studioId}) => {
         </div>
         </form>
         <div>
-        {filteredInstructors.map((instructor) => (
+        {Object.values(filteredInstructors).map((instructor) => (
             <EditInstructorRow instructorId={instructor.id} />
           ))}
         </div>
