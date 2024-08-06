@@ -38,11 +38,21 @@ function StudioDetail () {
     return (
         <>
         <div className={`overallContainer`}>
-        <h2>{studio?.name}</h2>
+            <div className='title'>
+            <div className={`imgContainer`}>
+                <img className={`logo`} src={studio?.logo} />
+        </div>
+
+            <span className={`pricing-stars`}>
+                <h2>{studio?.name}</h2>
+                {studio?.avgStarRating === null ? <div>★ New</div>
+                    : <span>★ {studio?.avgStarRating?.toFixed(1)} · {studio?.numReviews === 1 ? <span>{studio?.numReviews} review</span> : <span> {studio?.numReviews} reviews</span> } </span>
+                }
+            </span>
+            </div>
         <div className={`studios-area`}>
         <br></br>
         <div className={`imgContainer`}>
-                <img className={`logo`} src={studio?.logo} />
                 <img className={`picture`} src={studio?.pic} />
         </div>
         <h3>{studio?.description}</h3>
@@ -50,27 +60,17 @@ function StudioDetail () {
         <div className={`studio-details`}>
         <div className={`body`}>
             <div className={`paragraph`}>
-                <p>{studio?.description}</p>
                 </div>
                 <div className={`pricing-block`}>
-                    <div className={`pricing-grid`}>
-                        <span>
-                        </span>
-                        <span className={`pricing-stars`}>
-                            {studio?.avgStarRating === null
-                            ? <div>★ New</div>
-                            : <span>★ {studio?.avgStarRating?.toFixed(1)} · {studio?.numReviews === 1 ? <span>{studio?.numReviews} review</span> : <span> {studio?.numReviews} reviews</span> } </span>
-                            }
-                        </span>
-                    </div>
-                    <div className={`booking-area`}>
+                    {/* <div className={`booking-area`}>
                         <button onClick={() => { alert("Feature coming soon");}}className={`book-button`}> Book</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
             </div>
             <div className={`instructors-area`}>
+            <h2>Our Instructors:</h2>
             <div className={`instructors`}>
             { Object.values(instructors).map((instructor) => (
                 <span key={`${instructor.id}`}>{instructor.firstName} <img className={`profilePic`} src={`${instructor.profilePic}`}/></span>

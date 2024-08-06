@@ -1,5 +1,5 @@
 img.logo {
-    width: 300px;
+    width: 200px;
     height: 100px
 }
 
@@ -8,11 +8,12 @@ img.picture {
     height: 300px
 }
 
-.imgContainer {
-    width: 300px;
-    height: 300px
-}
 
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .studios-area{
     display: flex;
@@ -36,4 +37,13 @@ img.picture {
     display: block;
 
     margin-top: 20px;
+}
+
+.profilePic {
+    height: 75px;
+}
+
+
+.instructors {
+
 }
