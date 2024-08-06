@@ -38,7 +38,7 @@ const updateInstructor = (payload) => ({
 
 
 export const thunkGetAllInstructors = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/instructors/instructors`);
+    const res = await csrfFetch(`/api/instructors`);
     if (res.ok) {
       const data = await res.json();
       console.log(data)
@@ -64,7 +64,7 @@ export const thunkGetAllStudioInstructors = (studioId) => async (dispatch) => {
 };
 
 
-export const thunkUpdateStudio = (payload, instructorId) => async (dispatch) => {
+export const thunkUpdateInstructor = (payload, instructorId) => async (dispatch) => {
   const res = await csrfFetch(`/api/instructors/${instructorId}`, {
     method: "PUT",
     headers: {

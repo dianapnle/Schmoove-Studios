@@ -11,6 +11,8 @@ import DeleteStudioModal from './DeleteStudioModal.jsx';
 import CreateStudioModal from './CreateStudio.jsx';
 import EditStudioModal from './EditStudio.jsx';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
+import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
+import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
 
 
 function ManageStudiosBrowser () {
@@ -18,6 +20,7 @@ function ManageStudiosBrowser () {
     const navigate = useNavigate();
     const sessionUser = useSelector(state => state.session.user);
     const studios = useSelector(state => state.studios);
+    const instructors = useSelector(state => state.instructors)
     const filteredStudios = [];
 
     if (!sessionUser) {
@@ -29,6 +32,7 @@ function ManageStudiosBrowser () {
             filteredStudios.push(studio)
         }
     }
+
 
     const [isLoaded, setIsLoaded ] = useState(false);
 
@@ -62,6 +66,7 @@ function ManageStudiosBrowser () {
             <div className={`buttons-area`}><span>
                 <OpenModalEditButton className={`edit-button`} modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton className={`delete-button`} modalComponent={<DeleteStudioModal studioId={studio.id}/>}/></span></div>
+                <OpenModalEditInstructorButton className={'edit-button'} modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
             </div>
             </>
         ))}

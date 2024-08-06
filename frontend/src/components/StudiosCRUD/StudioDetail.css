@@ -12,6 +12,7 @@ img.picture {
 .title {
     display: flex;
     align-items: center;
+    gap: 19px;
     justify-content: center;
 }
 
@@ -45,5 +46,5 @@ img.picture {
 
 
 .instructors {
-
+    display: flex;
 }

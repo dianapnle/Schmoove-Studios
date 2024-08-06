@@ -13,7 +13,7 @@ const validateClassEvent = [];
 //check if class event exists
 async function classEventExist (req, res, next) {
     //use param class id to look for the class
-    const classId = req.params.classId;
+    const eventId = req.params.eventId;
 
     const search = await ClassEvent.findByPk(Number(classId));
     //if there is no class that matches the given classid from parameter -> throw an error
