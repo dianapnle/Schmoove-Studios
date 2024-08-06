@@ -55,15 +55,14 @@ const EditInstructorModal = ({studioId}) => {
         }
 
 
-        const instructor = {
+        const payload = {
             studioId: studioId,
             userId,
             profilePic
           }
 
 
-        dispatch(thunkCreateInstructor(instructor, studioId));
-        closeModal();
+        dispatch(thunkCreateInstructor(payload, studioId));
         setErrors({});
         setHasSubmitted(false)
       };
@@ -78,8 +77,9 @@ const EditInstructorModal = ({studioId}) => {
         <label>
             <div className="labels">Available Instructors</div>
             <select onChange={(e) => Number(setUserId(e.target.value)) }>
+              <option disabled selected value> -- select an option -- </option>
               {Object.values(allInstructors).map((instructor) =>
-              <option value={instructor.userId}>{instructor.firstName}</option>)}
+              <option value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
           {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}

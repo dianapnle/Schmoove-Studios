@@ -11,7 +11,6 @@ const EditInstructorRow = ({instructorId}) => {
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [ name, setName] = useState('')
     const [ profilePic, setProfilePic ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})

@@ -73,6 +73,8 @@ export const thunkCreateInstructor = (payload, studioId) => async (dispatch) => 
     body: JSON.stringify(payload)
   });
 
+
+
   if (response.ok) {
     const instructor = await response.json()
     dispatch(createInstructor(instructor))
