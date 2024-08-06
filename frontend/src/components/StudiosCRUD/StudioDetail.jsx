@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
+import { thunkGetAllStudioInstructors } from "../../store/instructors";
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
@@ -13,6 +14,7 @@ function StudioDetail () {
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
     const sessionUser = useSelector(state => state.session.user)
+    const instructors = useSelector(state => state.instructors)
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function StudioDetail () {
 
     useEffect(() => {
         dispatch(getStudioDetail(id))
-        // .then(dispatch(getCurrentSpotReviews(id)))
+        .then(dispatch(thunkGetAllStudioInstructors(id)))
         .then(() => {
             setIsLoaded(true)
         })
@@ -69,12 +71,10 @@ function StudioDetail () {
             </div>
             </div>
             <div className={`instructors-area`}>
-                <hr></hr>
             <div className={`instructors`}>
-            {/* {studio?.avgStarRating === null
-                ? <div>★ New</div>
-                : <span>★ {studio?.avgStarRating?.toFixed(1)} · {studio?.numReviews === 1 ? <span>{spot?.numReviews} review</span> : <span> {spot?.numReviews} reviews</span> } </span>
-                } */}
+            { Object.values(instructors).map((instructor) => (
+                <span key={`${instructor.id}`}>{instructor.firstName} <img className={`profilePic`} src={`${instructor.profilePic}`}/></span>
+            ))}
             </div>
             <br></br>
             {/* <div className={'post-review-area'}>

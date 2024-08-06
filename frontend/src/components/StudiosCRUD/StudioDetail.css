@@ -22,3 +22,18 @@ img.picture {
     justify-content: center;
     grid-gap: 10px;
 }
+
+
+.overallContainer {
+    display: flex-grid;
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+
+.instructors-area {
+    display: block;
+
+    margin-top: 20px;
+}
