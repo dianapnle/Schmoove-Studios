@@ -70,12 +70,12 @@ function SignupFormModal () {
     return (
         <>
         <div className={`form signup`}>
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="errors-container">
           {hasSubmitted===true && errors.email && <div className={`errors`}>{errors.email}</div>}
-          <br></br>
           {hasSubmitted===true && errors.matchPassword && <div className={`errors`}>{errors.matchPassword}</div>}
+          </div>
             <label>
             <input
               className={`userinputsignup`}
@@ -85,7 +85,7 @@ function SignupFormModal () {
               placeholder='Username'
               />
             </label>
-          </div>
+
             <div>
             <label>
             <input
@@ -121,7 +121,8 @@ function SignupFormModal () {
             </div>
             <div>
             <label> Indicate if you are an instructor:
-            <select id="instructor" onChange={(e) => setIsInstructor(e.target.value === "true")}>
+              <span>  </span>
+            <select className="drop-down" id="instructor" onChange={(e) => setIsInstructor(e.target.value === "true")}>
               <option value="true">True</option>
               <option value="false">False </option>
             </select>

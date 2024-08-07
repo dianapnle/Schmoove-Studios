@@ -1,5 +1,5 @@
 .form.login {
-    border-radius: 15px 15px 15px 15px;;
+    border-radius: 1px 1px 1px 1px;;
     border: 5px solid rgb(255, 255, 255);
     background: white;
     padding: 10px;
@@ -14,7 +14,6 @@
 
 
 .errors {
-    margin-top: 10px;
     color: #fd5c63;
 }
 
@@ -28,7 +27,7 @@ button:disabled.loginButton{
 }
 
 .userinput {
-    background-color: rgb(201, 216, 236);
+    background-color: #e1eed8;
     box-sizing: border-box;
     width: 100%;
     border: 2px black solid;
@@ -39,7 +38,7 @@ button:disabled.loginButton{
 }
 
 .passwordinput {
-    background-color: rgb(201, 216, 236);
+    background-color: #e1eed8;
     box-sizing: border-box;
     width: 100%;
     border: 2px black solid;
@@ -47,7 +46,7 @@ button:disabled.loginButton{
 
 button:enabled.loginButton {
     width: 300px;
-    background-color: #fd5c63;
+    background-color: #090909;
     color: white;
     box-shadow: 2px 3px 5px black;
     height: 50px;
@@ -56,10 +55,11 @@ button:enabled.loginButton {
 button:enabled.demouserbutton {
     margin-top: 10px;
     width: 300px;
-    background-color: #fd5c63;
-    color: white;
+    background-color: #e1eed8;
+    color: rgb(36, 36, 36);
     box-shadow: 2px 3px 5px black;
     height: 50px;
+    font-weight: bold;
 }
 
 button:hover {
