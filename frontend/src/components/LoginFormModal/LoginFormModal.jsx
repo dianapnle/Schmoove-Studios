@@ -49,7 +49,10 @@ function LoginFormModal () {
         <>
         <div className={`form login`}>
         <h1>Log In</h1>
+        <div className="login-errors-container">
         {errors.message && <div className={`errors`}>The provided credentials were invalid.</div>}
+        </div>
+
           <br></br>
         <form onSubmit={handleSubmit}>
           <div>

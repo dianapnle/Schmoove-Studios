@@ -70,7 +70,7 @@ function SignupFormModal () {
     return (
         <>
         <div className={`form signup`}>
-        <h2>Sign Up</h2>
+        <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <div className="errors-container">
           {hasSubmitted===true && errors.email && <div className={`errors`}>{errors.email}</div>}

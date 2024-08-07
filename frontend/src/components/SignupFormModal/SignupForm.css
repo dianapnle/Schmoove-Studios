@@ -56,3 +56,7 @@ button:enabled.signupButton {
 button:hover {
     cursor: pointer;
 }
+
+.signup h1 {
+    height: 20px;
+}

@@ -3,7 +3,7 @@
     border: 5px solid rgb(255, 255, 255);
     background: white;
     padding: 10px;
-    height: 300px;
+    height: 350px;
     width: 300px;
     display: block;
     justify-content: center;
@@ -64,4 +64,13 @@ button:enabled.demouserbutton {
 
 button:hover {
     cursor: pointer;
+}
+
+.login-errors-container {
+    height: 35px;
+    margin-bottom: -20px;
+}
+
+.login h1 {
+    height: 30px
 }
