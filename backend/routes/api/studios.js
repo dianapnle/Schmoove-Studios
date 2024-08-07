@@ -553,7 +553,9 @@ router.post('/:studioId/instructors', requireAuth, validateInstructor, validateS
   const { userId, profilePic } = req.body;
   const { studioId } = req.params;
 
-  const search = await Studio.findByPk(Number(studioId));
+  const search = await Studio.findByPk(Number(studioId), {
+    include: { model: User, attributes: ["firstName", "lastName"] }
+  });
   //if there is no studio that matches the given studioid from parameter -> throw an error
   if (search === null) {
       const err = new Error()
@@ -570,12 +572,16 @@ router.post('/:studioId/instructors', requireAuth, validateInstructor, validateS
     studioId: Number(studioId)
   });
 
+  const userData = await el.getUser()//get the associations of user data
+
   res.status(201);
   return res.json({
     id: el.id,
     studioId: el.studioId,
     userId: el.userId,
-    profilePic: el.profilePic
+    profilePic: el.profilePic,
+    firstName: userData.firstName,
+    lastName: userData.lastName
   }
   );
 });

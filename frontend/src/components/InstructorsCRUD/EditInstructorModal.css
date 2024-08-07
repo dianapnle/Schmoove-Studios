@@ -1,0 +1,75 @@
+.modal-instructors {
+    display: inline-block;
+    background-color: rgb(208, 218, 247);
+    width: 600px
+}
+
+.modal-instructors h1 {
+    color: rgb(78, 105, 169);
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.child .labels {
+    text-align: center;
+}
+
+.child {
+    display: inline-block;
+    align-items: space-between;
+    justify-content: space-between;
+}
+
+.modal-instructors form {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructor-row {
+    margin-bottom: 5px;
+    display: inline-block;
+    box-sizing: content-box;
+    width: 100%;
+    box-sizing: content-box;
+}
+
+.input{
+
+}
+
+.edit-delete-section{
+    box-sizing: content-box;
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-add {
+    width: 150px
+}
+
+.save-btn, .delete-btn {
+    height: 20px
+}
+
+.add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-container {
+    margin-bottom: 20px;
+}
+
+
+.add-container{
+    margin-bottom: -20px;
+}
+
+.child-area button.submit-btn {
+    justify-self: center;
+    align-self: center;
+}

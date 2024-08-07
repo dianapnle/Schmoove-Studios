@@ -45,8 +45,7 @@
 .overall-block {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(116,156,198)    ;
-    border-bottom: 3px rgb(79, 77, 77) solid;
+    background-color: rgb(255, 255, 255)    ;
 }
 
 .profile-area {
@@ -61,7 +60,7 @@
 .createstudiolink .itemText {
     margin-bottom: 10px;
     font-size: 15px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .ulClassName {

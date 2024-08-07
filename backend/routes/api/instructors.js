@@ -39,7 +39,9 @@ router.put('/:instructorId', requireAuth, validateInstructor, validateInstructor
     const { userId, profilePic } = req.body;
     const { instructorId } = req.params
 
-    let result = await Instructor.findByPk(Number(instructorId));
+    let result = await Instructor.findByPk(Number(instructorId), {
+      include: { model: User, attributes: ["firstName", "lastName"] }
+    });
 
      await result.update({
       id: instructorId,
@@ -54,7 +56,9 @@ router.put('/:instructorId', requireAuth, validateInstructor, validateInstructor
       id: result.id,
       userId: result.userId,
       studioId: result.studioId,
-      profilePic: result.profilePic
+      profilePic: result.profilePic,
+      firstName: result.User.firstName,
+      lastName: result.User.lastName
     }
     );
 })

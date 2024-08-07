@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { thunkGetAllStudios } from '../../store/studios.js';
 import StudioTile from   './StudioTile.jsx';
 import './AllStudiosBrowser.css'
+import maingraphic from '/home/dianapnle/projects/UrbanSteps/frontend/images/maingraphic.jpg'
 
 
 function StudiosBrowser () {
@@ -22,10 +23,17 @@ function StudiosBrowser () {
     return (
         <>
         <h2></h2>
+        <div className="body">
+        <div className="image-container">
+            <img className="maingraphic" src={maingraphic}/>
+            <div className="overlay-text"> Text</div>
+        </div>
+
         <div className={`studioscontainer`}>
         { Object.values(studios).map((studio) => (
             <StudioTile key={`${studio.id}`} studio={studio} />
         ))}
+        </div>
         </div>
         </>
     )

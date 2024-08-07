@@ -50,12 +50,10 @@
     border: 1px solid;
   }
 
-  .area {
-    height: 84px
-  }
 
   .buttons-container {
-    height: 35px
+    height: 35px;
+    margin-bottom: px;
   }
 
   .submit-btn, .delete-post-button, .no-post-button {
@@ -63,4 +61,9 @@
     margin-bottom: 10px;
     text-align: center;
     box-shadow: 1px 1px 1px rgb(68, 66, 66);
+  }
+
+
+  .area {
+    height: 84px
   }

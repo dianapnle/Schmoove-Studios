@@ -64,30 +64,25 @@ const EditInstructorRow = ({instructorId}) => {
 
 
     return (
-        <div className='modal-login'>
-        <br></br>
+        <div className='instructor-row'>
         <form>
-            <div>
-                {instructor.firstName}
-            </div>
-          <div className="area">
+          <div className="child">
           <label>
-          <div className="labels">Profile Pic Url</div>
+          <span className="labels-row"><span>{instructor.firstName}</span> Profile Pic Url </span>
             <input
               type="text"
               value={profilePic}
-              className="input-field"
+              className="input"
               placeholder="Profile Picture"
               onChange={(e) => setProfilePic(e.target.value)}
             />
           </label>
+        <span className="buttons-container">
+        <span><button type="submit" className="save-btn" onClick={handleSubmit}>Save</button></span><span><button type="submit" className="delete-btn" onClick={handleDelete}>Delete</button></span>
+        </span>
           {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
           </div>
-          <div className="buttons-container">
-        <button type="submit" className="submit-btn" onClick={handleSubmit}>Save</button> <button type="submit" className="submit-btn" onClick={handleDelete}>Delete</button>
-        </div>
           </form>
-
         </div>
     )}
 

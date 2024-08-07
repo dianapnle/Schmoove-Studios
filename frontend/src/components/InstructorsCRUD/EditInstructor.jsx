@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import EditInstructorRow from "./EditInstructorRow";
 import { thunkGetAllStudioInstructors, thunkCreateInstructor } from "../../store/instructors";
 import { thunkGetAllInstructors } from "../../store/users";
-// import './CreateStudio.css'
+import './EditInstructorModal.css'
 
 
 
@@ -27,7 +27,7 @@ const EditInstructorModal = ({studioId}) => {
         //grab the studio's instructors AND all instructors
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
-          dispatch(thunkGetAllInstructors())
+         dispatch(thunkGetAllInstructors())
          })
 
     }, [dispatch, studioId])
@@ -57,23 +57,27 @@ const EditInstructorModal = ({studioId}) => {
 
         const payload = {
             studioId: studioId,
-            userId,
+            userId: Number(userId),
             profilePic
           }
 
 
-        dispatch(thunkCreateInstructor(payload, studioId));
+        dispatch(thunkCreateInstructor(payload, studioId))
         setErrors({});
         setHasSubmitted(false)
       };
 
 
+      const handleClose = async(e) => {
+        closeModal()
+      }
     return (
-        <div className='modal-login'>
+        <div className='modal-instructors'>
         <h1>Modify Instructors</h1>
         <br></br>
-        <form onSubmit={handleSubmit}>
-        <div className="area">
+        <form>
+        <div className="add">
+        <div className="child">
         <label>
             <div className="labels">Available Instructors</div>
             <select onChange={(e) => Number(setUserId(e.target.value)) }>
@@ -84,27 +88,31 @@ const EditInstructorModal = ({studioId}) => {
         </label>
           {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
           </div>
-        <div className="area">
+        <div className="child">
           <label>
           <div className="labels">Profile Pic Url</div>
             <input
               type="text"
               value={profilePic}
-              className="input-field"
+              className="input-add"
               placeholder="Profile Picture"
               onChange={(e) => setProfilePic(e.target.value)}
             />
           </label>
           {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
           </div>
-        <div className="buttons-container">
-        <button type="submit" className="submit-btn">Add</button>
+        <div className="add-container">
+        <button onClick={handleSubmit} type="submit" className="add-btn">Add</button>
+        </div>
         </div>
         </form>
-        <div>
+        <div className="edit-delete-section">
         {Object.values(filteredInstructors).map((instructor) => (
             <EditInstructorRow instructorId={instructor.id} />
           ))}
+        </div>
+        <div classname="child area">
+        <button onClick={handleClose} type="submit" className="submit-btn">Close</button>
         </div>
         </div>
     )}
