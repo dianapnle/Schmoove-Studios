@@ -50,7 +50,7 @@ p {
 
 .body {
     box-sizing: content-box;
-    width: 100%
+    width: 100%;
 }
 
 img.maingraphic {
@@ -63,10 +63,15 @@ img.maingraphic {
 }
 
 .intro {
-    height: 200px;
+    height: 220px;
     text-align: center;
 }
 
-.studio-list {
-
+.studiolist {
+    padding-top: 70px;
+    background-color: white;
+    border-radius: 25% 25% 0% 0%;
+    max-height: 100%;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
 }

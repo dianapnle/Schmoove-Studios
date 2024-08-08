@@ -20,6 +20,14 @@ const CreateStudioModal = () => {
 
     const sessionUser = useSelector(state => state.session.user);
 
+
+    const toggle = () => {
+      if (name.length < 2 || !description || !pic || !logo) {
+        return true
+      }
+      return false
+    }
+
     useEffect(() => {
         const errors = {};
 
@@ -116,7 +124,7 @@ const CreateStudioModal = () => {
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
           </div>
           <div className="buttons-container">
-        <button type="submit" className="submit-btn" >Create Studio</button>
+        <button type="submit" className="submit-btn" disabled={toggle()}>Create Studio</button>
         </div>
           </form>
 

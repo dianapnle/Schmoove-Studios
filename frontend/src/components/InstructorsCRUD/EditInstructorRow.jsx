@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useModal } from "../../context/Modal";
-import { thunkGetAllStudioInstructors, thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
+import { thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
 // import './CreateStudio.css'
 
 
@@ -10,7 +9,6 @@ import { thunkGetAllStudioInstructors, thunkDeleteInstructor, thunkUpdateInstruc
 const EditInstructorRow = ({instructorId}) => {
 
     const dispatch = useDispatch();
-    const { closeModal } = useModal();
     const [ profilePic, setProfilePic ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
@@ -85,7 +83,6 @@ const EditInstructorRow = ({instructorId}) => {
           </form>
         </div>
     )}
-
 }
 
 export default EditInstructorRow

@@ -1,5 +1,4 @@
 .modal-login h1 {
-    color: rgb(78, 105, 169);
     margin-bottom: 0px;
     margin-top: 10px;
     text-align: center;
@@ -10,22 +9,29 @@
     display: inline-grid;
     margin: auto;
     width: 400px;
-    background-color: rgb(208, 218, 247);
+    background-color: rgb(255, 255, 255);
     text-align: center;
     justify-content: center
   }
 
 
   .modal-login form {
-    display: flex;
-    flex-direction: column;
-    width: 200px
+    border-radius: 1px 1px 1px 1px;;
+    border: 5px solid rgb(255, 255, 255);
+    background: white;
+    padding: 15px;
+    height: 380px;
+    width: 300px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
   }
 
   .modal-login label {
     color: rgb(51, 51, 53);
     margin-top: 20px;
-    /* margin-bottom: 10px; */
   }
 
 
@@ -56,13 +62,21 @@
     margin-bottom: px;
   }
 
-  .submit-btn, .delete-post-button, .no-post-button {
-    color: rgb(51, 51, 53);
-    margin-bottom: 10px;
-    text-align: center;
-    box-shadow: 1px 1px 1px rgb(68, 66, 66);
+  button:enabled.submit-btn{
+    width: 300px;
+    background-color: #090909;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
   }
 
+button:disabled.submit-btn{
+    background-color: white;
+    color: rgb(131, 129, 129);
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 1px 3px black;
+}
 
   .area {
     height: 84px
