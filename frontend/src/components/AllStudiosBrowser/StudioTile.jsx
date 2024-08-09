@@ -11,6 +11,7 @@ function StudioTile ({studio}) {
 
     return (
         <>
+        <div>
         <div onClick={() => {navigate(`/studios/${studio.id}`)}} data-text={studio.name} className={`studioTileContainer tooltip`}>
             <div className={`studioitem`}>
                 <img className={`studiologo`} src={`${studio.logo}`}/>
@@ -25,6 +26,7 @@ function StudioTile ({studio}) {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </>
     )

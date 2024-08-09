@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { thunkDeleteStudio } from '../../store/studios';
+import './CreateStudio.css'
 
 
 

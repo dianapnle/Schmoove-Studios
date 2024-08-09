@@ -27,7 +27,28 @@ button:disabled.signupButton{
     width: 100%;
     height: 50px;
     box-shadow: 1px 1px 3px black;
+    font-weight: bold;
 }
+
+button:enabled.signupButton {
+    background-color: #4b4949;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 1px 3px black;
+    font-weight: bold;
+}
+
+button:enabled.signupButton:hover {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 1px 3px black;
+    font-weight: bold;
+}
+
+
 
 .userinputsignup{
     background-color: #e1eed8;
@@ -45,13 +66,6 @@ button:disabled.signupButton{
     font-size: 14px;
 }
 
-button:enabled.signupButton {
-    width: 300px;
-    background-color: #090909;
-    color: white;
-    box-shadow: 2px 2px 3px black;
-    height: 50px;
-}
 
 button:hover {
     cursor: pointer;

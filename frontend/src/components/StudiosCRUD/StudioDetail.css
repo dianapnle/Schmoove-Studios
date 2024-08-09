@@ -11,9 +11,19 @@ img.picture {
 
 .title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 19px;
     justify-content: center;
+}
+
+.pricing-stars {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-stars h2, .instructorOverall h2 {
+    color: black
 }
 
 .studios-area{
@@ -31,19 +41,63 @@ img.picture {
     grid-template-columns: 1fr;
     max-width: 1000px;
     margin: 0px auto;
+    background-color: white;
+    margin-top: 10px
 }
 
 
 .instructors-area {
-    display: block;
+    display: inline-block;
     margin-top: 20px;
+    overflow-x: auto;
+    width: 100%;
 }
 
 .profilePic {
     height: 75px;
+    width: 75px;
+    margin: 5px;
 }
 
 
 .instructors {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2px;
+}
+
+.individualinstructor {
+    height: 100px;
+    width: 100px;
+    border: 1px rgb(0, 0, 0) solid;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+
+.firstName {
+    text-align: center;
+}
+
+
+.contentBody {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 1000px
+}
+
+
+.pictureDetail {
+    width: 500px;
+    height: 400px
+}
+
+
+.description {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-left: 15px;
 }

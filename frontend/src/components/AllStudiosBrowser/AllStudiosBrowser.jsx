@@ -37,6 +37,7 @@ function StudiosBrowser () {
                 </p>
             </div>
             <div className="studiolist">
+                <div className="header"><h1>Registered Studios</h1></div>
                 <div className={`studioscontainer`}>
                 { Object.values(studios).map((studio) => (
                     <StudioTile key={`${studio.id}`} studio={studio} />

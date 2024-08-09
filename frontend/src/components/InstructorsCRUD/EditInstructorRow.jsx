@@ -66,11 +66,11 @@ const EditInstructorRow = ({instructorId}) => {
         <form>
           <div className="child">
           <label>
-          <span className="labels-row"><span>{instructor.firstName}</span> Profile Pic Url </span>
+          <span className="labels-row"><span className="name">{instructor.firstName}</span> | Profile Pic Url </span>
             <input
               type="text"
               value={profilePic}
-              className="input"
+              className="input-pic-url"
               placeholder="Profile Picture"
               onChange={(e) => setProfilePic(e.target.value)}
             />

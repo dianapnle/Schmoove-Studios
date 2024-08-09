@@ -1,13 +1,21 @@
 .modal-instructors {
-    display: inline-block;
-    background-color: rgb(208, 218, 247);
-    width: 600px
-}
+    border-radius: 1px 1px 1px 1px;;
+    border: 5px solid rgb(255, 255, 255);
+    background: white;
+    padding: 15px;
+    height: 400px;
+    width: 500px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
 
 .modal-instructors h1 {
-    color: rgb(78, 105, 169);
+    color: rgb(0, 0, 0);
     margin-bottom: 0px;
-    margin-top: 10px;
+    margin-top: 0px;
     text-align: center;
 }
 
@@ -34,9 +42,6 @@
     box-sizing: content-box;
 }
 
-.input{
-
-}
 
 .edit-delete-section{
     box-sizing: content-box;
@@ -44,13 +49,28 @@
     display: inline-block;
     align-items: center;
     justify-content: center;
+    height: 230px;
+    max-height: fit-content;
+    overflow: auto;
+    text-align: right;
 }
 
 .input-add {
-    width: 150px
+    width: 150px;
+    font-size: 15px;
 }
 
-.save-btn, .delete-btn {
+.add-btn, .save-btn, .delete-btn {
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    height: 20px
+}
+
+.add-btn:hover, .save-btn:hover, .delete-btn:hover {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
     height: 20px
 }
 
@@ -58,6 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1px
 }
 
 .buttons-container {
@@ -69,7 +90,36 @@
     margin-bottom: -20px;
 }
 
-.child-area button.submit-btn {
+.close-btn {
+    width: 300px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
     justify-self: center;
     align-self: center;
+    margin-top: -5px;
+}
+
+.close-btn:hover {
+    width: 300px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
+}
+
+
+.input-pic-url {
+    font-size: 15px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.labels-row {
+    font-size: 15px;
 }

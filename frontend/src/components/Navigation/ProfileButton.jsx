@@ -72,7 +72,7 @@ function ProfileButton({ user }) {
             <div className={`text`}>Hello, {user.firstName}</div>
             <div className={`text`}>{user.email}</div>
             <hr></hr>
-            <div><NavLink to="/studios/current" onClick={handleSubmit} className={`manage-spots-link text`}>Manage Studios</NavLink></div>
+            <div><NavLink to="/studios/current" onClick={handleSubmit} className={`manage-studios-link text`}>Manage Studios</NavLink></div>
             <div>
             <hr></hr>
             <button className={`logout-button`} onClick={logout}>Log Out</button>

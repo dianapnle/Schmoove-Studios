@@ -9,6 +9,7 @@
     grid-template-columns: repeat(auto-fill, 350px);
     margin: 0 auto;
     max-width: 1430px;
+    max-height: fit-content;
     justify-content: center;
     grid-gap: 10px;
 }
@@ -20,8 +21,10 @@
 }
 
 p {
+    margin-top: 160px;
     color: white;
     font-size: 30px;
+    margin-bottom: 160px;
 }
 
 .header{
@@ -56,6 +59,7 @@ p {
     box-sizing: content-box;
     width: 100%;
     height: 100%;
+    max-height: fit-content;
 }
 
 
@@ -78,10 +82,14 @@ img.maingraphic {
     padding-top: 70px;
     background-color: white;
     border-radius: 25% 25% 0% 0%;
-    max-height: 100%;
     padding-bottom: 100px;
     margin-bottom: 25px;
     overflow: auto;
     max-width: 100%;
     width: 100%;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 50px;
 }

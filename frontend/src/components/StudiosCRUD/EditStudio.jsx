@@ -77,70 +77,65 @@ const EditStudioModal = ({studioId}) => {
 
     return (
         <div className='modal-login'>
-        <h1>Update Studio</h1>
+          <h1>Update Studio</h1>
         <br></br>
         <form onSubmit={handleSubmit}>
-        <div className="area">
-        <label>
-          <div className="labels">Studio Name</div>
-          <input
-            type="text"
-            value={name}
-            className="input-field"
-            placeholder="Studio Name"
-            onChange={(e) => setName(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
-          </div>
           <div className="area">
-          <label>
-          <div className="labels">Logo</div>
-          <input
-            type="text"
-            value={logo}
-            className="input-field"
-             placeholder="Logo"
-            onChange={(e) => setLogo(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
-          </div>
+            <label>
+              <div className="labels">Studio Name</div>
+              <input
+                type="text"
+                value={name}
+                className="input-field"
+                placeholder="Studio Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
+            </div>
           <div className="area">
-          <label>
-          <div className="labels">Pic</div>
-          <input
-            type="text"
-            value={pic}
-            className="input-field"
-             placeholder="Picture"
-            onChange={(e) => setPic(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}
+            <label>
+            <div className="labels">Logo</div>
+            <input
+              type="text"
+              value={logo}
+              className="input-field"
+              placeholder="Logo"
+              onChange={(e) => setLogo(e.target.value)}
+            />
+            </label>
+            {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
           </div>
-          <div className="area">
-          <label>
-          <div className="labels">Description</div>
-          <input
-            type="text"
-            value={description}
-            className="input-field"
-             placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          </label>
-          {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+            <div className="area">
+            <label>
+            <div className="labels">Pic</div>
+            <input
+              type="text"
+              value={pic}
+              className="input-field"
+              placeholder="Picture"
+              onChange={(e) => setPic(e.target.value)}
+            />
+            </label>
+            {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}
+            </div>
+            <div className="area">
+            <label>
+            <div className="labels">Description</div>
+            <input
+              type="text"
+              value={description}
+              className="input-field"
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            </label>
+            {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+            </div>
+            <div className="buttons-container">
+              <button type="submit" className="submit-btn">Update Studio</button>
           </div>
-          <div className="buttons-container">
-        <button type="submit" className="submit-btn" >Update Studio</button>
-        </div>
-          </form>
-        <span className="sp sp-t"></span>
-			<span className="sp sp-r"></span>
-			<span className="sp sp-b"></span>
-			<span className="sp sp-l"></span>
-
+        </form>
         </div>
     )}
 

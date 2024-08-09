@@ -46,10 +46,20 @@ button:disabled.loginButton{
 
 button:enabled.loginButton {
     width: 300px;
-    background-color: #090909;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 3px 5px black;
+    font-weight: bold;
+    height: 50px;
+}
+
+button:enabled.loginButton:hover {
+    width: 300px;
+    background-color: #000000;
     color: white;
     box-shadow: 2px 3px 5px black;
     height: 50px;
+    font-weight: bold;
 }
 
 button:enabled.demouserbutton {
@@ -57,6 +67,16 @@ button:enabled.demouserbutton {
     width: 300px;
     background-color: #e1eed8;
     color: rgb(36, 36, 36);
+    box-shadow: 2px 3px 5px black;
+    height: 50px;
+    font-weight: bold;
+}
+
+button:enabled.demouserbutton:hover {
+    margin-top: 10px;
+    width: 300px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
     box-shadow: 2px 3px 5px black;
     height: 50px;
     font-weight: bold;

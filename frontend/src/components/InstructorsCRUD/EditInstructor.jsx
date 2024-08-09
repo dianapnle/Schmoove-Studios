@@ -107,13 +107,14 @@ const EditInstructorModal = ({studioId}) => {
         </div>
         </div>
         </form>
+          <br></br>
         <div className="edit-delete-section">
         {Object.values(filteredInstructors).map((instructor) => (
             <EditInstructorRow key={`${instructor.id}`} instructorId={instructor.id} />
           ))}
         </div>
-        <div className="child area">
-        <button onClick={handleClose} type="submit" className="submit-btn">Close</button>
+        <div className="child">
+        <button onClick={handleClose} type="submit" className="close-btn">Close</button>
         </div>
         </div>
     )}

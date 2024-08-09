@@ -38,24 +38,28 @@ function StudioDetail () {
     return (
         <>
         <div className={`overallContainer`}>
+            <div className="contentBody">
             <div className='title'>
             <div className={`imgContainer`}>
                 <img className={`logo`} src={studio?.logo} />
         </div>
 
-            <span className={`pricing-stars`}>
+            <div className={`pricing-stars`}>
                 <h2>{studio?.name}</h2>
-                {studio?.avgStarRating === null ? <div>★ New</div>
-                    : <span>★ {studio?.avgStarRating?.toFixed(1)} · {studio?.numReviews === 1 ? <span>{studio?.numReviews} review</span> : <span> {studio?.numReviews} reviews</span> } </span>
+                <div className="stats">
+                {studio?.avgStarRating === null ? <div><span className="star">★</span> New</div>
+                    : <span><span className="star">★</span> {studio?.avgStarRating?.toFixed(1)} · {studio?.numReviews === 1 ? <span>{studio?.numReviews} review</span> : <span> {studio?.numReviews} reviews</span> } </span>
                 }
-            </span>
+                </div>
+            </div>
+            <br></br>
             </div>
         <div className={`studios-area`}>
         <br></br>
         <div className={`imgContainer`}>
-                <img className={`picture`} src={studio?.pic} />
+                <img className="pictureDetail" src={studio?.pic} />
         </div>
-        <h3>{studio?.description}</h3>
+        <div className="description"><h3>{studio?.description}</h3></div>
         <br></br>
         <div className={`studio-details`}>
         <div className={`body`}>
@@ -69,11 +73,13 @@ function StudioDetail () {
                 </div>
             </div>
             </div>
-            <div className={`instructors-area`}>
+            <div className="instructorOverall">
             <h2>Our Instructors:</h2>
+            </div>
+            <div className={`instructors-area`}>
             <div className={`instructors`}>
             { Object.values(instructors).map((instructor) => (
-                <span key={`${instructor.id}`}>{instructor.firstName} <img className={`profilePic`} src={`${instructor.profilePic}`}/></span>
+                <span className="individualinstructor" key={`${instructor.id}`}><div className="firstName">{instructor.firstName}</div> <img className={`profilePic`} src={`${instructor.profilePic}`}/></span>
             ))}
             </div>
             <br></br>
@@ -90,6 +96,7 @@ function StudioDetail () {
                     <div key={`${review.id}`}><ReviewTile key={`review-${review.id}`} className={`reviewItem`} review={review} spotId={id} /></div>
                 ))}
             </div> */}
+            </div>
             </div>
         </div>
         </>
