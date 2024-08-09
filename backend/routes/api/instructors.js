@@ -85,9 +85,9 @@ async function checkNoClass (req, res, next) {
 router.delete('/:instructorId', requireAuth, validateInstructorUser, checkNoClass, async (req, res) => {
     //use param
     const instructorId = req.params.instructorId;
-     await Instructor.destroy({
-       where: {id: instructorId}
-        })
+
+    let instructor = await Instructor.findByPk(Number(instructorId));
+    await instructor.destroy();
 
     return res.json({
          message:"Successfully deleted"

@@ -76,9 +76,8 @@ router.put('/:eventId', requireAuth, validateClassEvent, validateClassEventUser,
 router.delete('/:eventId', requireAuth, validateClassEventUser, async (req, res) => {
     //use param class  eventid to look for the class
     const eventId = req.params.eventId;
-     await ClassEvent.destroy({
-       where: {id: eventId}
-        })
+    let event = await ClassEvent.findByPk(Number(eventId));
+    await event.destroy();
 
     return res.json({
          message:"Successfully deleted"

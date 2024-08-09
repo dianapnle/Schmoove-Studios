@@ -130,14 +130,13 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
 router.delete('/:classId', requireAuth, validateClassUser, async (req, res) => {
     //use param class id to look for the class
     const classId = req.params.classId;
-    
-    await ClassDanceStyle.destroy({
-        where: {classid: classId}
-     })
 
-    await Class.destroy({
-       where: {id: classId}
-        })
+    // await ClassDanceStyle.destroy({
+    //     where: {classid: classId}
+    //  })
+
+    let classres = await Class.findByPk(Number(classId));
+    await classres.destroy();
 
     return res.json({
          message:"Successfully deleted"

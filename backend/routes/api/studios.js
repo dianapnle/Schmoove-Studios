@@ -278,9 +278,8 @@ router.put("/:studioId", requireAuth, validateStudio, validateStudioUser, async 
 router.delete("/:studioId", requireAuth, validateStudioUser, async (req, res) => {
     //use param studio id to look for the studio
     const studioId = req.params.studioId;
-    await Studio.destroy({
-      where: {id: studioId}
-    })
+    let studio = await Studio.findByPk(Number(studioId));
+    await studio.destroy();
 
     res.status(200);
     return res.json({

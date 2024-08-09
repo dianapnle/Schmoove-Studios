@@ -64,6 +64,8 @@ const EditInstructorModal = ({studioId}) => {
 
         dispatch(thunkCreateInstructor(payload, studioId))
         setErrors({});
+        setUserId('');
+        setProfilePic('')
         setHasSubmitted(false)
       };
 
