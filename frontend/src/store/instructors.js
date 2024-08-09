@@ -110,7 +110,6 @@ function instructorsReducer(state = initialState, action) {
                   nextState[value.id] = value;
             })
             return {
-                ...state,
                 ...nextState
             };
         }
