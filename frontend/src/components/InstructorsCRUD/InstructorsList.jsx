@@ -1,8 +1,7 @@
-// import React from 'react';
 import { useModal } from '../../context/Modal'
 // import './DeleteSpotModal.css'
 
-function OpenModalEditInstructorButton({
+function InstructorsList({
   modalComponent, // component to render inside the modal
 }) {
   const { setModalContent } = useModal();
@@ -16,4 +15,4 @@ function OpenModalEditInstructorButton({
   );
 }
 
-export default OpenModalEditInstructorButton;
+export default InstructorsList;

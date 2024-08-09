@@ -18,7 +18,7 @@ const EditInstructorRow = ({instructorId}) => {
 
     useEffect(() => {
          setProfilePic(instructor.profilePic);
-  }, [dispatch])
+  }, [dispatch, instructor.profilePic])
 
 
     useEffect(() => {

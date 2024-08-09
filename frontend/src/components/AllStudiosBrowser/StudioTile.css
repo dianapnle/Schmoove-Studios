@@ -74,10 +74,9 @@
 }
 
 
-
 .tooltip:hover:before {
     display:block;
-    content: attr(data-text); /* here's the magic */
+    content: attr(data-text);
     position:absolute;
     width: 100px;
     padding: 5px;
@@ -86,9 +85,11 @@
     text-align:center;
 }
 
+
 .tooltip {
     background-color: white;
 }
+
 .studio-item {
     background-color: white;
 }

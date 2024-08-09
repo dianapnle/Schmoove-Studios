@@ -13,6 +13,7 @@ import EditStudioModal from './EditStudio.jsx';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
 import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
 import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
+import './ManageStudiosBrowser.css'
 
 
 function ManageStudiosBrowser () {
@@ -20,7 +21,6 @@ function ManageStudiosBrowser () {
     const navigate = useNavigate();
     const sessionUser = useSelector(state => state.session.user);
     const studios = useSelector(state => state.studios);
-    const instructors = useSelector(state => state.instructors)
     const filteredStudios = [];
 
     if (!sessionUser) {
@@ -44,14 +44,14 @@ function ManageStudiosBrowser () {
 
     return (
         <>
-        <div>
+        <div className="manage-overall">
         <div className={`header`}>
-        <h2>Manage Studios</h2>
+            <h2>Manage Studios</h2>
         </div>
         <br></br>
         <br></br>
         <br></br>
-        <div className={`studioscontainer`}>
+        <div className={`managestudioscontainer tooltip`}>
         {filteredStudios.length === 0 && <div>No Studios Currently Owned! <div>
             <div className={`createstudiolink`}>
             <OpenModalMenuItem
@@ -63,14 +63,14 @@ function ManageStudiosBrowser () {
             <>
             <div>
             <StudioTile onClick={() => {navigate(`/studio/${studio.id}`)}} key={`${studio.id}`} studio={studio} />
-            <div className={`buttons-area`}><span>
-                <OpenModalEditButton className={`edit-button`} modalComponent={<EditStudioModal studioId={studio.id}/>}/>
-                <OpenModalDeleteButton className={`delete-button`} modalComponent={<DeleteStudioModal studioId={studio.id}/>}/></span></div>
-                <OpenModalEditInstructorButton className={'edit-button'} modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
+            <div className={`manage-buttons-area`}>
+                <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
+                <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
+                <OpenModalEditInstructorButton modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
+                </div>
             </div>
             </>
         ))}
-
         </div>
         </div>
         </>

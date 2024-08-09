@@ -68,9 +68,10 @@ const EditInstructorModal = ({studioId}) => {
       };
 
 
-      const handleClose = async(e) => {
+      const handleClose = async() => {
         closeModal()
-      }
+      };
+
     return (
         <div className='modal-instructors'>
         <h1>Modify Instructors</h1>
@@ -83,7 +84,7 @@ const EditInstructorModal = ({studioId}) => {
             <select onChange={(e) => Number(setUserId(e.target.value)) }>
               <option disabled selected value> -- select an option -- </option>
               {Object.values(allInstructors).map((instructor) =>
-              <option value={instructor.id}>{instructor.firstName}</option>)}
+              <option key={`${instructor.id}`}value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
           {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
@@ -108,10 +109,10 @@ const EditInstructorModal = ({studioId}) => {
         </form>
         <div className="edit-delete-section">
         {Object.values(filteredInstructors).map((instructor) => (
-            <EditInstructorRow instructorId={instructor.id} />
+            <EditInstructorRow key={`${instructor.id}`} instructorId={instructor.id} />
           ))}
         </div>
-        <div classname="child area">
+        <div className="child area">
         <button onClick={handleClose} type="submit" className="submit-btn">Close</button>
         </div>
         </div>

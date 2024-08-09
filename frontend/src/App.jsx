@@ -1,5 +1,6 @@
 // frontend/src/App.jsx
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import LoginFormModal from './components/LoginFormModal/LoginFormModal';
@@ -27,6 +28,15 @@ function Layout() {
   );
 }
 
+function OtherURLS () {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('/')
+
+  }, [navigate])
+}
+
+
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -47,6 +57,10 @@ const router = createBrowserRouter([
         path: "studios/current",
         element: <ManageStudiosBrowser />
       },
+      {
+        path: "*",
+        element: <OtherURLS />
+      }
     ]
   }
 ]);

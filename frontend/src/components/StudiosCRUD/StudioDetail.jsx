@@ -13,7 +13,7 @@ function StudioDetail () {
     const {studioId} = useParams();
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
-    const sessionUser = useSelector(state => state.session.user)
+    // const sessionUser = useSelector(state => state.session.user)
     const instructors = useSelector(state => state.instructors)
     const [isLoaded, setIsLoaded] = useState(false);
 
