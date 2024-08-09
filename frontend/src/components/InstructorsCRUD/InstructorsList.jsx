@@ -1,17 +1,16 @@
-import { useModal } from '../../context/Modal'
 // import './DeleteSpotModal.css'
 
 function InstructorsList({
-  modalComponent, // component to render inside the modal
-}) {
-  const { setModalContent } = useModal();
 
-  const onClick = () => {
-    setModalContent(modalComponent);
-  };
+
+
+
+
+}) {
 
   return (
-        <button className={`edit-instructor-button`} onClick={onClick}>Edit Instructors</button>
+       <>
+       </>
   );
 }
 
