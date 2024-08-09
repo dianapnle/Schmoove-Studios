@@ -17,7 +17,6 @@ const EditInstructorModal = ({studioId}) => {
     const [ userId, setUserId ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
-    const [isLoaded, setIsLoaded ] = useState(false);
 
     const sessionUser = useSelector(state => state.session.user);
     const allInstructors = useSelector(state => state.users);
@@ -29,7 +28,6 @@ const EditInstructorModal = ({studioId}) => {
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
          dispatch(thunkGetAllInstructors())
-         setIsLoaded(true)
          })
 
     }, [dispatch, studioId])

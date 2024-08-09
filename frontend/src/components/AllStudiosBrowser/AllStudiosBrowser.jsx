@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { thunkGetAllStudios } from '../../store/studios.js';
 import StudioTile from   './StudioTile.jsx';
 import './AllStudiosBrowser.css'
-import maingraphic from '/home/dianapnle/projects/UrbanSteps/frontend/images/maingraphic.jpg'
+import maingraphic from '../../../images/maingraphic.jpg'
 
 
 function StudiosBrowser () {
