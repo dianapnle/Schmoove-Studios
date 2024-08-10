@@ -81,6 +81,7 @@ async function checkNoClass (req, res, next) {
 }
 
 
+
 //delete instructor
 router.delete('/:instructorId', requireAuth, validateInstructorUser, checkNoClass, async (req, res) => {
     //use param

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { getCurrentUserStudios } from '../../store/studios.js';
 import StudioTile from '../AllStudiosBrowser/StudioTile.jsx';
 import { useNavigate } from 'react-router-dom';
-import OpenModalDeleteButton from './OpenModalDeleteSpot.jsx';
+import OpenModalDeleteButton from './OpenModalDeleteStudio.jsx';
 import OpenModalEditButton from './EditStudioModal.jsx';
 import DeleteStudioModal from './DeleteStudioModal.jsx';
 import CreateStudioModal from './CreateStudio.jsx';
@@ -51,7 +51,7 @@ function ManageStudiosBrowser () {
         <br></br>
         <br></br>
         <br></br>
-        <div className={`managestudioscontainer tooltip`}>
+        <div className={`nostudios`}>
         {filteredStudios.length === 0 && <div>No Studios Currently Owned! <div>
             <div className={`createstudiolink`}>
             <OpenModalMenuItem
@@ -59,6 +59,7 @@ function ManageStudiosBrowser () {
               modalComponent={<CreateStudioModal />}
             />
           </div></div></div>}
+          <div className={`tooltip`}>
         {Object.values(filteredStudios).map((studio) => (
             <>
             <div>
@@ -71,6 +72,7 @@ function ManageStudiosBrowser () {
             </div>
             </>
         ))}
+        </div>
         </div>
         </div>
         </>

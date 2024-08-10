@@ -546,43 +546,60 @@ const validateInstructor = [
 ];
 
 
+async function checkIfDuplicate (req, res, next) {
+  const studioId = Number(req.params.studioId);
+  const { userId } = req.body;
+
+  // ensure the instructor isnt already an instructor for this studio
+  const instructor = await Instructor.findOne({
+    where: { userId: userId, studioId: studioId }
+  });
+
+  if (instructor !== null ) {
+  const err = new Error()
+  err.message = `instructor already part of the studio!`;
+  err.status = 400
+  return next(err)
+}
+  return next();
+}
 
 //create an instructor for a studio
-router.post('/:studioId/instructors', requireAuth, validateInstructor, validateStudioUser, async (req, res) => {
+router.post('/:studioId/instructors', requireAuth, validateInstructor, checkIfDuplicate, validateStudioUser, async (req, res) => {
   const { userId, profilePic } = req.body;
   const { studioId } = req.params;
 
-  const search = await Studio.findByPk(Number(studioId), {
-    include: { model: User, attributes: ["firstName", "lastName"] }
-  });
-  //if there is no studio that matches the given studioid from parameter -> throw an error
-  if (search === null) {
-      const err = new Error()
-      err.message = "Studio couldn't be found";
-      res.status(404);
+      const search = await Studio.findByPk(Number(studioId), {
+        include: { model: User, attributes: ["firstName", "lastName"] }
+      });
+
+      //if there is no studio that matches the given studioid from parameter -> throw an error
+      if (search === null) {
+          const err = new Error()
+          err.message = "Studio couldn't be found";
+          res.status(404);
+          return res.json({
+            message: err.message
+        })
+      };
+
+      const el = await Instructor.create({
+        userId: userId,
+        profilePic: profilePic,
+        studioId: Number(studioId)
+      });
+
+      const userData = await el.getUser()//get the associations of user data
+
+      res.status(201);
       return res.json({
-        message: err.message
-    })
-  };
-
-  const el = await Instructor.create({
-    userId: userId,
-    profilePic: profilePic,
-    studioId: Number(studioId)
-  });
-
-  const userData = await el.getUser()//get the associations of user data
-
-  res.status(201);
-  return res.json({
-    id: el.id,
-    studioId: el.studioId,
-    userId: el.userId,
-    profilePic: el.profilePic,
-    firstName: userData.firstName,
-    lastName: userData.lastName
-  }
-  );
+        id: el.id,
+        studioId: el.studioId,
+        userId: el.userId,
+        profilePic: el.profilePic,
+        firstName: userData.firstName,
+        lastName: userData.lastName
+      });
 });
 
   module.exports = router;

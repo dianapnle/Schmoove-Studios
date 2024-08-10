@@ -1,6 +1,6 @@
 // import React from 'react';
 import { useModal } from '../../context/Modal'
-// import './DeleteSpotModal.css'
+
 
 function OpenModalEditInstructorButton({
   modalComponent, // component to render inside the modal

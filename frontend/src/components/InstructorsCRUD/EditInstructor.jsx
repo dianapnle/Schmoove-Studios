@@ -33,16 +33,17 @@ const EditInstructorModal = ({studioId}) => {
     }, [dispatch, studioId])
 
 
-
     useEffect(() => {
         const errors = {};
 
         if (!userId) errors.user = "An instructor must be selected!"
         if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
         setErrors(errors)
-
       }, [userId, profilePic])
 
+      const foundUserIds = new Set(Object.values(filteredInstructors).map((instructor) => instructor.userId));
+      // filter out user objects that were already added (based on userId)
+      const dropDownUsers = Object.values(allInstructors).filter((user) => !foundUserIds.has(user.id));
 
     if (sessionUser) {
 
@@ -85,7 +86,7 @@ const EditInstructorModal = ({studioId}) => {
             <div className="labels">Available Instructors</div>
             <select onChange={(e) => Number(setUserId(e.target.value)) }>
               <option disabled selected value> -- select an option -- </option>
-              {Object.values(allInstructors).map((instructor) =>
+              {Object.values(dropDownUsers).map((instructor) =>
               <option key={`${instructor.id}`}value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
