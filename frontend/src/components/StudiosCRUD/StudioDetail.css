@@ -54,8 +54,9 @@ img.picture {
 }
 
 .profilePic {
-    height: 75px;
-    width: 75px;
+    padding-top: 10px;
+    height: 70px;
+    width: 70px;
     margin: 5px;
 }
 
@@ -65,26 +66,33 @@ img.picture {
     flex-direction: row;
     justify-content: flex-start;
     gap: 2px;
+    height: 110px
 }
 
 .individualinstructor {
     height: 100px;
     width: 100px;
-    border: 1px rgb(0, 0, 0) solid;
+    border: 2px rgb(0, 0, 0) solid;
     margin-left: 1px;
     margin-right: 1px;
+    text-align: center;
+    border-radius: 50% 50% 50% 50%;
+    /* border-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%) 1;
+    border-style: solid; */
 }
 
 
 .firstName {
     text-align: center;
+    margin-top: 15px;
 }
 
 
 .contentBody {
     background-color: rgb(255, 255, 255);
     padding: 10px;
-    width: 1000px
+    width: 1000px;
+    padding-bottom: 30px;
 }
 
 

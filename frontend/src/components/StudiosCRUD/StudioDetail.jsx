@@ -79,7 +79,8 @@ function StudioDetail () {
             <div className={`instructors-area`}>
             <div className={`instructors`}>
             { Object.values(instructors).map((instructor) => (
-                <span className="individualinstructor" key={`${instructor.id}`}><div className="firstName">{instructor.firstName}</div> <img className={`profilePic`} src={`${instructor.profilePic}`}/></span>
+                <span className="individualinstructor" key={`${instructor.id}`}> <img className={`profilePic`} src={`${instructor.profilePic}`}/>
+                <div className="firstName">{instructor.firstName}</div></span>
             ))}
             </div>
             <br></br>
