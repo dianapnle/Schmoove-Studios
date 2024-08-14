@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
 import { thunkGetAllClasses } from "../../store/classes";
-import ClassDetail from "../ClassesCRUD/ClassTile";
+import ClassTile from "../ClassesCRUD/ClassTile";
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
@@ -95,7 +95,7 @@ function StudioDetail () {
             <div className={`classes`}>
             <h2>Our Classes:</h2>
             { Object.values(classes).map((el) => (
-                <span><ClassDetail key={`${el.id}`} classId={el.id} /></span>
+                <span><ClassTile key={`${el.id}`} classId={el.id} /></span>
             ))}
             </div>
             <br></br>
