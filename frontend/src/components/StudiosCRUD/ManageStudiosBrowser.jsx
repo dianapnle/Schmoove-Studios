@@ -14,6 +14,8 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
 import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
 import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
 import './ManageStudiosBrowser.css'
+import OpenModalEditClassButton from '../ClassesCRUD/EditClassesModal.jsx';
+import EditClassesModal from '../ClassesCRUD/EditClassModal.jsx';
 
 
 function ManageStudiosBrowser () {
@@ -68,6 +70,7 @@ function ManageStudiosBrowser () {
                 <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
                 <OpenModalEditInstructorButton modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
+                <OpenModalEditClassButton modalComponent={<EditClassesModal studioId={studio.id}/>}/>
                 </div>
             </div>
             </>

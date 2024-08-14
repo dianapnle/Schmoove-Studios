@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
+import { thunkGetAllClasses } from "../../store/classes";
+import ClassDetail from "../ClassesCRUD/ClassTile";
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
@@ -14,7 +16,8 @@ function StudioDetail () {
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
     // const sessionUser = useSelector(state => state.session.user)
-    const instructors = useSelector(state => state.instructors)
+    const instructors = useSelector(state => state.instructors);
+    const classes = useSelector(state => state.classes)
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dispatch = useDispatch();
@@ -29,6 +32,7 @@ function StudioDetail () {
     useEffect(() => {
         dispatch(getStudioDetail(id))
         .then(dispatch(thunkGetAllStudioInstructors(id)))
+        .then(dispatch(thunkGetAllClasses(id)))
         .then(() => {
             setIsLoaded(true)
         })
@@ -79,24 +83,22 @@ function StudioDetail () {
             <div className={`instructors-area`}>
             <div className={`instructors`}>
             { Object.values(instructors).map((instructor) => (
-                <span className="individualinstructor" key={`${instructor.id}`}> <img className={`profilePic`} src={`${instructor.profilePic}`}/>
-                <div className="firstName">{instructor.firstName}</div></span>
+                <span key={`${instructor.id}`}>
+                    <div className="individualinstructor">
+                        <img className={`profilePic`} src={`${instructor.profilePic}`}/>
+                    </div>
+                    <div className="firstName">{instructor.firstName}</div>
+                </span>
             ))}
             </div>
             <br></br>
-            {/* <div className={'post-review-area'}>
-                {sessionUser && sessionUser.id !== studio?.ownerId && existingReview.length === 0 && reviews.length ===0 &&
-                    <div className={`post-review-child`}><OpenModalReviewButton modalComponent={<PostReviewModal className={`post-review-modal`} spotId={id}/>}/><br></br>Be the first to post a review!</div>
-                }
-                {sessionUser && sessionUser.id !== spot?.ownerId && existingReview.length === 0 && reviews.length !== 0 &&
-                    <div><OpenModalReviewButton modalComponent={<PostReviewModal className={`post-review-modal`} spotId={id}/>}/><br></br></div>
-                }
-            </div> */}
-            {/* <div className={`reviewscontainer`}>
-                {reviews && Object.values(reviews).map((review) => (
-                    <div key={`${review.id}`}><ReviewTile key={`review-${review.id}`} className={`reviewItem`} review={review} spotId={id} /></div>
-                ))}
-            </div> */}
+            <div className={`classes`}>
+            <h2>Our Classes:</h2>
+            { Object.values(classes).map((el) => (
+                <span><ClassDetail key={`${el.id}`} classId={el.id} /></span>
+            ))}
+            </div>
+            <br></br>
             </div>
             </div>
         </div>
