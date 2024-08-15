@@ -8,7 +8,7 @@ import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 import StudiosBrowser from './components/AllStudiosBrowser/AllStudiosBrowser';
 import StudioDetail from './components/StudiosCRUD/StudioDetail';
-import ClassDetail from './components/ClassesCRUD/ClassTile';
+import ClassDetail from './components/ClassesCRUD/ClassDetail';
 import ManageStudiosBrowser from './components/StudiosCRUD/ManageStudiosBrowser';
 
 function Layout() {

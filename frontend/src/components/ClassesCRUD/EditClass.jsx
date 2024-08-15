@@ -1,33 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { thunkDeleteInstructor, thunkUpdateInstructor } from "../../store/instructors";
+import { thunkGetAllDanceStyles } from "../../store/dancestyles";
+import { thunkUpdateClass, thunkDeleteClass, thunkGetAllClasses } from "../../store/classes";
 // import './CreateStudio.css'
 
 
 
 
-const EditClass = ({instructorId}) => {
-
+const EditClass = ({classId, studioId}) => {
     const dispatch = useDispatch();
-    const [ profilePic, setProfilePic ] = useState('')
+    const [ name, setName ] = useState('')
+    const [ description, setDescription ] = useState('')
+    const [ instructorId, setInstructorId ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
-
+    const dancestyles = useSelector(state => state.dancestyles)
     const sessionUser = useSelector(state => state.session.user);
-    const instructor = useSelector(state => state.instructors[instructorId])
+    const filteredInstructors = useSelector(state => state.instructors[studioId])
 
     useEffect(() => {
-         setProfilePic(instructor.profilePic);
-  }, [dispatch, instructor.profilePic])
+      dispatch(thunkGetAllClasses(studioId));
+      dispatch(thunkGetAllDanceStyles());
+
+  }, [])
 
 
     useEffect(() => {
         const errors = {};
 
-        if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
+        if (!name) errors.name = 'Name is required';
+        if (!description) errors.description = 'Description is required';
         setErrors(errors)
 
-      }, [profilePic])
+      }, [name, description])
 
 
     if (sessionUser) {
@@ -41,14 +47,14 @@ const EditClass = ({instructorId}) => {
         }
 
 
-        const updatedInstructor = {
-            userId: instructor.userId,
-            studioId: instructor.studioId,
+        const updatedClass = {
+            instructorId: Number(instructorId),
+            studioId: studioId,
             profilePic
           }
 
 
-        dispatch(thunkUpdateInstructor(updatedInstructor, instructorId));
+        dispatch(thunkUpdateClass(updatedClass, classId));
         setErrors({});
         setHasSubmitted(false)
       };
@@ -56,7 +62,7 @@ const EditClass = ({instructorId}) => {
       const handleDelete = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        dispatch(thunkDeleteInstructor(instructorId));
+        dispatch(thunkDeleteClass(classId));
         setHasSubmitted(false)
       }
 
@@ -66,19 +72,36 @@ const EditClass = ({instructorId}) => {
         <form>
           <div className="child">
           <label>
-          <span className="labels-row"><span className="name">{instructor.firstName}</span> | Profile Pic Url </span>
+          <span className="labels-row">Class Name </span>
             <input
               type="text"
-              value={profilePic}
-              className="input-pic-url"
-              placeholder="Profile Picture"
-              onChange={(e) => setProfilePic(e.target.value)}
+              value={name}
+              className="class-name"
+              placeholder="Class Name"
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
+          <label>
+          <input
+              type="text"
+              value={description}
+              className="class-name"
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </label>
+          <label>
+            <div className="labels">Dance Styles</div>
+            <select onChange={(e) => Number(setUserId(e.target.value)) }>
+              <option disabled selected value> -- select an option -- </option>
+              {Object.values(dancestyles).map((style) =>
+              <option key={`${style.id}`}value={style.id}>{style.name}</option>)}
+            </select>
+        </label>
         <span className="buttons-container">
         <span><button type="submit" className="save-btn" onClick={handleSubmit}>Save</button></span><span><button type="submit" className="delete-btn" onClick={handleDelete}>Delete</button></span>
         </span>
-          {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
+          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.profilePic}</div>}
           </div>
           </form>
         </div>

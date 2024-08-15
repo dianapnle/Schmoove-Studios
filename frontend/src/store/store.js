@@ -5,6 +5,7 @@ import studiosReducer from './studios';
 import instructorsReducer from './instructors';
 import usersReducer from './users';
 import classesReducer from './classes';
+import dancestylesReducer from './dancestyles';
 
 
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     studios: studiosReducer,
     instructors: instructorsReducer,
     users: usersReducer,
-    classes: classesReducer
+    classes: classesReducer,
+    dancestyles: dancestylesReducer
 });
 
 

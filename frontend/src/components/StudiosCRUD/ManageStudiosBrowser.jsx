@@ -6,7 +6,7 @@ import { getCurrentUserStudios } from '../../store/studios.js';
 import StudioTile from '../AllStudiosBrowser/StudioTile.jsx';
 import { useNavigate } from 'react-router-dom';
 import OpenModalDeleteButton from './OpenModalDeleteStudio.jsx';
-import OpenModalEditButton from './EditStudioModal.jsx';
+import OpenModalEditButton from './OpenModalEditButton.jsx';
 import DeleteStudioModal from './DeleteStudioModal.jsx';
 import CreateStudioModal from './CreateStudio.jsx';
 import EditStudioModal from './EditStudio.jsx';
@@ -14,8 +14,8 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
 import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
 import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
 import './ManageStudiosBrowser.css'
-import OpenModalEditClassButton from '../ClassesCRUD/EditClassesModal.jsx';
-import EditClassesModal from '../ClassesCRUD/EditClassModal.jsx';
+import OpenModalEditClassButton from '../ClassesCRUD/OpenModalEditClass.jsx';
+import EditClassModal from '../ClassesCRUD/EditClassModal.jsx';
 
 
 function ManageStudiosBrowser () {
@@ -70,7 +70,7 @@ function ManageStudiosBrowser () {
                 <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
                 <OpenModalEditInstructorButton modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
-                <OpenModalEditClassButton modalComponent={<EditClassesModal studioId={studio.id}/>}/>
+                <OpenModalEditClassButton modalComponent={<EditClassModal studioId={studio.id}/>}/>
                 </div>
             </div>
             </>

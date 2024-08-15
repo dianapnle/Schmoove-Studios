@@ -29,7 +29,7 @@ function ClassDetail () {
         <div className={`overallContainer`}>
             <div className="contentBody">
             <div className={`instructors-area`}>
-                {el?.name} {el?.description}, {el?.DanceStyles[0].name}
+                {el?.name} {el?.description}
             <br></br>
             <div className={`classes`}>
             <h2>Scheduled Classes:</h2>

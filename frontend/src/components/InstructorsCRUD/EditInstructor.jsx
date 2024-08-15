@@ -87,7 +87,7 @@ const EditInstructorModal = ({studioId}) => {
             <select onChange={(e) => Number(setUserId(e.target.value)) }>
               <option disabled selected value> -- select an option -- </option>
               {Object.values(dropDownUsers).map((instructor) =>
-              <option key={`${instructor.id}`}value={instructor.id}>{instructor.firstName}</option>)}
+              <option key={`${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
           {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
