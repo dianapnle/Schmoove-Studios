@@ -13,17 +13,38 @@ const EditClass = ({classId, studioId}) => {
     const [ name, setName ] = useState('')
     const [ description, setDescription ] = useState('')
     const [ instructorId, setInstructorId ] = useState('')
-    const [ hasSubmitted, setHasSubmitted ] = useState(false)
+    const [ danceStyle1, setDanceStyle1 ] = useState('')
+    const [ danceStyle2, setDanceStyle2 ] = useState('')
+    const [ hasSubmitted, setHasSubmitted ] = useState(false);
+    const el = useSelector(state => state.classes[classId])
     const [ errors, setErrors ] = useState({})
-    const dancestyles = useSelector(state => state.dancestyles)
+    const dancestyles = useSelector(state => state.dancestyles);
+    const intensity = [];
+    const styles = [];
+
+    for (let i = 0; i < Object.values(dancestyles).length - 6; i++) {
+      if (Object.values(dancestyles)[i].id !== el.DanceStyles[0].id) {
+        intensity.push(Object.values(dancestyles)[i])
+      }
+    }
+
+    for (let i = 3; i < Object.values(dancestyles).length; i++) {
+      if (Object.values(dancestyles)[i].id !== el.DanceStyles[1].id) {
+        styles.push(Object.values(dancestyles)[i])
+      }
+    }
+
     const sessionUser = useSelector(state => state.session.user);
     const filteredInstructors = useSelector(state => state.instructors[studioId])
 
     useEffect(() => {
       dispatch(thunkGetAllClasses(studioId));
       dispatch(thunkGetAllDanceStyles());
-
-  }, [])
+      setName(el.name);
+      setDescription(el.description);
+      setDanceStyle1(el.DanceStyles[0].id)
+      setDanceStyle2(el.DanceStyles[1].id)
+  }, [dispatch])
 
 
     useEffect(() => {
@@ -48,9 +69,11 @@ const EditClass = ({classId, studioId}) => {
 
 
         const updatedClass = {
+            name: name,
+            description: description,
             instructorId: Number(instructorId),
             studioId: studioId,
-            profilePic
+            danceStyles: [danceStyle1, danceStyle2]
           }
 
 
@@ -68,7 +91,7 @@ const EditClass = ({classId, studioId}) => {
 
 
     return (
-        <div className='instructor-row'>
+        <div className='class-row'>
         <form>
           <div className="child">
           <label>
@@ -91,11 +114,19 @@ const EditClass = ({classId, studioId}) => {
             />
           </label>
           <label>
+            <div className="labels">Intensity</div>
+            <select onChange={(e) => Number(setDanceStyle1(e.target.value)) }>
+              <option selected value={danceStyle1}> {el.DanceStyles[0].name }</option>
+              {intensity.map((style) =>
+              <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
+            </select>
+        </label>
+        <label>
             <div className="labels">Dance Styles</div>
-            <select onChange={(e) => Number(setUserId(e.target.value)) }>
-              <option disabled selected value> -- select an option -- </option>
-              {Object.values(dancestyles).map((style) =>
-              <option key={`${style.id}`}value={style.id}>{style.name}</option>)}
+            <select onChange={(e) => Number(setDanceStyle2(e.target.value)) }>
+              <option selected value={danceStyle2}> {el.DanceStyles[1].name } </option>
+              {styles.map((style) =>
+              <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
             </select>
         </label>
         <span className="buttons-container">

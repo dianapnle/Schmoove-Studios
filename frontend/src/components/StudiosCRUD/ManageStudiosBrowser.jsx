@@ -61,7 +61,7 @@ function ManageStudiosBrowser () {
               modalComponent={<CreateStudioModal />}
             />
           </div></div></div>}
-          <div className={`tooltip`}>
+          <div className={`managestudioscontainer tooltip`}>
         {Object.values(filteredStudios).map((studio) => (
             <>
             <div>

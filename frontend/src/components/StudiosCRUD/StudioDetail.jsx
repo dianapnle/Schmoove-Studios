@@ -82,7 +82,9 @@ function StudioDetail () {
             </div>
             <div className={`instructors-area`}>
             <div className={`instructors`}>
-            { Object.values(instructors).map((instructor) => (
+            {Object.values(instructors).length === 0
+                ? <div className={`none`}>No instructors yet!</div>
+                : Object.values(instructors).map((instructor) => (
                 <span key={`${instructor.id}`}>
                     <div className="individualinstructor">
                         <img className={`profilePic`} src={`${instructor.profilePic}`}/>
@@ -94,7 +96,9 @@ function StudioDetail () {
             <br></br>
             <div className={`classes`}>
             <h2>Our Classes:</h2>
-            { Object.values(classes).map((el) => (
+            {Object.values(classes).length === 0
+                ? <div className={`none`}>No classes yet!</div>
+                : Object.values(classes).map((el) => (
                 <span><ClassTile key={`${el.id}`} classId={el.id} /></span>
             ))}
             </div>
