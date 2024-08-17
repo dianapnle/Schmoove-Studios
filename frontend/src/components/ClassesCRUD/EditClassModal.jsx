@@ -78,7 +78,7 @@ const EditClassModal = ({studioId}) => {
           description: description,
           instructorId: Number(instructorId),
           studioId: studioId,
-          danceStyles: [danceStyle1, danceStyle2]
+          danceStyles: [Number(danceStyle1),Number(danceStyle2)]
           }
 
 
