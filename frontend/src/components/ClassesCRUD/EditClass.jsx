@@ -17,8 +17,13 @@ const EditClass = ({classId, studioId}) => {
     const [ danceStyle2, setDanceStyle2 ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false);
     const el = useSelector(state => state.classes[classId])
-    const [ errors, setErrors ] = useState({})
+    const [ errors, setErrors ] = useState({});
+
+
     const dancestyles = useSelector(state => state.dancestyles);
+    const sessionUser = useSelector(state => state.session.user);
+    const filteredInstructors = useSelector(state => state.instructors[studioId]);
+
     const intensity = [];
     const styles = [];
 
@@ -34,8 +39,6 @@ const EditClass = ({classId, studioId}) => {
       }
     }
 
-    const sessionUser = useSelector(state => state.session.user);
-    const filteredInstructors = useSelector(state => state.instructors[studioId])
 
     useEffect(() => {
       dispatch(thunkGetAllClasses(studioId));

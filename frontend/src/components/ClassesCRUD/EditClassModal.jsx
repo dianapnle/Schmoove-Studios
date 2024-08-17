@@ -20,6 +20,7 @@ const EditClassModal = ({studioId}) => {
     const [ danceStyle2, setDanceStyle2 ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false);
     const dancestyles = useSelector(state => state.dancestyles);
+    const filteredInstructors = useSelector(state => state.instructors[studioId]);
     const [ errors, setErrors ] = useState({})
     const intensity = [];
     const styles = [];
@@ -38,7 +39,7 @@ const EditClassModal = ({studioId}) => {
     }
 
     useEffect(() => {
-        //grab the studio's instructors AND all instructors
+        //grab the studio's instructors and classes
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
          dispatch(thunkGetAllClasses(studioId))
@@ -123,6 +124,14 @@ const EditClassModal = ({studioId}) => {
             />
           </label>
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+          <label>
+            <div className="labels">Add / Available Instructors</div>
+            <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
+              <option disabled selected value> -- select an option -- </option>
+              {Object.values(filteredInstructors).map((instructor) =>
+              <option key={`class-${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
+            </select>
+        </label>
           <label>
             <div className="labels">Intensity</div>
             <select onChange={(e) => Number(setDanceStyle1(e.target.value)) }>
