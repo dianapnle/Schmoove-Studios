@@ -20,7 +20,7 @@ const EditClassModal = ({studioId}) => {
     const [ danceStyle2, setDanceStyle2 ] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false);
     const dancestyles = useSelector(state => state.dancestyles);
-    const filteredInstructors = useSelector(state => state.instructors[studioId]);
+    const filteredInstructors = useSelector(state => state.instructors);
     const [ errors, setErrors ] = useState({})
     const intensity = [];
     const styles = [];
