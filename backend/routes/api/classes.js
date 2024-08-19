@@ -113,6 +113,33 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
       instructorId: instructorId
     });
 
+      // NEW - query for newly created detailed class data - eager loading relationships
+  const detailedClassData = await Class.findByPk(Number(result.id), {
+    attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
+    include: [
+      {
+        model: Instructor,
+        include: { model: User, attributes: ["firstName", "lastName"] },
+        attributes: ['id', 'profilePic']
+      },
+      {
+        model: ClassDanceStyle,
+        include: { model: DanceStyle, attributes: ["id", "name"]},
+      }
+    ]
+  });
+
+  const instructorData = {
+    id: detailedClassData.Instructor.id,
+    profilePic: detailedClassData.Instructor.profilePic,
+    firstName: detailedClassData.Instructor.User.firstName,
+    lastName: detailedClassData.Instructor.User.lastName,
+  };
+
+  const danceStyleData = [];
+  for (const danceEntry of detailedClassData.ClassDanceStyles) {
+    danceStyleData.push(danceEntry["DanceStyle"]);
+  }
 
     res.status(201);
     return res.json({
@@ -120,7 +147,9 @@ router.put('/:classId', requireAuth, validateClass, validateDanceStyle, validate
       instructorId: result.instructorId,
       description: result.description,
       name: result.name,
-      studioId: result.studioId
+      studioId: result.studioId,
+      Instructor: instructorData, // attach Instructor data
+      DanceStyles: danceStyleData, // attach DanceStyle data
     }
     );
 });

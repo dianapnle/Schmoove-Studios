@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import { thunkUpdateClass } from "../../store/classes";
-import { thunkGetAllDanceStyles } from "../../store/dancestyles";
+import { thunkGetAllClasses, thunkCreateClass } from "../../store/classes";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
-
+import EditClass from "./EditClass";
 import "./EditClassModal.css"
 
 
 
 
-const EditClassModal = ({classId}) => {
+const EditClassModal = ({studioId}) => {
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -22,47 +21,31 @@ const EditClassModal = ({classId}) => {
     const [ hasSubmitted, setHasSubmitted ] = useState(false);
     const dancestyles = useSelector(state => state.dancestyles);
     const filteredInstructors = useSelector(state => state.instructors);
-    const el = useSelector(state => state.classes[classId]);
     const [ errors, setErrors ] = useState({})
     const intensity = [];
     const styles = [];
-    const dropDownInstructors = []
+
     const sessionUser = useSelector(state => state.session.user);
-
-
+    // const allInstructors = useSelector(state => state.users);
+    const filteredClasses = useSelector(state => state.classes)
 
 
     for (let i = 0; i < Object.values(dancestyles).length - 6; i++) {
-      if (Object.values(dancestyles)[i].id !== el.DanceStyles[0].id) {
-        intensity.push(Object.values(dancestyles)[i])
-      }
+      intensity.push(Object.values(dancestyles)[i])
     }
 
     for (let i = 3; i < Object.values(dancestyles).length; i++) {
-      if (Object.values(dancestyles)[i].id !== el.DanceStyles[1].id) {
-        styles.push(Object.values(dancestyles)[i])
-      }
+      styles.push(Object.values(dancestyles)[i])
     }
-
-    for (let i = 0; i < Object.values(filteredInstructors).length; i++) {
-      if (Object.values(filteredInstructors)[i].id !== el.instructorId) {
-        dropDownInstructors.push(Object.values(filteredInstructors)[i])
-      }
-    }
-
-
 
     useEffect(() => {
-         dispatch(thunkGetAllStudioInstructors(el.studioId)).then(() => {
-         dispatch(thunkGetAllDanceStyles());
-         setName(el.name);
-         setDescription(el.description);
-         setDanceStyle1(el.DanceStyles[0].id)
-         setDanceStyle2(el.DanceStyles[1].id);
-         setInstructorId(el.instructorId)
+        //grab the studio's instructors and classes
+
+         dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
+         dispatch(thunkGetAllClasses(studioId))
          })
 
-    }, [dispatch])
+    }, [dispatch, studioId])
 
 
     useEffect(() => {
@@ -90,16 +73,16 @@ const EditClassModal = ({classId}) => {
         }
 
 
-        const updatedClass = {
+        const payload = {
           name: name,
           description: description,
           instructorId: Number(instructorId),
-          studioId: el.studioId,
+          studioId: studioId,
           danceStyles: [Number(danceStyle1),Number(danceStyle2)]
           }
 
 
-        dispatch(thunkUpdateClass(updatedClass, classId))
+        dispatch(thunkCreateClass(payload, studioId))
         setErrors({});
         setName('');
         setDescription('');
@@ -107,7 +90,6 @@ const EditClassModal = ({classId}) => {
         setDanceStyle1('');
         setDanceStyle2('');
         setHasSubmitted(false);
-        closeModal();
       };
 
 
@@ -119,12 +101,10 @@ const EditClassModal = ({classId}) => {
         <div className='modal-instructors'>
         <h1>Modify Classes</h1>
         <br></br>
-        <br></br>
-        <div className="edit-delete-section">
         <form>
-          <div className="child">
-          <label>
-          <span className="labels-row">Class Name </span>
+        <div className="add-class">
+            <div className="labels">Add Class</div>
+            <label>
             <input
               type="text"
               value={name}
@@ -133,6 +113,7 @@ const EditClassModal = ({classId}) => {
               onChange={(e) => setName(e.target.value)}
             />
           </label>
+          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
           <label>
           <input
               type="text"
@@ -142,37 +123,41 @@ const EditClassModal = ({classId}) => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
+          {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+          <label>
+            <div className="labels">Add / Available Instructors</div>
+            <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
+              <option disabled selected value> -- select an option -- </option>
+              {Object.values(filteredInstructors).map((instructor) =>
+              <option key={`class-${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
+            </select>
+        </label>
           <label>
             <div className="labels">Intensity</div>
             <select onChange={(e) => Number(setDanceStyle1(e.target.value)) }>
-              <option selected value={danceStyle1}> {el.DanceStyles[0].name }</option>
+              <option disabled selected value> -- select an option -- </option>
               {intensity.map((style) =>
               <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
             </select>
-        </label>
+          </label>
+          {hasSubmitted===true && errors.dancestyle1 && <div className={`errors`}>{errors.dancestyle1}</div>}
         <label>
             <div className="labels">Dance Styles</div>
             <select onChange={(e) => Number(setDanceStyle2(e.target.value)) }>
-              <option selected value={danceStyle2}> {el.DanceStyles[1].name } </option>
+              <option disabled selected value> -- select an option -- </option>
               {styles.map((style) =>
               <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
             </select>
         </label>
-        <label>
-            <div className="labels">Add / Available Instructors</div>
-            <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
-              {/* <option disabled selected value> -- select an option -- </option> */}
-              <option selected value={instructorId}> {el.Instructor.firstName} </option>
-              {Object.values(dropDownInstructors).map((instructor) =>
-              <option key={`class-${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
-            </select>
-        </label>
-        <span className="buttons-container">
-        <span><button type="submit" className="save-btn" onClick={handleSubmit}>Save</button></span><span></span>
-        </span>
-          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.profilePic}</div>}
-          </div>
-          </form>
+        {hasSubmitted===true && errors.dancestyle2 && <div className={`errors`}>{errors.dancestyle2}</div>}
+        <button onClick={handleSubmit} type="submit" className="add-btn">Add</button>
+        </div>
+        </form>
+        <br></br>
+        <div className="edit-delete-section">
+        {Object.values(filteredClasses).map((el) => (
+            <EditClass key={`${el.id}`} classId={el.id} studioId={studioId} />
+          ))}
         </div>
         <br></br>
         <div className="child">

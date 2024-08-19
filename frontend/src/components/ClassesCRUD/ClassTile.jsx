@@ -3,28 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkGetAClass } from "../../store/classes";
 import './ClassDetail.css'
+import OpenModalEditClassButton from '../ClassesCRUD/OpenModalEditClass'
+import EditClassModal from "./EditClassModal";
 
 
-function ClassTile ({ classId }) {
+function ClassTile ({ classId, showEdit }) {
     const id = Number(classId)
     const navigate = useNavigate();
     const el = useSelector(state => state.classes[id]);
-    const [isLoaded, setIsLoaded] = useState(false);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("id", classId)
-        dispatch(thunkGetAClass(id))
-        .then(() => {
-            setIsLoaded(true)
+        dispatch(thunkGetAClass(classId)).then(() => {
         })
-    }, [id, dispatch, isLoaded])
-
+    }, [dispatch])
 
     return (
-        <>
-        <div onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} className={`classOverallContainer`}>
+        <div className={`classOverallContainer`}>
+        {/* {showEdit && <div><button> Edit Class</button></div>} */}
+        {showEdit && <div><OpenModalEditClassButton modalComponent={<EditClassModal classId={classId}/>} /></div>}
+        <div onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} >
             <div className='title'>
             <div className={`pricing-stars`}>
                 <h2>{el?.name}</h2>
@@ -39,7 +37,7 @@ function ClassTile ({ classId }) {
         <br></br>
             </div>
         </div>
-        </>
+        </div>
     )
 }
 

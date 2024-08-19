@@ -52,7 +52,11 @@ const router = createBrowserRouter([
       },
       {
         path: "studios/:studioId",
-        element: <StudioDetail />
+        element: <StudioDetail showEdit={false} />
+      },
+      {
+        path: "studios/edit/:studioId",
+        element: <StudioDetail showEdit={true} />
       },
       {
         path: "classes/:classId",

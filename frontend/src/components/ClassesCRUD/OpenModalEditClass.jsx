@@ -4,6 +4,7 @@ import { useModal } from '../../context/Modal'
 
 function OpenModalEditClassButton({
   modalComponent, // component to render inside the modal
+
 }) {
   const { setModalContent } = useModal();
 

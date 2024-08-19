@@ -3,21 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
-import { thunkGetAllClasses } from "../../store/classes";
-import ClassTile from "../ClassesCRUD/ClassTile";
+import ClassList from "../ClassesCRUD/ClassList";
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
 // import OpenModalReviewButton from "./Review/OpenModalReviewButton";
 // import PostReviewModal from "./Review/PostReviewModal";
 
-function StudioDetail () {
+function StudioDetail ({showEdit}) {
     const {studioId} = useParams();
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
     // const sessionUser = useSelector(state => state.session.user)
     const instructors = useSelector(state => state.instructors);
-    const classes = useSelector(state => state.classes)
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dispatch = useDispatch();
@@ -32,7 +30,6 @@ function StudioDetail () {
     useEffect(() => {
         dispatch(getStudioDetail(id))
         .then(dispatch(thunkGetAllStudioInstructors(id)))
-        .then(dispatch(thunkGetAllClasses(id)))
         .then(() => {
             setIsLoaded(true)
         })
@@ -94,14 +91,7 @@ function StudioDetail () {
             ))}
             </div>
             <br></br>
-            <div className={`classes`}>
-            <h2>Our Classes:</h2>
-            {Object.values(classes).length === 0
-                ? <div className={`none`}>No classes yet!</div>
-                : Object.values(classes).map((el) => (
-                <span><ClassTile key={`${el.id}`} classId={el.id} /></span>
-            ))}
-            </div>
+            <ClassList studioId={id} showEdit={showEdit} />
             <br></br>
             </div>
             </div>
