@@ -107,3 +107,13 @@ button:disabled.save-btn{
     height: 50px;
     box-shadow: 1px 1px 3px black;
 }
+
+
+.delete-modal h2 {
+    color: black
+}
+
+
+.top-container .edit-class-button {
+    margin-right: 5px;
+}

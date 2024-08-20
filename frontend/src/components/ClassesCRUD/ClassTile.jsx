@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { thunkGetAClass } from "../../store/classes";
 import './ClassDetail.css'
 import OpenModalEditClassButton from '../ClassesCRUD/OpenModalEditClass'
+import OpenModalDeleteButton from "../StudiosCRUD/OpenModalDeleteStudio";
+import DeleteClassModal from "../ClassesCRUD/DeleteClassModal"
 import EditClassModal from "./EditClassModal";
 
 
@@ -21,9 +23,12 @@ function ClassTile ({ classId, showEdit }) {
     return (
         <div className={`classOverallContainer`}>
         {/* {showEdit && <div><button> Edit Class</button></div>} */}
-        {showEdit && <div><OpenModalEditClassButton modalComponent={<EditClassModal classId={classId}/>} /></div>}
-        <div className='top-container' onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} >
-            <div className='top-container'>
+        {showEdit && <div className='top-container'>
+            <OpenModalEditClassButton modalComponent={<EditClassModal classId={classId}/>} />
+            <OpenModalDeleteButton modalComponent={<DeleteClassModal classId={classId}/>}/>
+        </div>}
+        <div onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} >
+            <div>
             <span><h2>{el?.name} with {el?.Instructor?.firstName}</h2></span>
             <h4>Styles: {el?.DanceStyles[0]?.name}, {el?.DanceStyles[1]?.name}</h4>
             </div>

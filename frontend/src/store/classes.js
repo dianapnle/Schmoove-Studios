@@ -27,7 +27,7 @@ const createClass = (payload) => ({
 
 const deleteClass = (classId) => ({
   type: DELETE_CLASS,
-  payload: instructorId
+  payload: classId
 })
 
 const updateClass = (payload) => ({
