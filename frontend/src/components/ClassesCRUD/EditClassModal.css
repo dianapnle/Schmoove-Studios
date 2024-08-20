@@ -1,0 +1,109 @@
+.modal-classes h1 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+
+.modal-classes {
+    display: inline-grid;
+    margin: auto;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    justify-content: center
+}
+
+  .modal-classes form {
+    border-radius: 1px 1px 1px 1px;;
+    border: 5px solid rgb(255, 255, 255);
+    background: white;
+    padding: 15px;
+    height: 500px;
+    width: 300px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.errors {
+    font-size: 12.5px;
+    margin: 0px;
+    color: #fd5c63
+}
+.class-description {
+    height: 45px;
+    width: 300px;
+}
+
+.input-field {
+    width: 100%;
+    height: 20px;
+    margin: 5px 0;
+    color: rgb(57, 57, 62);
+}
+
+.intensity {
+    margin-top: 20px;
+}
+
+.class-name {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+input:focus {
+    border: 1px solid;
+}
+
+.class-options-dropdown {
+    text-align: center;
+}
+
+.buttons-container {
+    height: 35px;
+    margin-bottom: px;
+}
+
+button:enabled.submit-btn{
+    width: 300px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+}
+
+button:enabled.save-btn:hover{
+  width: 300px;
+  background-color: #000000;
+  color: white;
+  box-shadow: 2px 2px 3px black;
+  height: 50px;
+}
+
+
+button:enabled.save-btn{
+    width: 300px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+}
+
+button:enabled.save-btn:hover{
+  width: 300px;
+  background-color: #000000;
+  color: white;
+  box-shadow: 2px 2px 3px black;
+  height: 50px;
+}
+
+button:disabled.save-btn{
+    background-color: white;
+    color: rgb(131, 129, 129);
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 1px 3px black;
+}

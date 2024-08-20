@@ -116,68 +116,70 @@ const EditClassModal = ({classId}) => {
       };
 
     return (
-        <div className='modal-instructors'>
+        <div className='modal-classes'>
         <h1>Modify Classes</h1>
-        <br></br>
-        <br></br>
-        <div className="edit-delete-section">
         <form>
-          <div className="child">
+          <div className="area">
+            <label>
+            <div className="labels">Class Name</div>
+              <input
+                type="text"
+                value={name}
+                className="class-name"
+                placeholder="Class Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
+          </div>
+          <div className="area">
           <label>
-          <span className="labels-row">Class Name </span>
-            <input
-              type="text"
-              value={name}
-              className="class-name"
-              placeholder="Class Name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label>
-          <input
+          <div className="labels description">Description</div>
+          <textarea
               type="text"
               value={description}
-              className="class-name"
+              className="class-description"
               placeholder="Description"
               onChange={(e) => setDescription(e.target.value)}
-            />
+            ></textarea>
           </label>
+          {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
+          </div>
+          <div className="area">
           <label>
-            <div className="labels">Intensity</div>
+            <div className="labels intensity">Intensity</div>
             <select onChange={(e) => Number(setDanceStyle1(e.target.value)) }>
-              <option selected value={danceStyle1}> {el.DanceStyles[0].name }</option>
+              <option className={`class-options-dropdown`} selected value={danceStyle1}> {el.DanceStyles[0].name }</option>
               {intensity.map((style) =>
-              <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
+              <option className={`class-options-dropdown`} key={`${style.id}`} value={style.id}>{style.name}</option>)}
             </select>
         </label>
+        </div>
+        <div className="area">
         <label>
             <div className="labels">Dance Styles</div>
             <select onChange={(e) => Number(setDanceStyle2(e.target.value)) }>
-              <option selected value={danceStyle2}> {el.DanceStyles[1].name } </option>
+              <option className={`class-options-dropdown`} selected value={danceStyle2}> {el.DanceStyles[1].name } </option>
               {styles.map((style) =>
-              <option key={`${style.id}`} value={style.id}>{style.name}</option>)}
+              <option className={`class-options-dropdown`} key={`${style.id}`} value={style.id}>{style.name}</option>)}
             </select>
         </label>
+        </div>
+        <div className="area">
         <label>
             <div className="labels">Add / Available Instructors</div>
             <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
               {/* <option disabled selected value> -- select an option -- </option> */}
-              <option selected value={instructorId}> {el.Instructor.firstName} </option>
+              <option className={`class-options-dropdown`} selected value={instructorId}> {el.Instructor.firstName} </option>
               {Object.values(dropDownInstructors).map((instructor) =>
-              <option key={`class-${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
+              <option className={`class-options-dropdown`} key={`class-${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
-        <span className="buttons-container">
-        <span><button type="submit" className="save-btn" onClick={handleSubmit}>Save</button></span><span></span>
-        </span>
-          {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.profilePic}</div>}
-          </div>
-          </form>
         </div>
-        <br></br>
-        <div className="child">
-        <button onClick={handleClose} type="submit" className="close-btn">Close</button>
+        <div className="buttons-container">
+        <button type="submit" className="save-btn" onClick={handleSubmit}>Save</button>
         </div>
+        </form>
         </div>
     )}
 

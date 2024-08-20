@@ -8,3 +8,13 @@
 .classOverallContainer:hover {
     cursor: pointer;
 }
+
+
+.classOverallContainer h4 {
+    text-align: center;
+}
+
+
+.top-container {
+    text-align: right;
+}

@@ -22,17 +22,15 @@ function ClassTile ({ classId, showEdit }) {
         <div className={`classOverallContainer`}>
         {/* {showEdit && <div><button> Edit Class</button></div>} */}
         {showEdit && <div><OpenModalEditClassButton modalComponent={<EditClassModal classId={classId}/>} /></div>}
-        <div onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} >
-            <div className='title'>
-            <div className={`pricing-stars`}>
-                <h2>{el?.name}</h2>
-            </div>
-            <br></br>
+        <div className='top-container' onClick={() => {navigate(`/classes/${el.id}`)}} data-text={el?.name} >
+            <div className='top-container'>
+            <span><h2>{el?.name} with {el?.Instructor?.firstName}</h2></span>
+            <h4>Styles: {el?.DanceStyles[0]?.name}, {el?.DanceStyles[1]?.name}</h4>
             </div>
         <div className={`studios-area`}>
         <br></br>
         <div className={`imgContainer`}>
-                <div className="classes">{el?.name}, {el?.description}, {el?.DanceStyles[0]?.name}, {el?.DanceStyles[1]?.name}, with {el?.Instructor?.firstName}</div>
+                <div className="classes"><span></span>{el?.description}</div>
         </div>
         <br></br>
             </div>

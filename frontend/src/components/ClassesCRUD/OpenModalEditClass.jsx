@@ -13,7 +13,7 @@ function OpenModalEditClassButton({
   };
 
   return (
-        <button className={`edit-class-button`} onClick={onClick}>Edit Classes</button>
+        <button className={`edit-class-button`} onClick={onClick}>Edit Class</button>
   );
 }
 
