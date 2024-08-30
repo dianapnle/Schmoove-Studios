@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllClasses } from "../../store/classes";
+import OpenModalAdd from "./OpenModalAdd";
+import AddClassModal from "./AddClass";
+
 
 import ClassTile from "../ClassesCRUD/ClassTile";
 
@@ -20,6 +23,9 @@ function ClassList({ studioId, showEdit }) {
     return (
         <div className={`classes`}>
         <h2>Our Classes:</h2>
+        <div className={`add`}>
+        <OpenModalAdd modalComponent={<AddClassModal studioId={studioId}/>} />
+        </div><br></br>
         {!isLoaded || Object.values(classes).length === 0
             ? <div className={`none`}>No classes yet!</div>
             : Object.values(classes).map((el) => (

@@ -34,7 +34,7 @@ To run the app, type `npm start` in the backend directory and `npm run dev` in t
 
 #### React router and components
 
-Urban Steps is a multi-page app. The React router handles the logic associated with component navigation and updates accordingly to the root route. The child components are done through React.
+Urban Steps is single page app. The React router handles the logic associated with component navigation and updates accordingly to the root route. The child components are done through React.
 
 #### Frontend and Backend Interaction
 

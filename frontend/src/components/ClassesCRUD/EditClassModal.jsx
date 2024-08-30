@@ -62,7 +62,7 @@ const EditClassModal = ({classId}) => {
          setInstructorId(el.instructorId)
          })
 
-    }, [dispatch])
+    }, [dispatch, el.name, el.description, el.DanceStyles, el.studioId, el.instructorId ])
 
 
     useEffect(() => {
@@ -70,10 +70,8 @@ const EditClassModal = ({classId}) => {
 
         if (!name) errors.name = 'Name is required';
         if (!description) errors.description = 'Description is required';
-        if (!danceStyle1) errors.dancestyle1 = 'Need to select an intensity';
-        if (!danceStyle2) errors.dancestyle2 = 'Need to select a style';
         setErrors(errors)
-      }, [name, description, danceStyle1, danceStyle2])
+      }, [name, description])
 
       // const foundUserIds = new Set(Object.values(filteredInstructors).map((instructor) => instructor.userId));
       // // filter out user objects that were already added (based on userId)
@@ -111,15 +109,11 @@ const EditClassModal = ({classId}) => {
       };
 
 
-      const handleClose = async() => {
-        closeModal()
-      };
-
     return (
         <div className='modal-classes'>
         <h1>Modify Classes</h1>
         <form>
-          <div className="area">
+          <div className="class-area">
             <label>
             <div className="labels">Class Name</div>
               <input
@@ -132,7 +126,7 @@ const EditClassModal = ({classId}) => {
             </label>
             {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
           </div>
-          <div className="area">
+          <div className="class-area">
           <label>
           <div className="labels description">Description</div>
           <textarea
@@ -145,7 +139,7 @@ const EditClassModal = ({classId}) => {
           </label>
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
           </div>
-          <div className="area">
+          <div className="drop-area-class">
           <label>
             <div className="labels intensity">Intensity</div>
             <select onChange={(e) => Number(setDanceStyle1(e.target.value)) }>
@@ -155,7 +149,7 @@ const EditClassModal = ({classId}) => {
             </select>
         </label>
         </div>
-        <div className="area">
+        <div className="drop-area-class">
         <label>
             <div className="labels">Dance Styles</div>
             <select onChange={(e) => Number(setDanceStyle2(e.target.value)) }>
@@ -165,9 +159,10 @@ const EditClassModal = ({classId}) => {
             </select>
         </label>
         </div>
-        <div className="area">
+        <div className="drop-area-class">
         <label>
             <div className="labels">Add / Available Instructors</div>
+
             <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
               {/* <option disabled selected value> -- select an option -- </option> */}
               <option className={`class-options-dropdown`} selected value={instructorId}> {el.Instructor.firstName} </option>

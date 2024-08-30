@@ -14,7 +14,7 @@ const EditInstructorModal = ({studioId}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [ profilePic, setProfilePic ] = useState('')
-    const [ userId, setUserId ] = useState('')
+    const [ userId, setUserId ] = useState('select_an_option')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
 
@@ -36,7 +36,7 @@ const EditInstructorModal = ({studioId}) => {
     useEffect(() => {
         const errors = {};
 
-        if (!userId) errors.user = "An instructor must be selected!"
+        if (userId === 'select_an_option') errors.user = "An instructor must be selected!"
         if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
         setErrors(errors)
       }, [userId, profilePic])
@@ -65,7 +65,7 @@ const EditInstructorModal = ({studioId}) => {
 
         dispatch(thunkCreateInstructor(payload, studioId))
         setErrors({});
-        setUserId('');
+        setUserId('select_an_option');
         setProfilePic('')
         setHasSubmitted(false)
       };
@@ -84,13 +84,12 @@ const EditInstructorModal = ({studioId}) => {
         <div className="child">
         <label>
             <div className="labels">Add / Available Instructors</div>
-            <select onChange={(e) => Number(setUserId(e.target.value)) }>
-              <option disabled selected value> -- select an option -- </option>
+            <select value={userId} onChange={(e) => Number(setUserId(e.target.value)) }>
+            <option disabled selected value="select_an_option"> -- select an option -- </option>
               {Object.values(dropDownUsers).map((instructor) =>
               <option key={`${instructor.id}`} value={instructor.id}>{instructor.firstName}</option>)}
             </select>
         </label>
-          {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
           </div>
         <div className="child">
           <label>
@@ -101,13 +100,16 @@ const EditInstructorModal = ({studioId}) => {
               className="input-add"
               placeholder="Profile Picture"
               onChange={(e) => setProfilePic(e.target.value)}
-            />
+              />
           </label>
-          {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
           </div>
         <div className="add-container">
         <button onClick={handleSubmit} type="submit" className="add-btn">Add</button>
         </div>
+        </div>
+        <div className="error-area">
+          {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
+          {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
         </div>
         </form>
           <br></br>

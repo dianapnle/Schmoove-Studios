@@ -49,7 +49,7 @@
     display: inline-block;
     align-items: center;
     justify-content: center;
-    height: 230px;
+    height: 200px;
     max-height: fit-content;
     overflow: auto;
     text-align: right;
@@ -60,14 +60,15 @@
     font-size: 15px;
 }
 
-.add-btn, .save-btn, .delete-btn {
+.add-btn, .save-instructor-btn, .delete-btn {
     background-color: #4b4949;
     color: white;
     box-shadow: 1px 1px 4px black;
-    height: 20px
+    height: 20px;
+    margin-right: 1px;
 }
 
-.add-btn:hover, .save-btn:hover, .delete-btn:hover {
+.add-btn:hover, .save-instructor-btn:hover, .delete-btn:hover {
     background-color: #000000;
     color: white;
     box-shadow: 1px 1px 4px black;
@@ -122,4 +123,10 @@
 
 .labels-row {
     font-size: 15px;
+}
+
+
+.error-area {
+    height: 20px;
+    margin-top: 5px;
 }

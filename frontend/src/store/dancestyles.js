@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_DANCESTYLES = "studios/getDanceStyles";
-const CREATE_CLASS_DANCE_STYLE = "classes/createDanceStyles"
+// const CREATE_CLASS_DANCE_STYLE = "classes/createDanceStyles"
 
 
 

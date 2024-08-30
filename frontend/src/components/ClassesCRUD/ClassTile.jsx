@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkGetAClass } from "../../store/classes";
@@ -18,7 +18,7 @@ function ClassTile ({ classId, showEdit }) {
     useEffect(() => {
         dispatch(thunkGetAClass(classId)).then(() => {
         })
-    }, [dispatch])
+    }, [dispatch, classId])
 
     return (
         <div className={`classOverallContainer`}>

@@ -1,18 +1,11 @@
-.modal-classes h1 {
+.modal-classes-add h1 {
     margin-bottom: 0px;
     margin-top: 10px;
     text-align: center;
   }
 
-.class-area{
-    height: 75px
-}
 
-.drop-area-class {
-    height: 50px;
-}
-
-.modal-classes {
+.modal-classes-add {
     display: inline-grid;
     margin: auto;
     width: 400px;
@@ -21,12 +14,12 @@
     justify-content: center
 }
 
-  .modal-classes form {
+  .modal-classes-add form {
     border-radius: 1px 1px 1px 1px;;
     border: 5px solid rgb(255, 255, 255);
     background: white;
     padding: 15px;
-    height: 400px;
+    height: 275px;
     width: 300px;
     display: block;
     justify-content: center;
@@ -40,7 +33,6 @@
     margin: 0px;
     color: #fd5c63
 }
-
 .class-description {
     height: 45px;
     width: 300px;
@@ -75,7 +67,7 @@ input:focus {
     margin-bottom: px;
 }
 
-button:enabled.submit-btn{
+button:enabled.add-class-btn{
     width: 300px;
     background-color: #4b4949;
     color: white;
@@ -83,7 +75,7 @@ button:enabled.submit-btn{
     height: 50px;
 }
 
-button:enabled.save-btn:hover{
+button:enabled.add-class-btn:hover{
   width: 300px;
   background-color: #000000;
   color: white;
@@ -92,7 +84,7 @@ button:enabled.save-btn:hover{
 }
 
 
-button:enabled.save-btn{
+button:enabled.add-class-btn{
     width: 300px;
     background-color: #4b4949;
     color: white;
@@ -100,7 +92,7 @@ button:enabled.save-btn{
     height: 50px;
 }
 
-button:enabled.save-btn:hover{
+button:enabled.add-class-btn:hover{
   width: 300px;
   background-color: #000000;
   color: white;
@@ -108,7 +100,7 @@ button:enabled.save-btn:hover{
   height: 50px;
 }
 
-button:disabled.save-btn{
+button:disabled.add-class-btn{
     background-color: white;
     color: rgb(131, 129, 129);
     width: 100%;
@@ -124,4 +116,17 @@ button:disabled.save-btn{
 
 .top-container .edit-class-button {
     margin-right: 5px;
+}
+
+.child-add {
+    margin-bottom: 7px;
+}
+
+
+.add-class-error-area {
+    height: 20px;
+}
+
+.drop {
+    padding-top: 5px;
 }
