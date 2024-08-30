@@ -8,6 +8,7 @@ import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 import StudiosBrowser from './components/AllStudiosBrowser/AllStudiosBrowser';
 import StudioDetail from './components/StudiosCRUD/StudioDetail';
+import ClassDetail from './components/ClassesCRUD/ClassDetail';
 import ManageStudiosBrowser from './components/StudiosCRUD/ManageStudiosBrowser';
 
 function Layout() {
@@ -51,7 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path: "studios/:studioId",
-        element: <StudioDetail />
+        element: <StudioDetail showEdit={false} />
+      },
+      {
+        path: "studios/edit/:studioId",
+        element: <StudioDetail showEdit={true} />
+      },
+      {
+        path: "classes/:classId",
+        element: <ClassDetail />
       },
       {
         path: "studios/current",

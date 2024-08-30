@@ -4,6 +4,8 @@ import sessionReducer from "./session"
 import studiosReducer from './studios';
 import instructorsReducer from './instructors';
 import usersReducer from './users';
+import classesReducer from './classes';
+import dancestylesReducer from './dancestyles';
 
 
 
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     studios: studiosReducer,
     instructors: instructorsReducer,
-    users: usersReducer
+    users: usersReducer,
+    classes: classesReducer,
+    dancestyles: dancestylesReducer
 });
 
 

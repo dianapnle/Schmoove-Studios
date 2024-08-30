@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
+import ClassList from "../ClassesCRUD/ClassList";
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
 // import OpenModalReviewButton from "./Review/OpenModalReviewButton";
 // import PostReviewModal from "./Review/PostReviewModal";
 
-function StudioDetail () {
+function StudioDetail ({showEdit}) {
     const {studioId} = useParams();
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
     // const sessionUser = useSelector(state => state.session.user)
-    const instructors = useSelector(state => state.instructors)
+    const instructors = useSelector(state => state.instructors);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dispatch = useDispatch();
@@ -78,25 +79,20 @@ function StudioDetail () {
             </div>
             <div className={`instructors-area`}>
             <div className={`instructors`}>
-            { Object.values(instructors).map((instructor) => (
-                <span className="individualinstructor" key={`${instructor.id}`}> <img className={`profilePic`} src={`${instructor.profilePic}`}/>
-                <div className="firstName">{instructor.firstName}</div></span>
+            {Object.values(instructors).length === 0
+                ? <div className={`none`}>No instructors yet!</div>
+                : Object.values(instructors).map((instructor) => (
+                <span key={`${instructor.id}`}>
+                    <div className="individualinstructor">
+                        <img className={`profilePic`} src={`${instructor.profilePic}`}/>
+                    </div>
+                    <div className="firstName">{instructor.firstName}</div>
+                </span>
             ))}
             </div>
             <br></br>
-            {/* <div className={'post-review-area'}>
-                {sessionUser && sessionUser.id !== studio?.ownerId && existingReview.length === 0 && reviews.length ===0 &&
-                    <div className={`post-review-child`}><OpenModalReviewButton modalComponent={<PostReviewModal className={`post-review-modal`} spotId={id}/>}/><br></br>Be the first to post a review!</div>
-                }
-                {sessionUser && sessionUser.id !== spot?.ownerId && existingReview.length === 0 && reviews.length !== 0 &&
-                    <div><OpenModalReviewButton modalComponent={<PostReviewModal className={`post-review-modal`} spotId={id}/>}/><br></br></div>
-                }
-            </div> */}
-            {/* <div className={`reviewscontainer`}>
-                {reviews && Object.values(reviews).map((review) => (
-                    <div key={`${review.id}`}><ReviewTile key={`review-${review.id}`} className={`reviewItem`} review={review} spotId={id} /></div>
-                ))}
-            </div> */}
+            <ClassList studioId={id} showEdit={showEdit} />
+            <br></br>
             </div>
             </div>
         </div>

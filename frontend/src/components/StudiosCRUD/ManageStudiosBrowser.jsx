@@ -6,7 +6,7 @@ import { getCurrentUserStudios } from '../../store/studios.js';
 import StudioTile from '../AllStudiosBrowser/StudioTile.jsx';
 import { useNavigate } from 'react-router-dom';
 import OpenModalDeleteButton from './OpenModalDeleteStudio.jsx';
-import OpenModalEditButton from './EditStudioModal.jsx';
+import OpenModalEditButton from './OpenModalEditButton.jsx';
 import DeleteStudioModal from './DeleteStudioModal.jsx';
 import CreateStudioModal from './CreateStudio.jsx';
 import EditStudioModal from './EditStudio.jsx';
@@ -14,6 +14,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
 import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
 import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
 import './ManageStudiosBrowser.css'
+
 
 
 function ManageStudiosBrowser () {
@@ -59,7 +60,7 @@ function ManageStudiosBrowser () {
               modalComponent={<CreateStudioModal />}
             />
           </div></div></div>}
-          <div className={`tooltip`}>
+          <div className={`managestudioscontainer tooltip`}>
         {Object.values(filteredStudios).map((studio) => (
             <>
             <div>
@@ -68,6 +69,7 @@ function ManageStudiosBrowser () {
                 <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
                 <OpenModalEditInstructorButton modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
+                <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Classes </button>
                 </div>
             </div>
             </>

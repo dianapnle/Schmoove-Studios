@@ -76,7 +76,7 @@ const EditInstructorRow = ({instructorId}) => {
             />
           </label>
         <span className="buttons-container">
-        <span><button type="submit" className="save-btn" onClick={handleSubmit}>Save</button></span><span><button type="submit" className="delete-btn" onClick={handleDelete}>Delete</button></span>
+        <span><button type="submit" className="save-instructor-btn" onClick={handleSubmit}>Save</button></span><span><button type="submit" className="delete-btn" onClick={handleDelete}>Delete</button></span>
         </span>
           {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
           </div>

@@ -60,7 +60,7 @@ h2 {
     width: 50px;
 }
 
-.edit-instructor-button {
+.edit-instructor-button, .edit-class-button {
     width: 200px;
     background-color: #4b4949;
     color: white;
@@ -98,7 +98,7 @@ h2 {
 }
 
 
-.edit-instructor-button:hover {
+.edit-instructor-button:hover, .edit-class-button:hover {
     width: 200px;
     background-color: #000000;
     color: white;

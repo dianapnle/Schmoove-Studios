@@ -368,6 +368,8 @@ const validateDanceStyle = [
   .withMessage('danceStyles are required'),
 ];
 
+
+
 //create a class for a studio
 router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle, validateStudioUser, async (req, res) => {
   const { name, instructorId, description, danceStyles } = req.body;
@@ -389,13 +391,44 @@ router.post('/:studioId/classes', requireAuth, validateClass, validateDanceStyle
 
    await ClassDanceStyle.bulkCreate(stylesToBulkCreate);
 
+  // NEW - query for newly created detailed class data - eager loading relationships
+  const detailedClassData = await Class.findByPk(Number(el.id), {
+    attributes: ['id', 'studioId', 'name', 'description', 'instructorId'],
+    include: [
+      {
+        model: Instructor,
+        include: { model: User, attributes: ["firstName", "lastName"] },
+        attributes: ['id', 'profilePic']
+      },
+      {
+        model: ClassDanceStyle,
+        include: { model: DanceStyle, attributes: ["id", "name"]},
+      }
+    ]
+  });
+
+  const instructorData = {
+    id: detailedClassData.Instructor.id,
+    profilePic: detailedClassData.Instructor.profilePic,
+    firstName: detailedClassData.Instructor.User.firstName,
+    lastName: detailedClassData.Instructor.User.lastName,
+  };
+
+  const danceStyleData = [];
+  for (const danceEntry of detailedClassData.ClassDanceStyles) {
+    danceStyleData.push(danceEntry["DanceStyle"]);
+  }
+
+
   res.status(201);
   return res.json({
     id: el.id,
     studioId: el.studioId,
     description: el.description,
     instructorId: el.instructorId,
-    name: el.name
+    name: el.name,
+    Instructor: instructorData, // attach Instructor data
+    DanceStyles: danceStyleData, // attach DanceStyle data
   });
 });
 

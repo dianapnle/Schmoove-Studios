@@ -1,0 +1,21 @@
+
+
+.classOverallContainer {
+    border: 1px solid black;
+    margin-bottom: 2px;
+}
+
+.classOverallContainer:hover {
+    cursor: pointer;
+}
+
+
+.classOverallContainer h4 {
+    text-align: center;
+}
+
+
+.top-container {
+    text-align: right;
+    padding: 4px;
+}
