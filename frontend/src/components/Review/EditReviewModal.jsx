@@ -12,7 +12,7 @@ function EditReviewModal ({ reviewId }) {
     const [rating, setRating ] = useState(0);
     const [hover, setHover] = useState(0)
     const [errors, setErrors ] = useState({})
-    const el = useSelector(state => state.classes[reviewId]);
+    const el = useSelector(state => state.reviews[reviewId]);
 
     const sessionUser = useSelector(state => state.session.user)
 
@@ -43,7 +43,7 @@ function EditReviewModal ({ reviewId }) {
             rating: rating
         }
 
-        return dispatch((thunkUpdateReview(payload)))
+        return dispatch((thunkUpdateReview(payload, reviewId)))
         .then(closeModal)
         .catch(async (res) => {
             const data = await res.json();
