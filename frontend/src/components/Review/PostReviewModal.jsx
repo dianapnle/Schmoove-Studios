@@ -32,7 +32,7 @@ function PostReviewModal ({ studioId }) {
         const payload = {
             userId: sessionUser.id,
             studioId: studioId,
-            review,
+            review: review,
             rating: rating
         }
 

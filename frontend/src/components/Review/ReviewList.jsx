@@ -8,6 +8,7 @@ import PostReviewModal from "./PostReviewModal";
 function ReviewList({ studioId }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const reviews = useSelector(state => state.reviews)
+    const sessionUser = useSelector(state => state.session.user)
     const existingReview = [];
     for (const review of Object.values(reviews)) {
         if (sessionUser && sessionUser.id === review.userId) {

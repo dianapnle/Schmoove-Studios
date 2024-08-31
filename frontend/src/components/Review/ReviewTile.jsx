@@ -1,6 +1,6 @@
 // import { useNavigate } from 'react-router-dom';
 import './ReviewTile.css'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import OpenModalButton from '../DeleteSpotModal/OpenModalDeleteSpot';
 import DeleteReviewModal from './DeleteReviewModal.jsx'
 import OpenModalEditReviewButton from './OpenModalReviewButton.jsx';
