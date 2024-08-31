@@ -10,14 +10,9 @@ function ReviewTile ({ reviewId }) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-        const id = Number(reviewId)
-        const review = useSelector(state => state.reviews[id]);
-        const dispatch = useDispatch();
+    const id = Number(reviewId)
+    const review = useSelector(state => state.reviews[id]);
 
-        useEffect(() => {
-            dispatch(thunkGetAClass(classId)).then(() => {
-            })
-        }, [dispatch, classId])
 
     const date = new Date(review?.updatedAt);
     const sessionUser = useSelector(state => state.session.user)
@@ -31,6 +26,7 @@ function ReviewTile ({ reviewId }) {
         </div>
         <span className={`review-date`}>{monthNames[date.getMonth()]} {date.getFullYear()}</span>
         <p className={`review-body`}>{review?.review}</p>
+        <p className={`review-body`}>{review?.rating}</p>
         {sessionUser?.id === review.userId &&
         <div>
             <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} />}/>

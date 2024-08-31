@@ -5,9 +5,15 @@ import OpenModalReviewButton from "./OpenModalReviewButton";
 import ReviewTile from "../ClassesCRUD/ClassTile";
 import PostReviewModal from "./PostReviewModal";
 
-function ReviewList({ studioId, showEdit }) {
+function ReviewList({ studioId }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const reviews = useSelector(state => state.reviews)
+    const existingReview = [];
+    for (const review of Object.values(reviews)) {
+        if (sessionUser && sessionUser.id === review.userId) {
+            existingReview.push(review)
+        }
+    }
 
     const dispatch = useDispatch();
 
@@ -21,14 +27,14 @@ function ReviewList({ studioId, showEdit }) {
     return (
         <div className={`reviews`}>
         <h2>Reviews:</h2>
-        {<div className={`add`}>
+        {existingReview.length > 0 && <div className={`add`}>
         <OpenModalReviewButton modalComponent={<PostReviewModal studioId={studioId}/>} />
         </div>}
         <br></br>
         {!isLoaded || Object.values(reviews).length === 0
             ? <div className={`none`}>No reviews yet!</div>
             : Object.values(reviews).map((el) => (
-            <ReviewTile key={`${el.id}`} reviewId={el.id} showEdit={showEdit} />
+            <ReviewTile key={`${el.id}`} reviewId={el.id} />
         ))}
         </div>
     )

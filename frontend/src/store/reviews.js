@@ -45,6 +45,9 @@ export const thunkGetAllReviews = (studioId) => async (dispatch) => {
 };
 
 
+
+
+
 export const thunkUpdateReview = (payload, reviewId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "PUT",
