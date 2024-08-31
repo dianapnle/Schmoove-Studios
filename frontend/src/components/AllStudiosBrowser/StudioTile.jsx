@@ -14,9 +14,10 @@ function StudioTile ({studio}) {
         <div>
         <div onClick={() => {navigate(`/studios/${studio.id}`)}} data-text={studio.name} className={`studioTileContainer tooltip`}>
             <div className={`studioitem`}>
+                <div className={"studiopanel"}>
                 <img className={`studiologo`} src={`${studio.logo}`}/>
                 <img className={`studiopic`} src={`${studio.pic}`}/>
-                <div>
+                </div>
                     <div className={`top-text`}>
                         <div className={`studioname`}>{studio.name}</div>
                         {studio.avgStarRating === 0.0
@@ -24,7 +25,6 @@ function StudioTile ({studio}) {
                 : <div className={`rating`}><span className="star">★</span> {studio.avgStarRating?.toFixed(1)}</div>
                 }
                     </div>
-                </div>
             </div>
         </div>
         </div>

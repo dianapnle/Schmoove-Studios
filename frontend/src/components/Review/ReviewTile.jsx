@@ -20,17 +20,20 @@ function ReviewTile ({ reviewId, studioId }) {
     return (
         <>
         <div className={`reviewitem`}>
-        <div className={`review-user`}>
-            {review.User?.firstName}
+        <div className={`top-review-area`}>
+            <div className={`review-user`}>
+                {review.User?.firstName} <span className={`review-body`}><span className="star">★</span> {review?.rating}</span>
+            </div>
+            <div className={`edit-review-area`}>
+            {sessionUser?.id === review.userId &&
+            <div className={`edit-review-buttons`}>
+                <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} studioId={studioId}/>}/>
+                <OpenModalDeleteButton modalComponent={<DeleteReviewModal reviewId={review.id} studioId={studioId}/>}/></div>}
+                </div>
         </div>
-        <span className={`review-date`}>{monthNames[date.getMonth()]} {date.getFullYear()}</span>
-        <div className={`review-body`}>{review?.review}</div>
-        <div className={`review-body`}>{review?.rating}</div>
-        {sessionUser?.id === review.userId &&
-        <div>
-            <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} studioId={studioId}/>}/>
-            <OpenModalDeleteButton modalComponent={<DeleteReviewModal reviewId={review.id} studioId={studioId}/>}/></div>}
-        <br></br>
+        <div className={`review-date-area`}>
+            <span className={`review-date`}>{monthNames[date.getMonth()]} {date.getFullYear()}</span></div>
+        <div className={`review-body`}> {review?.review}</div>
         </div>
         </>
     )

@@ -1,19 +1,46 @@
 .reviewitem {
-
     border-bottom: 1px solid rgb(88, 84, 42);
 }
 
 
 .review-user {
-    font-size: 17px
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 3px;
 }
 
 .review-date{
-    font-size: 16px;
+    font-size: 14px;
     color: black;
+}
+.review-date-area {
+    margin-bottom: 5px;
 }
 
 .review-body{
     font-size: 15px;
     color: black;
+    margin-bottom: 10px;
+}
+
+
+.edit-review-buttons {
+    display: inline-flex;
+    margin: 4px;
+}
+
+.edit-review-area {
+    display: flex;
+    justify-content: right;
+}
+
+.post-review-button {
+    height: 30px;
+    margin-right: 5px;
+}
+
+.top-review-area {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
 }

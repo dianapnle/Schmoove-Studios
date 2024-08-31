@@ -65,16 +65,16 @@ function EditReviewModal ({ reviewId, studioId }) {
         {errors.message && <p className={`errors`}>{errors.message}</p>}
         <textarea
             className={`text-area`}
-            placeholder='Leave your review here...'
+            placeholder='Write a review! Minimum 10 characters.'
             value={review}
             onChange={(e) => setReview(e.target.value)}
         ></textarea>
         <div className={`star-area`}>
-            <span onMouseEnter={() => setHover(1)} onMouseLeave={() => setHover(0)} onClick={() => setRating(1)} className={`star star1`}>{(hover || rating) >= 1 ? <span>&#9733;</span> : <span>&#9734;</span>}</span>
-            <span onMouseEnter={() => setHover(2)} onMouseLeave={() => setHover(0)} onClick={() => setRating(2)} className={`star star1`}>{(hover || rating) >= 2 ? <span>&#9733;</span> : <span>&#9734;</span>}</span>
-            <span onMouseEnter={() => setHover(3)} onMouseLeave={() => setHover(0)} onClick={() => setRating(3)} className={`star star1`}>{(hover || rating) >= 3 ? <span>&#9733;</span> : <span>&#9734;</span>}</span>
-            <span onMouseEnter={() => setHover(4)} onMouseLeave={() => setHover(0)} onClick={() => setRating(4)} className={`star star1`}>{(hover || rating) >= 4 ? <span>&#9733;</span> : <span>&#9734;</span>}</span>
-            <span onMouseEnter={() => setHover(5)} onMouseLeave={() => setHover(0)} onClick={() => setRating(5)} className={`star star1`}>{(hover || rating) >= 5 ? <span>&#9733;</span> : <span>&#9734;</span>}</span> Stars
+            <span onMouseEnter={() => setHover(1)} onMouseLeave={() => setHover(0)} onClick={() => setRating(1)} className={`star star1`}>{(hover || rating) >= 1 ? <span className={`star star1`}>&#9733;</span> : <span>&#9734;</span>}</span>
+            <span onMouseEnter={() => setHover(2)} onMouseLeave={() => setHover(0)} onClick={() => setRating(2)} className={`star star1`}>{(hover || rating) >= 2 ? <span className={`star star1`}>&#9733;</span> : <span>&#9734;</span>}</span>
+            <span onMouseEnter={() => setHover(3)} onMouseLeave={() => setHover(0)} onClick={() => setRating(3)} className={`star star1`}>{(hover || rating) >= 3 ? <span className={`star star1`}>&#9733;</span> : <span>&#9734;</span>}</span>
+            <span onMouseEnter={() => setHover(4)} onMouseLeave={() => setHover(0)} onClick={() => setRating(4)} className={`star star1`}>{(hover || rating) >= 4 ? <span className={`star star1`}>&#9733;</span> : <span>&#9734;</span>}</span>
+            <span onMouseEnter={() => setHover(5)} onMouseLeave={() => setHover(0)} onClick={() => setRating(5)} className={`star star1`}>{(hover || rating) >= 5 ? <span className={`star star1`} >&#9733;</span> : <span>&#9734;</span>}</span>
         </div>
         <div></div>
         <div className={`buttons-area`}>
