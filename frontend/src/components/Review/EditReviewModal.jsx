@@ -26,10 +26,8 @@ function EditReviewModal ({ reviewId }) {
     const { closeModal } = useModal();
 
     useEffect(() => {
-
         setReview(el.review);
         setRating(el.rating);
-
    }, [dispatch, el.review, el.rating])
 
 

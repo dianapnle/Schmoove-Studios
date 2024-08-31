@@ -1,7 +1,7 @@
 // import React from 'react';
 import { useModal } from '../../context/Modal'
 
-function OpenModalEditReviewButton({
+function OpenModalReviewButton({
   modalComponent, // component to render inside the modal
 }) {
   const { setModalContent } = useModal();
@@ -17,4 +17,4 @@ function OpenModalEditReviewButton({
   );
 }
 
-export default OpenModalEditReviewButton;
+export default OpenModalReviewButton;

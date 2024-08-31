@@ -1,9 +1,9 @@
 // import { useNavigate } from 'react-router-dom';
 import './ReviewTile.css'
 import { useSelector } from 'react-redux';
-import OpenModalButton from '../DeleteSpotModal/OpenModalDeleteSpot';
+import OpenModalDeleteButton from '../StudiosCRUD/OpenModalDeleteStudio.jsx';
 import DeleteReviewModal from './DeleteReviewModal.jsx'
-import OpenModalEditReviewButton from './OpenModalReviewButton.jsx';
+import OpenModalEditReviewButton from './OpenEditModal.jsx';
 import EditReviewModal from './EditReviewModal.jsx';
 
 function ReviewTile ({ reviewId }) {
@@ -30,7 +30,7 @@ function ReviewTile ({ reviewId }) {
         {sessionUser?.id === review.userId &&
         <div>
             <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} />}/>
-            <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id} />}/></div>}
+            <OpenModalDeleteButton modalComponent={<DeleteReviewModal reviewId={review.id} />}/></div>}
         <br></br>
         </div>
         </>

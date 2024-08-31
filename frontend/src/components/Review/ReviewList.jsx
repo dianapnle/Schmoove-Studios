@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllReviews } from "../../store/reviews";
 import OpenModalReviewButton from "./OpenModalReviewButton";
-import ReviewTile from "../ClassesCRUD/ClassTile";
+import ReviewTile from "../Review/ReviewTile";
 import PostReviewModal from "./PostReviewModal";
 
 function ReviewList({ studioId }) {
