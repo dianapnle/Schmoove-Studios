@@ -5,12 +5,8 @@ import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
 import ClassList from "../ClassesCRUD/ClassList";
 import ReviewList from "../Review/ReviewList";
-
-// import { getCurrentSpotReviews } from "../store/reviews";
-// import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
-// import OpenModalReviewButton from "./Review/OpenModalReviewButton";
-// import PostReviewModal from "./Review/PostReviewModal";
+
 
 function StudioDetail ({showEdit}) {
     const {studioId} = useParams();
@@ -22,13 +18,7 @@ function StudioDetail ({showEdit}) {
     const [activeTab, setActiveTab] = useState(0)
 
     const dispatch = useDispatch();
-    // const existingReview = [];
 
-    // for (const review of Object.values(reviews)) {
-    //     if (sessionUser && sessionUser.id === review.userId) {
-    //         existingReview.push(review)
-    //     }
-    // }
 
     useEffect(() => {
         dispatch(getStudioDetail(id))
@@ -69,11 +59,6 @@ function StudioDetail ({showEdit}) {
         <div className={`body`}>
             <div className={`paragraph`}>
                 </div>
-                <div className={`pricing-block`}>
-                    {/* <div className={`booking-area`}>
-                        <button onClick={() => { alert("Feature coming soon");}}className={`book-button`}> Book</button>
-                        </div> */}
-                    </div>
                 </div>
             </div>
             </div>
@@ -94,11 +79,9 @@ function StudioDetail ({showEdit}) {
             ))}
             </div>
             <br></br>
-            <div>
-                <div className="tab">
-                    <button className="tablinks" onClick={() =>{setActiveTab(0)}}>Classes</button>
-                    <button className="tablinks" onClick={() => {setActiveTab(1)}}>Reviews</button>
-                </div>
+            <div className={"tab"}>
+                <button className="tablinks classes-tab" onClick={() =>{setActiveTab(0)}}>Classes</button>
+                <button className="tablinks reviews-tab" onClick={() => {setActiveTab(1)}}>Reviews</button>
             </div>
             {activeTab === 0 ? <div><ClassList studioId={id} showEdit={showEdit} /></div> : <div><ReviewList studioId={id} /></div>}
             <br></br>

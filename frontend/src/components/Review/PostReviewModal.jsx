@@ -57,7 +57,7 @@ function PostReviewModal ({ studioId }) {
         {errors.message && <p className={`errors`}>{errors.message}</p>}
         <textarea
             className={`text-area`}
-            placeholder='Leave your review here...'
+            placeholder='Leave your review here. Minimum 10 characters.'
             value={review}
             onChange={(e) => setReview(e.target.value)}
         ></textarea>

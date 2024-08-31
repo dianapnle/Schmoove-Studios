@@ -22,7 +22,7 @@ img.picture {
     flex-direction: column;
 }
 
-.pricing-stars h2, .instructorOverall h2, .classes h2 {
+.pricing-stars h2, .instructorOverall h2, .classes h2, .reviews h2 {
     color: black
 }
 
@@ -115,6 +115,71 @@ img.picture {
     margin-left: 15px;
 }
 
-.classes {
+.tab {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
+.tablinks {
+    font-size: 17px;
+}
+
+.classes-tab:focus, .classes-tab:target {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+.classes-tab:hover {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+.reviews-tab:focus, .reviews-tab:target {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+.reviews-tab:hover {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+
+.reviews-tab, .classes-tab {
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+
+.post-review-button {
+    width: 200px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+.post-review-button:hover {
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
 }
