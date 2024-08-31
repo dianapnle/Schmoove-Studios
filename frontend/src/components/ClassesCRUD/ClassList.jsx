@@ -23,9 +23,10 @@ function ClassList({ studioId, showEdit }) {
     return (
         <div className={`classes`}>
         <h2>Our Classes:</h2>
-        <div className={`add`}>
+        {showEdit && <div className={`add`}>
         <OpenModalAdd modalComponent={<AddClassModal studioId={studioId}/>} />
-        </div><br></br>
+        </div>}
+        <br></br>
         {!isLoaded || Object.values(classes).length === 0
             ? <div className={`none`}>No classes yet!</div>
             : Object.values(classes).map((el) => (

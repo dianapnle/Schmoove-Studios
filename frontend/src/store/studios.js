@@ -100,7 +100,7 @@ export const thunkDeleteStudio = (studioId) => async (dispatch) => {
 }
 
 
-export const getStudioDetail= (studioId) => async (dispatch) => {
+export const getStudioDetail = (studioId) => async (dispatch) => {
     const response = await csrfFetch(`/api/studios/${studioId}`)
     if (response.ok) {
         const studio = await response.json();

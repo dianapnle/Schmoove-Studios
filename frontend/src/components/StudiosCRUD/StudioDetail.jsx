@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
 import ClassList from "../ClassesCRUD/ClassList";
+import ReviewList from "../Review/ReviewList";
+
 // import { getCurrentSpotReviews } from "../store/reviews";
 // import ReviewTile from "./Review/ReviewTile";
 import './StudioDetail.css'
@@ -17,6 +19,7 @@ function StudioDetail ({showEdit}) {
     // const sessionUser = useSelector(state => state.session.user)
     const instructors = useSelector(state => state.instructors);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [activeTab, setActiveTab] = useState(0)
 
     const dispatch = useDispatch();
     // const existingReview = [];
@@ -91,7 +94,13 @@ function StudioDetail ({showEdit}) {
             ))}
             </div>
             <br></br>
-            <ClassList studioId={id} showEdit={showEdit} />
+            <div>
+                <div className="tab">
+                    <button className="tablinks" onClick={setActiveTab(0)}>Classes</button>
+                    <button className="tablinks" onClick={setActiveTab(1)}>Reviews</button>
+                </div>
+            </div>
+            {activeTab === 0 ? <div><ClassList studioId={id} showEdit={showEdit} /></div> : <div><ReviewList studioId={id} /></div>}
             <br></br>
             </div>
             </div>

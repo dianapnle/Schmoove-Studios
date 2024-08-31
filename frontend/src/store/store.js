@@ -6,6 +6,7 @@ import instructorsReducer from './instructors';
 import usersReducer from './users';
 import classesReducer from './classes';
 import dancestylesReducer from './dancestyles';
+import reviewsReducer from './reviews';
 
 
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     instructors: instructorsReducer,
     users: usersReducer,
     classes: classesReducer,
-    dancestyles: dancestylesReducer
+    dancestyles: dancestylesReducer,
+    reviews: reviewsReducer
 });
 
 
