@@ -6,6 +6,7 @@ const classesRouter = require('./classes.js')
 const instructorsRouter = require('./instructors.js')
 const dancestylesRouter = require('./dancestyles.js')
 const classeventsRouter = require('./classevents.js')
+const reviewsRouter = require('./reviews.js')
 
 
 const { restoreUser } = require("../../utils/auth.js");
@@ -34,5 +35,6 @@ router.use('/instructors', instructorsRouter);
 
 router.use('/events', classeventsRouter);
 
+router.use('/reviews', reviewsRouter);
 
 module.exports = router;

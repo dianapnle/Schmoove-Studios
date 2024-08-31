@@ -452,7 +452,10 @@ router.get("/:studioId/reviews", async (req, res) => {
 
   const reviews = await Review.findAll({
       where: { studioId: studioId },
-      attributes: ['id', 'studioId', 'userId', 'rating', 'review', 'createdAt', 'updatedAt']
+      attributes: ['id', 'studioId', 'userId', 'rating', 'review', 'createdAt', 'updatedAt'],
+      include: [
+        { model: User, attributes: ['id', 'firstName', 'lastName']},
+      ]
   })
 
   res.status(200);

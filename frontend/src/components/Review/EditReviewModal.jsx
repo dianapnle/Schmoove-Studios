@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useModal } from '../../context/Modal';
-import { thunkUpdateReview } from '../../store/reviews';
+import { thunkUpdateReview, thunkGetAllReviews } from '../../store/reviews';
 import './PostReviewModal.css'
 
 
-function EditReviewModal ({ reviewId }) {
+function EditReviewModal ({ reviewId, studioId }) {
     const dispatch = useDispatch();
 
     const [review, setReview ] = useState('');
@@ -44,6 +44,7 @@ function EditReviewModal ({ reviewId }) {
         }
 
         return dispatch((thunkUpdateReview(payload, reviewId)))
+        .then(() => {dispatch(thunkGetAllReviews(studioId))})
         .then(closeModal)
         .catch(async (res) => {
             const data = await res.json();

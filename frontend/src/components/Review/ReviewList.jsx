@@ -10,6 +10,7 @@ function ReviewList({ studioId }) {
     const reviews = useSelector(state => state.reviews)
     const sessionUser = useSelector(state => state.session.user)
     const existingReview = [];
+
     for (const review of Object.values(reviews)) {
         if (sessionUser && sessionUser.id === review.userId) {
             existingReview.push(review)
@@ -28,14 +29,14 @@ function ReviewList({ studioId }) {
     return (
         <div className={`reviews`}>
         <h2>Reviews:</h2>
-        {existingReview.length > 0 && <div className={`add`}>
+        {existingReview.length === 0 && <div className={`add`}>
         <OpenModalReviewButton modalComponent={<PostReviewModal studioId={studioId}/>} />
         </div>}
         <br></br>
         {!isLoaded || Object.values(reviews).length === 0
             ? <div className={`none`}>No reviews yet!</div>
             : Object.values(reviews).map((el) => (
-            <ReviewTile key={`${el.id}`} reviewId={el.id} />
+            <ReviewTile key={`${el.id}`} reviewId={el.id} studioId={studioId}  />
         ))}
         </div>
     )

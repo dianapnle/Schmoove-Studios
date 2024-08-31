@@ -6,7 +6,7 @@ import DeleteReviewModal from './DeleteReviewModal.jsx'
 import OpenModalEditReviewButton from './OpenEditModal.jsx';
 import EditReviewModal from './EditReviewModal.jsx';
 
-function ReviewTile ({ reviewId }) {
+function ReviewTile ({ reviewId, studioId }) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
@@ -20,7 +20,6 @@ function ReviewTile ({ reviewId }) {
     return (
         <>
         <div className={`reviewitem`}>
-        <br></br>
         <div className={`review-user`}>
             {review.User?.firstName}
         </div>
@@ -29,7 +28,7 @@ function ReviewTile ({ reviewId }) {
         <p className={`review-body`}>{review?.rating}</p>
         {sessionUser?.id === review.userId &&
         <div>
-            <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} />}/>
+            <OpenModalEditReviewButton modalComponent={<EditReviewModal reviewId={review.id} studioId={studioId}/>}/>
             <OpenModalDeleteButton modalComponent={<DeleteReviewModal reviewId={review.id} />}/></div>}
         <br></br>
         </div>

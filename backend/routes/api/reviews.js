@@ -65,7 +65,8 @@ const validateReview = [
       studioId: result.studioId,
       review: review,
       rating: rating
-    })
+    });
+
     return res.json({
       id: result.id,
       userId: result.userId,
