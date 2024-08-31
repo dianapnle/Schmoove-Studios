@@ -19,7 +19,7 @@ function DeleteClassModal ({ classId }) {
         <>
         <div className={`delete-modal`}>
         <h1>Confirm Delete</h1>
-        <h2>Are you sure you want to remove this class?</h2>
+        <h3>Are you sure you want to remove this class?</h3>
         <div className={`buttons`}>
           <div>
             <button className={`delete-post-button`} onClick={deleteSubmit}>Yes (Delete Class) </button>

@@ -20,7 +20,7 @@ function DeleteReviewModal ({ reviewId, studioId }) {
         <>
         <div className={`delete-modal`}>
         <h1>Confirm Delete</h1>
-        <h2>Are you sure you want to delete this review?</h2>
+        <h3>Are you sure you want to delete this review?</h3>
         <div className={`buttons`}>
           <div>
             <button className={`delete-review-button`} onClick={deleteSubmit}>Yes (Delete Review) </button>
