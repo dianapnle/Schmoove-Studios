@@ -1,4 +1,4 @@
-const { S3Client } = require ("@aws-sdk/client-s3");
+// const { S3Client, PutObjectCommand } = require ("@aws-sdk/client-s3");
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
@@ -40,18 +40,18 @@ router.use('/reviews', reviewsRouter);
 
 
 
-router.post('/s3_test', async (req, res) => {
-  const s3Client = new S3Client({ region: "us-east-2" });
+// router.get('/s3_test', async (req, res) => {
+//   const s3Client = new S3Client({ region: "us-east-2" });
 
-  const data = await s3Client.send(
-      new PutObjectCommand({
-        Bucket: "urbanstepsproject",
-        Key: "my-first-object.txt",
-        Body: "Hello JavaScript SDK!",
-      })
-    );
+//   const data = await s3Client.send(
+//       new PutObjectCommand({
+//         Bucket: "urbanstepsproject",
+//         Key: "my-first-object.txt",
+//         Body: "Hiiiiiiiiiiiii",
+//       })
+//     );
 
-  console.log(data);
-});
+//   console.log(data);
+// });
 
 module.exports = router;

@@ -6,8 +6,10 @@ const { requireAuth, validateStudioUser } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { v4: uuidv4 } = require('uuid');
-const { S3Client, PutObjectCommand, DeleteObjectCommand } = require ("@aws-sdk/client-s3");
+const multer  = require('multer');
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage });
+const { S3Client, PutObjectCommand } = require ("@aws-sdk/client-s3");
 
 
 
@@ -219,99 +221,55 @@ router.get('/:studioId', studioExist, async(req, res) => {
 });
 
 
-const S3upload = async (entry) => {
-  const s3Client = new S3Client({ region: "us-east-2" });
-
-  //the toDataURL reader returns:
-  //data:image/png;base64,some_really_really_long_string_here==//
-
-  const file_type = entry.split(";")[0].split(":")[1];
-
-  //generate uuid for  a unique name
-  const file_ext = file_type.includes("png") ? ".png" : ".jpg";
-  const filename = uuidv4() + file_ext;
-
-  //take the long string and put that into buffer
-  const file_buffer = new Buffer.from(entry.split(",")[1], 'base64');
-
-  await s3Client.send(
-    new PutObjectCommand({
-      Bucket: "urbanstepsproject",
-      Key: filename,
-      Body: file_buffer,
-      ContentEncoding: 'base64',
-      ContentType: file_type
-    })
-  );
-
-  return `https://urbanstepsproject.s3.amazonaws.com/${filename}`;
-}
-
-
 //create a studio
-router.post('/', requireAuth, validateStudio, async (req, res) => {
-    const { name, logo, pic, description } = req.body;
+router.post('/', requireAuth, validateStudio,  upload.fields([{ name: 'logo', maxCount: 1}, { name: 'pic', maxCount: 1 }]), async (req, res) => {
+    const { name, description } = req.body;
 
-    // const s3Client = new S3Client({ region: "us-east-2" });
+    const s3Client = new S3Client({ region: "us-east-2" });
 
-    // //the toDataURL reader returns:
-    // //data:image/png;base64,some_really_really_long_string_here==//
 
-    // //split the data name and grab the image/png or image/jpg
-    // const logo_file_type = logo.split(";")[0].split(":")[1];
-    // const pic_file_type = pic.split(";")[0].split(":")[1];
-
-    // //generate uuid for  a unique name
-    // const logo_file_ext = logo_file_type.includes("png") ? ".png" : ".jpg";
-    // const logo_filename = uuidv4() + logo_file_ext;
-
-    // //generate uuid for  a unique name
-    // const pic_file_ext = pic_file_type.includes("png") ? ".png" : ".jpg";
-    // const pic_filename = uuidv4() + pic_file_ext;
-
-    // //take the long string and put that into buffer
-    // const logo_buffer = new Buffer.from(logo.split(",")[1], 'base64');
-    // const pic_buffer = new Buffer.from(pic.split(",")[1], 'base64')
-
-    // await s3Client.send(
-    //   new PutObjectCommand({
-    //     Bucket: "urbanstepsproject",
-    //     Key: logo_filename,
-    //     Body: logo_buffer,
-    //     ContentEncoding: 'base64',
-    //     ContentType: logo_file_type
-    //   })
-    // );
-
-    // await s3Client.send (
-    //   new PutObjectCommand({
-    //     Bucket: "urbanstepsproject",
-    //     Key: pic_filename,
-    //     Body: pic_buffer,
-    //     ContentEncoding: 'base64',
-    //     ContentType: pic_file_type
-    //   })
-    // )
-
-    const logo_url = await S3upload(logo);
-    const pic_url = await S3upload(pic);
-    //use the key after aws upload
     const studio = await Studio.create({
       ownerId: req.user.id,
       name: name,
       description: description,
-      logo: logo_url,
-      pic: pic_url
+      logo: `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png`,
+      pic: `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png`
+    });
+
+    const data1 = await s3Client.send(
+      new PutObjectCommand({
+        Bucket: "urbanstepsproject",
+        Key: `${studio.studioId}/logo/${req.files['logo'][0].originalname}`,
+        Body: req.files['logo'][0].buffer,
+      })
+    );
+
+  const data2 = await s3Client.send (
+    new PutObjectCommand({
+      Bucket: "urbanstepsproject",
+      Key: `${studio.studioId}/pic/${req.files['pic'][0].originalname}`,
+      Body: req.files['pic'][0].buffer,
+    })
+  )
+
+    const search = await Studio.findByPk(Number(studio.studioId));
+
+    await search.update({
+      ownerId: req.user.id,
+      name: name,
+      description: description,
+      logo: `https://urbanstepsproject.s3.amazonaws.com/${studioId}/logo/${req.files['logo'][0].originalname}`,
+      pic: `https://urbanstepsproject.s3.amazonaws.com/${studioId}/pic/${req.files['pic'][0].originalname}`
     });
 
     res.status(201);
     return res.json({
-      id: studio.id,
-      name: studio.name,
-      ownerId: studio.ownerId,
-      description: studio.description,
-      logo: studio.logo,
-      pic: studio.pic
+      id: search.id,
+      name: search.name,
+      ownerId: search.ownerId,
+      description: search.description,
+      logo: search.logo,
+      pic: search.pic
     }
     );
 });
@@ -325,54 +283,15 @@ router.put("/:studioId", requireAuth, validateStudio, validateStudioUser, async 
     //use param studio id to look for the studio
     const studioId = req.params.studioId;
 
-    const s3Client = new S3Client({ region: "us-east-2" });
-
     let result = await Studio.findByPk(Number(studioId));
-
-    // by default - preserve old logo url
-    let logo_url = result.logo;
-
-    if (logo) {
-    // if user specified new log, create new logo url
-      logo_url = await S3upload(logo);
-
-      const logokey = result.logo.split("/").pop();
-
-      // delete the old aws pic from logo
-      await s3Client.send (
-          new DeleteObjectCommand({
-            Bucket: "urbanstepsproject",
-            Key: logokey,
-          })
-      );
-    }
-
-    // by default - preserve old logo pic
-    let pic_url = result.pic;
-
-    if (pic) {
-      // if user specified new pic, create new pic url
-      pic_url = await S3upload(pic);
-
-      const pickey = result.pic.split("/").pop();
-
-      // delete the old aws pic from logo
-      await s3Client.send (
-        new DeleteObjectCommand({
-          Bucket: "urbanstepsproject",
-          Key: pickey,
-        })
-      );
-    }
-
 
      await result.update({
       id: studioId,
       ownerId: req.user.id,
       name: name,
       description: description,
-      logo: logo_url,
-      pic: pic_url
+      logo: logo,
+      pic: pic
     });
 
     res.status(200);

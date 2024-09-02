@@ -14,7 +14,7 @@ module.exports = {
       {
         name: "Drip Studio",
         ownerId: 1,
-        logo: "https://images.squarespace-cdn.com/content/v1/66143ec9dd92fc3c01535c05/551e6a08-d9cd-49af-8f5d-f28cab7cebda/DRIP_combined-logo_black.png",
+        logo: "https://urbanstepsproject.s3.us-east-2.amazonaws.com/DRIP_combined-logo_black.png",
         pic: "https://images.squarespace-cdn.com/content/v1/66143ec9dd92fc3c01535c05/7454502c-3f5a-4343-83c5-c5da589c9bbe/IMG_3934.JPG",
         description: "Here, we take creatives seriously. We invite you to use our space to unleash your inner artist, push the boundaries of movement and level up your visuals. Join us in blending passion with a whole lotta DRIP."
       },
