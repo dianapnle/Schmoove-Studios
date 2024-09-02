@@ -85,11 +85,11 @@
     display:block;
     content: attr(data-text);
     position:absolute;
-    width: 100px;
     padding: 5px;
     background:#242424;
     color: #fff;
     text-align:center;
+    box-sizing: content-box;
 }
 
 

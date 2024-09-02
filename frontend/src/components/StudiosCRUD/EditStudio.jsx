@@ -41,11 +41,11 @@ const EditStudioModal = ({studioId}) => {
 
         if (name.length < 2 || name.length > 50) errors.name = 'Name must be between 2 and 50 characters in length';
         if (!description) errors.description = 'Description is required';
-        if ((!pic) || ( pic && (!pic.endsWith('.png') && !pic.endsWith('.PNG')  && !pic.endsWith('.JPEG') && !pic.endsWith('.jpg') && !pic.endsWith('.JPG') && !pic.endsWith('.jpeg')))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
-        if ((!logo) || (logo && (!logo.endsWith('.png') && !logo.endsWith('.PNG') && !logo.endsWith('.jpg') && !logo.endsWith('.JPG') && !logo.endsWith('.jpeg') && !logo.endsWith('.JPEG')))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
+        // if ((!pic) || ( pic && (!pic.endsWith('.png') && !pic.endsWith('.PNG')  && !pic.endsWith('.JPEG') && !pic.endsWith('.jpg') && !pic.endsWith('.JPG') && !pic.endsWith('.jpeg')))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
+        // if ((!logo) || (logo && (!logo.endsWith('.png') && !logo.endsWith('.PNG') && !logo.endsWith('.jpg') && !logo.endsWith('.JPG') && !logo.endsWith('.jpeg') && !logo.endsWith('.JPEG')))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
         setErrors(errors)
 
-      }, [description, name, pic, logo])
+      }, [description, name])
 
 
     if (sessionUser) {
@@ -59,7 +59,7 @@ const EditStudioModal = ({studioId}) => {
         }
 
 
-        const studio = {
+        const payload = {
             ownerId: sessionUser.id,
             name,
             logo,
@@ -68,7 +68,7 @@ const EditStudioModal = ({studioId}) => {
           }
 
 
-        dispatch(thunkUpdateStudio(studio, studioId));
+        dispatch(thunkUpdateStudio(payload, logo, pic, studioId));
         closeModal();
         setErrors({});
         setHasSubmitted(false)
@@ -97,11 +97,11 @@ const EditStudioModal = ({studioId}) => {
             <label>
             <div className="labels">Logo</div>
             <input
-              type="text"
-              value={logo}
+              type="file"
               className="input-field"
               placeholder="Logo"
-              onChange={(e) => setLogo(e.target.value)}
+              accept="image/png, image/jpeg"
+              onChange={(e) => setLogo(e.target.files[0])}
             />
             </label>
             {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
@@ -110,11 +110,11 @@ const EditStudioModal = ({studioId}) => {
             <label>
             <div className="labels">Pic</div>
             <input
-              type="text"
-              value={pic}
+              type="file"
               className="input-field"
               placeholder="Picture"
-              onChange={(e) => setPic(e.target.value)}
+              accept="image/png, image/jpeg"
+              onChange={(e) => setPic(e.target.files[0])}
             />
             </label>
             {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}

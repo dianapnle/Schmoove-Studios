@@ -48,15 +48,33 @@ export const thunkGetAllStudios = () => async (dispatch) => {
   }
 };
 
+//take a file handle and convert it to a base 64 string to be added to json data
+const toBase64 = file => new Promise((resolve, reject) => {
+  //returns a promise to read that file
+  //subscribes to the onload event from the file Reader event, and once the file is loaded, it "resolves" the promise
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = reject;
+});
 
-export const thunkUpdateStudio = (payload, studioId) => async (dispatch) => {
+
+export const thunkUpdateStudio = (payload, logo, pic, studioId) => async (dispatch) => {
+
+  const logo_b64data = await toBase64(logo);
+  const pic_b64data = await toBase64(pic);
+
+  // create a new json object with the payload + b64 data
+  const data_to_upload = {...payload, logo: logo_b64data, pic: pic_b64data};
+
   const res = await csrfFetch(`/api/studios/${studioId}`, {
     method: "PUT",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
-  })
+    body: JSON.stringify(data_to_upload)
+  });
+
   if (res.ok) {
     const updatedStudio = await res.json();
     dispatch(updateStudio(updatedStudio))
@@ -68,13 +86,21 @@ export const thunkUpdateStudio = (payload, studioId) => async (dispatch) => {
 }
 
 
-export const thunkCreateStudio = (payload) => async (dispatch) => {
+
+export const thunkCreateStudio = (payload, logo, pic) => async (dispatch) => {
+
+  const logo_b64data = await toBase64(logo);
+  const pic_b64data = await toBase64(pic);
+
+  // create a new json object with the payload + b64 data
+  const data_to_upload = {...payload, logo: logo_b64data, pic: pic_b64data};
+
   const response = await csrfFetch(`/api/studios`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(data_to_upload)
   });
 
   if (response.ok) {
@@ -86,6 +112,9 @@ export const thunkCreateStudio = (payload) => async (dispatch) => {
     throw new Error(error.message);
   }
 }
+
+
+
 
 export const thunkDeleteStudio = (studioId) => async (dispatch) => {
   const res = await csrfFetch(`/api/studios/${studioId}`, {
