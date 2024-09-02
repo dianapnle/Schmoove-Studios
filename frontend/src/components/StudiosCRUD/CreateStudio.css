@@ -55,6 +55,13 @@
     color: rgb(57, 57, 62);
 }
 
+.file-field {
+    width: 100%;
+    height: 25px;
+    margin: 5px 0;
+    color: rgb(57, 57, 62);
+}
+
 input:focus {
     border: 1px solid;
 }

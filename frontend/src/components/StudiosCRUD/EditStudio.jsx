@@ -41,9 +41,8 @@ const EditStudioModal = ({studioId}) => {
 
         if (name.length < 2 || name.length > 50) errors.name = 'Name must be between 2 and 50 characters in length';
         if (!description) errors.description = 'Description is required';
-        // if ((!pic) || ( pic && (!pic.endsWith('.png') && !pic.endsWith('.PNG')  && !pic.endsWith('.JPEG') && !pic.endsWith('.jpg') && !pic.endsWith('.JPG') && !pic.endsWith('.jpeg')))) errors.pic = 'Image URL must end in .png, .jpg, or .jpeg';
-        // if ((!logo) || (logo && (!logo.endsWith('.png') && !logo.endsWith('.PNG') && !logo.endsWith('.jpg') && !logo.endsWith('.JPG') && !logo.endsWith('.jpeg') && !logo.endsWith('.JPEG')))) errors.logo = 'Image URL must end in .png, .jpg, or .jpeg';
-        setErrors(errors)
+        // if ((pic === undefined)) errors.pic = 'Image needed in .png, .jpg, or .jpeg';
+        // if ((logo  === undefined) ) errors.logo = 'Image needed in .png, .jpg, or .jpeg';
 
       }, [description, name])
 
@@ -98,7 +97,7 @@ const EditStudioModal = ({studioId}) => {
             <div className="labels">Logo</div>
             <input
               type="file"
-              className="input-field"
+              className="file-field"
               placeholder="Logo"
               accept="image/png, image/jpeg"
               onChange={(e) => setLogo(e.target.files[0])}
@@ -111,7 +110,7 @@ const EditStudioModal = ({studioId}) => {
             <div className="labels">Pic</div>
             <input
               type="file"
-              className="input-field"
+              className="file-field"
               placeholder="Picture"
               accept="image/png, image/jpeg"
               onChange={(e) => setPic(e.target.files[0])}

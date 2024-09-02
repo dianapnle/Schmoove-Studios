@@ -61,8 +61,8 @@ const toBase64 = file => new Promise((resolve, reject) => {
 
 export const thunkUpdateStudio = (payload, logo, pic, studioId) => async (dispatch) => {
 
-  const logo_b64data = await toBase64(logo);
-  const pic_b64data = await toBase64(pic);
+  const logo_b64data = logo ? await toBase64(logo) : undefined
+  const pic_b64data = pic ? await toBase64(pic) : undefined
 
   // create a new json object with the payload + b64 data
   const data_to_upload = {...payload, logo: logo_b64data, pic: pic_b64data};
