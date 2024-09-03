@@ -12,7 +12,7 @@ module.exports = {
     Review.bulkCreate([
       {
           userId: 1,
-          studioId: 1,
+          studioId: 2,
           review: "Great studio!!!!",
           rating: 5,
           createdAt: new Date("2024-08-02T01:09:13Z"),
