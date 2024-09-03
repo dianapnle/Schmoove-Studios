@@ -1,8 +1,9 @@
 // import React from 'react';
 import { useModal } from '../../context/Modal'
+import { FaPencilAlt } from "react-icons/fa";
 
 
-function OpenModalAddInstructorButton({
+function OpenModalEditInstructorButton({
   modalComponent, // component to render inside the modal
 }) {
   const { setModalContent } = useModal();
@@ -12,8 +13,8 @@ function OpenModalAddInstructorButton({
   };
 
   return (
-        <button className={`edit-instructor-button`} onClick={onClick}>Add Instructor</button>
+        <button className={`edit-button-pencil`} onClick={onClick}><FaPencilAlt /></button>
   );
 }
 
-export default OpenModalAddInstructorButton;
+export default OpenModalEditInstructorButton;

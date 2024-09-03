@@ -5,15 +5,21 @@ import { getStudioDetail } from "../../store/studios";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
 import ClassList from "../ClassesCRUD/ClassList";
 import ReviewList from "../Review/ReviewList";
+import OpenModalAddInstructorButton from "../InstructorsCRUD/EditInstructorModal";
+import AddInstructorModal from "../InstructorsCRUD/AddInstructor";
 import './StudioDetail.css'
+import OpenModalEditInstructorButton from "../InstructorsCRUD/OpenModalEditButton";
+import EditProfilePic from "../InstructorsCRUD/EditProfilePic";
+import DeleteInstructorModal from "../InstructorsCRUD/DeleteInstructorModal";
+import OpenModalDeleteButton from "../InstructorsCRUD/OpenModalDeleteInstructor"
 
 
 function StudioDetail ({showEdit}) {
     const {studioId} = useParams();
     const id = Number(studioId)
     const studio = useSelector(state => state.studios[id]);
-    // const sessionUser = useSelector(state => state.session.user)
     const instructors = useSelector(state => state.instructors);
+    const sessionUser = useSelector(state => state.session.user)
     const [isLoaded, setIsLoaded] = useState(false);
     const [activeTab, setActiveTab] = useState(0)
 
@@ -64,6 +70,9 @@ function StudioDetail ({showEdit}) {
             </div>
             <div className="instructorOverall">
             <h2>Our Instructors:</h2>
+            {showEdit && sessionUser?.id === studio?.ownerId && <div className={`add`}>
+            <OpenModalAddInstructorButton modalComponent={<AddInstructorModal studioId={studio?.id}/>}/>
+            </div>}
             </div>
             <div className={`instructors-area`}>
             <div className={`instructors`}>
@@ -74,10 +83,17 @@ function StudioDetail ({showEdit}) {
                     <div className="individualinstructor">
                         <img className={`profilePic`} src={`${instructor.profilePic}`}/>
                     </div>
-                    <div className="firstName">{instructor.firstName}</div>
+                    <div className="firstName">{instructor?.firstName}</div>
+                    {showEdit && sessionUser?.id === studio?.ownerId && <div className={"pencil-delete"}>
+                    <OpenModalEditInstructorButton modalComponent={<EditProfilePic instructorId={instructor.id}/>} />
+                    <OpenModalDeleteButton modalComponent={<DeleteInstructorModal instructorId={instructor.id}/>} />
+                    </div>}
                 </span>
+
             ))}
             </div>
+            <br></br>
+            <br></br>
             <br></br>
             <div className={"tab"}>
                 <button className="tablinks classes-tab" onClick={() =>{setActiveTab(0)}}>Classes</button>

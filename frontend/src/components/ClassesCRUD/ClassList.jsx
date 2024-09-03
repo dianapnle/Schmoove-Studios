@@ -10,6 +10,8 @@ import ClassTile from "../ClassesCRUD/ClassTile";
 function ClassList({ studioId, showEdit }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const classes = useSelector(state => state.classes)
+    const sessionUser = useSelector(state => state.session.user)
+    const currentStudio = useSelector(state => state.studios[studioId])
 
     const dispatch = useDispatch();
 
@@ -23,14 +25,14 @@ function ClassList({ studioId, showEdit }) {
     return (
         <div className={`classes`}>
         <h2>Our Classes:</h2>
-        {showEdit && <div className={`add`}>
+        {showEdit && sessionUser?.id === currentStudio?.ownerId && <div className={`add`}>
         <OpenModalAdd modalComponent={<AddClassModal studioId={studioId}/>} />
         </div>}
         <br></br>
         {!isLoaded || Object.values(classes).length === 0
             ? <div className={`none`}>No classes yet!</div>
             : Object.values(classes).map((el) => (
-            <ClassTile key={`${el.id}`} classId={el.id} showEdit={showEdit} />
+            <ClassTile key={`${el.id}`} studioId={studioId} classId={el.id} showEdit={showEdit} />
         ))}
         </div>
     )

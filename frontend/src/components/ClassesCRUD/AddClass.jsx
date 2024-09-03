@@ -130,7 +130,7 @@ const AddClassModal = ({studioId}) => {
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
           </div>
           <label>
-            <div className="labels">Add / Available Instructors</div>
+            <div className="labels">Add Available Instructors</div>
             <select onChange={(e) => Number(setInstructorId(e.target.value)) }>
               <option disabled selected value> -- select an option -- </option>
               {Object.values(filteredInstructors).map((instructor) =>
@@ -169,7 +169,7 @@ const AddClassModal = ({studioId}) => {
         <button onClick={handleSubmit} type="submit" className="add-class-btn">Add</button>
         <br></br>
         <br></br>
-        <button onClick={handleClose} type="submit" className="close-btn">Close</button>
+        <button onClick={handleClose} type="submit" className="close-btn close-class">Close</button>
         </div>
         </div>
     )}

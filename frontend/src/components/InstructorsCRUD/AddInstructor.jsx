@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import EditInstructorRow from "./EditInstructorRow";
 import { thunkGetAllStudioInstructors, thunkCreateInstructor } from "../../store/instructors";
 import { thunkGetAllInstructors } from "../../store/users";
 import './EditInstructorModal.css'
@@ -9,7 +8,7 @@ import './EditInstructorModal.css'
 
 
 
-const EditInstructorModal = ({studioId}) => {
+const AddInstructorModal = ({studioId}) => {
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -33,6 +32,10 @@ const EditInstructorModal = ({studioId}) => {
     }, [dispatch, studioId])
 
 
+          const foundUserIds = new Set(Object.values(filteredInstructors).map((instructor) => instructor.userId));
+          // filter out user objects that were already added (based on userId)
+          const dropDownUsers = Object.values(allInstructors).filter((user) => !foundUserIds.has(user.id));
+
     useEffect(() => {
         const errors = {};
 
@@ -40,10 +43,6 @@ const EditInstructorModal = ({studioId}) => {
         if (profilePic === undefined) errors.profilePic = 'Image needed in .png, .jpg, or .jpeg';
         setErrors(errors)
       }, [userId, profilePic])
-
-      const foundUserIds = new Set(Object.values(filteredInstructors).map((instructor) => instructor.userId));
-      // filter out user objects that were already added (based on userId)
-      const dropDownUsers = Object.values(allInstructors).filter((user) => !foundUserIds.has(user.id));
 
     if (sessionUser) {
 
@@ -63,10 +62,10 @@ const EditInstructorModal = ({studioId}) => {
           }
 
 
-        dispatch(thunkCreateInstructor(payload, profilePic, studioId))
-        setErrors({});
-        setUserId('select_an_option');
-        setHasSubmitted(false)
+          setErrors({});
+          setUserId('select_an_option');
+          setHasSubmitted(false);
+          dispatch(thunkCreateInstructor(payload, profilePic, studioId)).then(() => closeModal())
       };
 
 
@@ -77,12 +76,11 @@ const EditInstructorModal = ({studioId}) => {
     return (
         <div className='modal-instructors'>
         <h1>Modify Instructors</h1>
-        <br></br>
         <form>
         <div className="add">
         <div className="child">
         <label>
-            <div className="labels">Add / Available Instructors</div>
+            <div className="labels">Add Available Instructors</div>
             <select value={userId} onChange={(e) => Number(setUserId(e.target.value)) }>
             <option disabled selected value="select_an_option"> -- select an option -- </option>
               {Object.values(dropDownUsers).map((instructor) =>
@@ -91,8 +89,9 @@ const EditInstructorModal = ({studioId}) => {
         </label>
           </div>
         <div className="child">
+          <br></br>
           <label>
-          <div className="labels">Profile Pic Url</div>
+          <div className="labels">Upload a Profile Pic</div>
             <input
               type="file"
               className="input-add"
@@ -101,22 +100,14 @@ const EditInstructorModal = ({studioId}) => {
               />
           </label>
           </div>
-        <div className="add-container">
-        <button onClick={handleSubmit} type="submit" className="add-btn">Add</button>
-        </div>
         </div>
         <div className="error-area">
           {hasSubmitted===true && errors.user && <div className={`errors`}>{errors.user}</div>}
           {hasSubmitted===true && errors.profilePic && <div className={`errors`}>{errors.profilePic}</div>}
         </div>
         </form>
-          <br></br>
-        <div className="edit-delete-section">
-        {Object.values(filteredInstructors).map((instructor) => (
-            <EditInstructorRow key={`${instructor.id}`} instructorId={instructor.id} />
-          ))}
-        </div>
         <div className="child">
+        <button onClick={handleSubmit} type="submit" className="instructor-add-btn">Add</button>
         <button onClick={handleClose} type="submit" className="close-btn">Close</button>
         </div>
         </div>
@@ -124,4 +115,4 @@ const EditInstructorModal = ({studioId}) => {
 
 }
 
-export default EditInstructorModal
+export default AddInstructorModal

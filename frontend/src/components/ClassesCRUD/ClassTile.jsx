@@ -9,10 +9,13 @@ import DeleteClassModal from "../ClassesCRUD/DeleteClassModal"
 import EditClassModal from "./EditClassModal";
 
 
-function ClassTile ({ classId, showEdit }) {
+function ClassTile ({ studioId, classId, showEdit }) {
     const id = Number(classId)
     const navigate = useNavigate();
     const el = useSelector(state => state.classes[id]);
+    const sessionUser = useSelector(state => state.session.user)
+    const currentStudio = useSelector(state => state.studios[studioId])
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,7 +26,7 @@ function ClassTile ({ classId, showEdit }) {
     return (
         <div className={`classOverallContainer`}>
         {/* {showEdit && <div><button> Edit Class</button></div>} */}
-        {showEdit && <div className='top-container'>
+        {showEdit && sessionUser?.id === currentStudio?.ownerId && <div className='top-container'>
             <OpenModalEditClassButton modalComponent={<EditClassModal classId={classId}/>} />
             <OpenModalDeleteButton modalComponent={<DeleteClassModal classId={classId}/>}/>
         </div>}

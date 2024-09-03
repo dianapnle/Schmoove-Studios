@@ -69,7 +69,7 @@ async function checkNoClass (req, res, next) {
   })
   if ( classes.length !== 0 ) {
       const err = new Error()
-      err.message = `instructor owns ${classes.length} classes that need to be reassigned`;
+      err.message = `Instructor owns ${classes.length} classes that need to be reassigned before removal.`;
       err.status = 400
       return next(err)
   }

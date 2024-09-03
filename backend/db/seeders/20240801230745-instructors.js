@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         userId: 4,
-        studioId: 1,
+        studioId: 2,
         profilePic: "https://i.gyazo.com/fed75c3d54e9910bcb12e12d56ea1c29.png"
       }
     ], { validate: true });

@@ -2,7 +2,7 @@
 import { useModal } from '../../context/Modal'
 
 
-function OpenModalAddInstructorButton({
+function OpenModalDeleteButton({
   modalComponent, // component to render inside the modal
 }) {
   const { setModalContent } = useModal();
@@ -12,8 +12,8 @@ function OpenModalAddInstructorButton({
   };
 
   return (
-        <button className={`edit-instructor-button`} onClick={onClick}>Add Instructor</button>
+        <button className={`delete-button-x`} onClick={onClick}>X</button>
   );
 }
 
-export default OpenModalAddInstructorButton;
+export default OpenModalDeleteButton;

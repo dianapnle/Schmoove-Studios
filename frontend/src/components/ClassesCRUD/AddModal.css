@@ -11,8 +11,11 @@
     width: 400px;
     background-color: rgb(255, 255, 255);
     text-align: center;
-    justify-content: center
+    justify-content: center;
+    border: 4px solid rgb(0, 0, 0);
 }
+
+
 
   .modal-classes-add form {
     border-radius: 1px 1px 1px 1px;;
@@ -54,6 +57,10 @@
     text-align: center;
 }
 
+.close-class {
+    margin-bottom: 30px;
+}
+
 input:focus {
     border: 1px solid;
 }
@@ -64,7 +71,6 @@ input:focus {
 
 .buttons-container {
     height: 35px;
-    margin-bottom: px;
 }
 
 button:enabled.add-class-btn{

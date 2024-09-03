@@ -71,7 +71,7 @@ img.picture {
     flex-direction: row;
     justify-content: flex-start;
     gap: 2px;
-    height: 110px
+    height: 110px;
 }
 
 .individualinstructor {
@@ -186,4 +186,55 @@ img.picture {
     box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
+}
+
+
+.pencil-delete {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 25px;
+}
+
+button.edit-button-pencil {
+    width: 30px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+button.edit-button-pencil:hover {
+    width: 30px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+button.delete-button-x {
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+button.delete-button-x:hover {
+    width: 30px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 1px 1px 4px black;
+    width: fit-content;
+    height: 30px;
+}
+
+.instructorOverall {
+    text-align: center;
+}
+
+
+.add {
+    text-align: center;
 }

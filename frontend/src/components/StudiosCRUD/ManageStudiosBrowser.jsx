@@ -11,8 +11,6 @@ import DeleteStudioModal from './DeleteStudioModal.jsx';
 import CreateStudioModal from './CreateStudio.jsx';
 import EditStudioModal from './EditStudio.jsx';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem.jsx';
-import OpenModalEditInstructorButton from '../InstructorsCRUD/EditInstructorModal.jsx';
-import EditInstructorModal from '../InstructorsCRUD/EditInstructor.jsx';
 import './ManageStudiosBrowser.css'
 
 
@@ -68,7 +66,7 @@ function ManageStudiosBrowser () {
             <div className={`manage-buttons-area`}>
                 <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
-                <OpenModalEditInstructorButton modalComponent={<EditInstructorModal studioId={studio.id}/>}/>
+                <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Instructors </button>
                 <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Classes </button>
                 </div>
             </div>

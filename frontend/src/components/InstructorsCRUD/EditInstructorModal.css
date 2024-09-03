@@ -1,16 +1,67 @@
-.modal-instructors {
+.modal-edit-instructor {
+    padding: 20px;
+    width: 350px;
+    height: 375px;
+    display: block;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1px;
+    border: 4px solid rgb(0, 0, 0);
+    box-sizing: content-box;
+  }
+
+  .modal-edit-instructor form{
     border-radius: 1px 1px 1px 1px;;
     border: 5px solid rgb(255, 255, 255);
     background: white;
     padding: 15px;
-    height: 400px;
-    width: 500px;
     display: block;
     justify-content: center;
     align-items: center;
     align-content: center;
     text-align: center;
-  }
+    box-sizing: content-box;
+}
+
+
+
+.modal-instructors form{
+    border-radius: 1px 1px 1px 1px;;
+    border: 5px solid rgb(255, 255, 255);
+    background: white;
+    padding: 15px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    box-sizing: content-box;
+}
+
+.modal-instructors {
+    padding: 20px;
+    height: 300px;
+    width: 300px;
+    display: block;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1px;
+     border: 4px solid rgb(0, 0, 0);
+}
+
+
+
+.modal-edit-instructor h1 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 0px;
+    margin-top: -20px;
+    text-align: center;
+}
+
+
+.instructor-name {
+    font-size: 20px;
+}
 
 .modal-instructors h1 {
     color: rgb(0, 0, 0);
@@ -18,6 +69,8 @@
     margin-top: 0px;
     text-align: center;
 }
+
+
 
 .child .labels {
     text-align: center;
@@ -29,18 +82,8 @@
     justify-content: space-between;
 }
 
-.modal-instructors form {
-    display: flex;
-    flex-direction: column;
-}
 
-.instructor-row {
-    margin-bottom: 5px;
-    display: inline-block;
-    box-sizing: content-box;
-    width: 100%;
-    box-sizing: content-box;
-}
+
 
 
 .edit-delete-section{
@@ -56,10 +99,10 @@
 }
 
 .input-add {
-    width: 150px;
+    width: 200px;
     font-size: 15px;
 }
-
+/*
 .add-btn, .save-instructor-btn, .delete-btn {
     background-color: #4b4949;
     color: white;
@@ -73,22 +116,45 @@
     color: white;
     box-shadow: 1px 1px 4px black;
     height: 20px
-}
+} */
 
-.add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1px
-}
+
 
 .buttons-container {
     margin-bottom: 20px;
 }
 
+.buttons-container-edit-instructor {
+    margin-bottom: -100px;
+    margin-top: 50px;
+}
+
 
 .add-container{
     margin-bottom: -20px;
+}
+
+.instructor-add-btn {
+    width: 300px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+
+.instructor-add-btn:hover {
+    width: 300px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
 }
 
 .close-btn {
@@ -113,11 +179,33 @@
 }
 
 
+.save-instructor-btn {
+    width: 300px;
+    background-color: #4b4949;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+.save-instructor-btn:hover {
+    width: 300px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
+}
+
 .input-pic-url {
     font-size: 15px;
 }
 
-.name {
+.name , .instructor-name {
     font-weight: bold;
 }
 
