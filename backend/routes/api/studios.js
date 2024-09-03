@@ -27,6 +27,16 @@ const validateStudio = [
     handleValidationErrors
   ];
 
+  const validateEditStudio = [
+    check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Name must be between 2 and 50 characters in length'),
+    check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Description is required'),
+    handleValidationErrors
+  ];
+
 
 
 //check if studio exists
@@ -252,47 +262,6 @@ const S3upload = async (entry) => {
 router.post('/', requireAuth, validateStudio, async (req, res) => {
     const { name, logo, pic, description } = req.body;
 
-    // const s3Client = new S3Client({ region: "us-east-2" });
-
-    // //the toDataURL reader returns:
-    // //data:image/png;base64,some_really_really_long_string_here==//
-
-    // //split the data name and grab the image/png or image/jpg
-    // const logo_file_type = logo.split(";")[0].split(":")[1];
-    // const pic_file_type = pic.split(";")[0].split(":")[1];
-
-    // //generate uuid for  a unique name
-    // const logo_file_ext = logo_file_type.includes("png") ? ".png" : ".jpg";
-    // const logo_filename = uuidv4() + logo_file_ext;
-
-    // //generate uuid for  a unique name
-    // const pic_file_ext = pic_file_type.includes("png") ? ".png" : ".jpg";
-    // const pic_filename = uuidv4() + pic_file_ext;
-
-    // //take the long string and put that into buffer
-    // const logo_buffer = new Buffer.from(logo.split(",")[1], 'base64');
-    // const pic_buffer = new Buffer.from(pic.split(",")[1], 'base64')
-
-    // await s3Client.send(
-    //   new PutObjectCommand({
-    //     Bucket: "urbanstepsproject",
-    //     Key: logo_filename,
-    //     Body: logo_buffer,
-    //     ContentEncoding: 'base64',
-    //     ContentType: logo_file_type
-    //   })
-    // );
-
-    // await s3Client.send (
-    //   new PutObjectCommand({
-    //     Bucket: "urbanstepsproject",
-    //     Key: pic_filename,
-    //     Body: pic_buffer,
-    //     ContentEncoding: 'base64',
-    //     ContentType: pic_file_type
-    //   })
-    // )
-
     const logo_url = await S3upload(logo);
     const pic_url = await S3upload(pic);
     //use the key after aws upload
@@ -320,7 +289,7 @@ router.post('/', requireAuth, validateStudio, async (req, res) => {
 
 
 //edit a studio
-router.put("/:studioId", requireAuth, validateStudio, validateStudioUser, async (req, res) => {
+router.put("/:studioId", requireAuth, validateEditStudio, validateStudioUser, async (req, res) => {
     const { name, logo, pic, description } = req.body;
     //use param studio id to look for the studio
     const studioId = req.params.studioId;
@@ -733,9 +702,13 @@ router.post('/:studioId/instructors', requireAuth, validateInstructor, checkIfDu
         })
       };
 
+
+      const profilepic_url = await S3upload(profilePic)
+
+
       const el = await Instructor.create({
         userId: userId,
-        profilePic: profilePic,
+        profilePic: profilepic_url,
         studioId: Number(studioId)
       });
 

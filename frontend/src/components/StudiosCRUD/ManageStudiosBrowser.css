@@ -6,10 +6,9 @@
     max-width: 1430px;
     justify-content: center;
     grid-gap: 10px;
-    background-color: white;
+     background-color: white;
     padding: 20px;
     border-radius: 3% 3% 3% 3%;
-
 }
 
 .managestudioscontainer {
@@ -22,7 +21,6 @@
     background-color: white;
     padding: 20px;
     border-radius: 3% 3% 3% 3%;
-    overflow: wrap;
 }
 
 
@@ -42,7 +40,6 @@ h2 {
 }
 
 .manage-overall{
-    display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 100%;

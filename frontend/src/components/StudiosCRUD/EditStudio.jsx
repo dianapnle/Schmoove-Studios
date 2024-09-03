@@ -12,8 +12,8 @@ const EditStudioModal = ({studioId}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [ name, setName] = useState('')
-    const [ logo, setLogo ] = useState('')
-    const [ pic, setPic ] = useState('')
+    const [ logo, setLogo ] = useState(undefined)
+    const [ pic, setPic ] = useState(undefined)
     const [ description, setDescription] = useState('')
     const [ hasSubmitted, setHasSubmitted ] = useState(false)
     const [ errors, setErrors ] = useState({})
@@ -25,8 +25,6 @@ const EditStudioModal = ({studioId}) => {
 
          dispatch(getStudioDetail(studioId)).then((response) => {
            setDescription(response.description);
-           setLogo(response.logo);
-           setPic(response.pic);
            setName(response.name);
          })
 

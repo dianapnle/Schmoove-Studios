@@ -51,16 +51,16 @@ function ManageStudiosBrowser () {
         </div>
         <br></br>
         <br></br>
-        <br></br>
-        <div className={`nostudios`}>
-        {filteredStudios.length === 0 && <div>No Studios Currently Owned! <div>
-            <div className={`createstudiolink`}>
-            <OpenModalMenuItem
-              itemText="Create a New Studio"
-              modalComponent={<CreateStudioModal />}
-            />
-          </div></div></div>}
-          <div className={`managestudioscontainer tooltip`}>
+        {filteredStudios.length === 0 ?
+        (<div className={`nostudios`}>
+            <div>No Studios Currently Owned! <div>
+                    <div className={`createstudiolink`}>
+                    <OpenModalMenuItem
+                    itemText="Create a New Studio"
+                    modalComponent={<CreateStudioModal />}
+                    />
+                </div></div></div></div>) :
+        (<div className={`managestudioscontainer tooltip`}>
         {Object.values(filteredStudios).map((studio) => (
             <>
             <div>
@@ -74,8 +74,8 @@ function ManageStudiosBrowser () {
             </div>
             </>
         ))}
-        </div>
-        </div>
+        </div>)}
+
         </div>
         </>
     )

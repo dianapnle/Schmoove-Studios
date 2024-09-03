@@ -16,18 +16,18 @@ const EditInstructorRow = ({instructorId}) => {
     const sessionUser = useSelector(state => state.session.user);
     const instructor = useSelector(state => state.instructors[instructorId])
 
-    useEffect(() => {
-         setProfilePic(instructor.profilePic);
-  }, [dispatch, instructor.profilePic])
+  //   useEffect(() => {
+  //        setProfilePic(instructor.profilePic);
+  // }, [dispatch, instructor.profilePic])
 
 
-    useEffect(() => {
-        const errors = {};
+    // useEffect(() => {
+    //     const errors = {};
 
-        if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
-        setErrors(errors)
+    //     if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
+    //     setErrors(errors)
 
-      }, [profilePic])
+    //   }, [profilePic])
 
 
     if (sessionUser) {
@@ -48,7 +48,7 @@ const EditInstructorRow = ({instructorId}) => {
           }
 
 
-        dispatch(thunkUpdateInstructor(updatedInstructor, instructorId));
+        dispatch(thunkUpdateInstructor(updatedInstructor, profilePic, instructorId));
         setErrors({});
         setHasSubmitted(false)
       };
@@ -68,11 +68,11 @@ const EditInstructorRow = ({instructorId}) => {
           <label>
           <span className="labels-row"><span className="name">{instructor.firstName}</span> | Profile Pic Url </span>
             <input
-              type="text"
-              value={profilePic}
+              type="file"
               className="input-pic-url"
               placeholder="Profile Picture"
-              onChange={(e) => setProfilePic(e.target.value)}
+              accept="image/png, image/jpeg"
+              onChange={(e) => setProfilePic(e.target.files[0])}
             />
           </label>
         <span className="buttons-container">

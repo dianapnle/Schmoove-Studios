@@ -37,7 +37,7 @@ const EditInstructorModal = ({studioId}) => {
         const errors = {};
 
         if (userId === 'select_an_option') errors.user = "An instructor must be selected!"
-        if ((!profilePic) || ( profilePic && (!profilePic.endsWith('.png') && !profilePic.endsWith('.PNG')  && !profilePic.endsWith('.JPEG') && !profilePic.endsWith('.jpg') && !profilePic.endsWith('.JPG') && !profilePic.endsWith('.jpeg')))) errors.profilePic = 'Image URL must end in .png, .jpg, or .jpeg';
+        if (profilePic === undefined) errors.profilePic = 'Image needed in .png, .jpg, or .jpeg';
         setErrors(errors)
       }, [userId, profilePic])
 
@@ -63,10 +63,9 @@ const EditInstructorModal = ({studioId}) => {
           }
 
 
-        dispatch(thunkCreateInstructor(payload, studioId))
+        dispatch(thunkCreateInstructor(payload, profilePic, studioId))
         setErrors({});
         setUserId('select_an_option');
-        setProfilePic('')
         setHasSubmitted(false)
       };
 
@@ -95,11 +94,10 @@ const EditInstructorModal = ({studioId}) => {
           <label>
           <div className="labels">Profile Pic Url</div>
             <input
-              type="text"
-              value={profilePic}
+              type="file"
               className="input-add"
               placeholder="Profile Picture"
-              onChange={(e) => setProfilePic(e.target.value)}
+              onChange={(e) => setProfilePic(e.target.files[0])}
               />
           </label>
           </div>

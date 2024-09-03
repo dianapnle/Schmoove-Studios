@@ -33,8 +33,8 @@ const CreateStudioModal = () => {
 
         if (name.length < 2 || name.length > 50) errors.name = 'Name must be between 2 and 50 characters in length';
         if (!description) errors.description = 'Description is required';
-        if ((pic === undefined)) errors.pic = 'Image needed in .png, .jpg, or .jpeg';
-        if ((logo  === undefined) ) errors.logo = 'Image needed in .png, .jpg, or .jpeg';
+        if (pic === undefined) errors.pic = 'Image needed in .png, .jpg, or .jpeg';
+        if (logo  === undefined ) errors.logo = 'Image needed in .png, .jpg, or .jpeg';
         setErrors(errors)
 
       }, [description, name, pic, logo])

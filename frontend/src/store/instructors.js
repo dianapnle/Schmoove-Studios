@@ -44,14 +44,29 @@ export const thunkGetAllStudioInstructors = (studioId) => async (dispatch) => {
   }
 };
 
+//take a file handle and convert it to a base 64 string to be added to json data
+const toBase64 = file => new Promise((resolve, reject) => {
+  //returns a promise to read that file
+  //subscribes to the onload event from the file Reader event, and once the file is loaded, it "resolves" the promise
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = reject;
+});
 
-export const thunkUpdateInstructor = (payload, instructorId) => async (dispatch) => {
+export const thunkUpdateInstructor = (payload, profilePic, instructorId) => async (dispatch) => {
+
+  const pic_b64data = profilePic ? await toBase64(profilePic) : undefined
+
+  // create a new json object with the payload + b64 data
+  const data_to_upload = {...payload, profilePic: pic_b64data};
+
   const res = await csrfFetch(`/api/instructors/${instructorId}`, {
     method: "PUT",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(data_to_upload)
   })
   if (res.ok) {
     const updatedInstructor = await res.json();
@@ -64,13 +79,19 @@ export const thunkUpdateInstructor = (payload, instructorId) => async (dispatch)
 }
 
 
-export const thunkCreateInstructor = (payload, studioId) => async (dispatch) => {
+export const thunkCreateInstructor = (payload, profilePic, studioId) => async (dispatch) => {
+
+  const pic_b64data = await toBase64(profilePic)
+
+  // create a new json object with the payload + b64 data
+  const data_to_upload = {...payload, profilePic: pic_b64data};
+
   const response = await csrfFetch(`/api/studios/${studioId}/instructors`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(data_to_upload)
   });
 
 
