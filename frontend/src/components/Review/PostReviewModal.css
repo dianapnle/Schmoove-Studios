@@ -18,22 +18,12 @@
     height: 100px;
 }
 
-/* button:enabled.submit-review-button {
-    display: inline-block;
-    width: 100px;
-    background-color: #fd5c63;
-    color: white;
-    box-shadow: 2px 3px 5px black;
-    width: 100%;
-    height: 40px;
-    box-sizing: border-box;
-} */
+
 
 button:enabled.submit-review-button {
     width: 300px;
     background-color: #4b4949;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
 }
 
@@ -43,7 +33,6 @@ button:enabled.submit-review-button:hover {
     width: 300px;
     background-color: #000000;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
 }
 
@@ -53,7 +42,6 @@ button:disabled.submit-review-button{
     color: rgb(131, 129, 129);
     width: 100%;
     height: 50px;
-    box-shadow: 1px 1px 3px black;
 }
 
 .star-area {

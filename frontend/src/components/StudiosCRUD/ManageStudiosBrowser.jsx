@@ -66,8 +66,7 @@ function ManageStudiosBrowser () {
             <div className={`manage-buttons-area`}>
                 <OpenModalEditButton modalComponent={<EditStudioModal studioId={studio.id}/>}/>
                 <OpenModalDeleteButton modalComponent={<DeleteStudioModal studioId={studio.id}/>}/>
-                <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Instructors </button>
-                <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Classes </button>
+                <button className={`edit-class-button`} onClick={() => {navigate(`/studios/edit/${studio.id}`)}} key={`${studio.id}`}>Edit Instructors / Classes </button>
                 </div>
             </div>
             </>

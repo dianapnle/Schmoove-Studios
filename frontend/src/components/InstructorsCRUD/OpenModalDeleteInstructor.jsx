@@ -1,5 +1,6 @@
 // import React from 'react';
 import { useModal } from '../../context/Modal'
+import { RiDeleteBin4Fill } from "react-icons/ri";
 
 
 function OpenModalDeleteButton({
@@ -12,7 +13,7 @@ function OpenModalDeleteButton({
   };
 
   return (
-        <button className={`delete-button-x`} onClick={onClick}>X</button>
+        <span className={`delete-button-x`} onClick={onClick}><RiDeleteBin4Fill /></span>
   );
 }
 

@@ -102,21 +102,7 @@
     width: 200px;
     font-size: 15px;
 }
-/*
-.add-btn, .save-instructor-btn, .delete-btn {
-    background-color: #4b4949;
-    color: white;
-    box-shadow: 1px 1px 4px black;
-    height: 20px;
-    margin-right: 1px;
-}
 
-.add-btn:hover, .save-instructor-btn:hover, .delete-btn:hover {
-    background-color: #000000;
-    color: white;
-    box-shadow: 1px 1px 4px black;
-    height: 20px
-} */
 
 
 
@@ -138,7 +124,6 @@
     width: 300px;
     background-color: #4b4949;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;
@@ -151,7 +136,6 @@
     width: 300px;
     background-color: #000000;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;
@@ -161,7 +145,6 @@
     width: 300px;
     background-color: #4b4949;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;
@@ -172,7 +155,6 @@
     width: 300px;
     background-color: #000000;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;
@@ -183,7 +165,6 @@
     width: 300px;
     background-color: #4b4949;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;
@@ -195,7 +176,6 @@
     width: 300px;
     background-color: #000000;
     color: white;
-    box-shadow: 2px 2px 3px black;
     height: 50px;
     justify-self: center;
     align-self: center;

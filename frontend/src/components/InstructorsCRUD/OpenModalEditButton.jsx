@@ -1,6 +1,6 @@
 // import React from 'react';
 import { useModal } from '../../context/Modal'
-import { FaPencilAlt } from "react-icons/fa";
+import { PiPencilSimpleFill } from "react-icons/pi";
 
 
 function OpenModalEditInstructorButton({
@@ -13,7 +13,7 @@ function OpenModalEditInstructorButton({
   };
 
   return (
-        <button className={`edit-button-pencil`} onClick={onClick}><FaPencilAlt /></button>
+        <span className={`edit-button-pencil`} onClick={onClick}><PiPencilSimpleFill /></span>
   );
 }
 

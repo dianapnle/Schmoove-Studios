@@ -80,6 +80,7 @@ function StudioDetail ({showEdit}) {
                 ? <div className={`none`}>No instructors yet!</div>
                 : Object.values(instructors).map((instructor) => (
                 <span key={`${instructor.id}`}>
+                    <div className={"individual-instructor-area"}>
                     <div className="individualinstructor">
                         <img className={`profilePic`} src={`${instructor.profilePic}`}/>
                     </div>
@@ -88,6 +89,7 @@ function StudioDetail ({showEdit}) {
                     <OpenModalEditInstructorButton modalComponent={<EditProfilePic instructorId={instructor.id}/>} />
                     <OpenModalDeleteButton modalComponent={<DeleteInstructorModal instructorId={instructor.id}/>} />
                     </div>}
+                    </div>
                 </span>
 
             ))}

@@ -50,7 +50,6 @@ h2 {
 .edit-button, .delete-button {
     background-color: #4b4949;
     color: white;
-    box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
 }
@@ -63,7 +62,6 @@ h2 {
     width: 200px;
     background-color: #4b4949;
     color: white;
-    box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
 }
@@ -81,7 +79,6 @@ h2 {
 .edit-button:hover {
     background-color: #000000;
     color: white;
-    box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
     width: 50px;
@@ -91,7 +88,6 @@ h2 {
 .delete-button:hover {
     background-color: #000000;
     color: white;
-    box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
 }
@@ -101,7 +97,6 @@ h2 {
     width: 200px;
     background-color: #000000;
     color: white;
-    box-shadow: 1px 1px 4px black;
     width: fit-content;
     height: 30px;
 }
