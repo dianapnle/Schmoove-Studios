@@ -36,6 +36,8 @@ function ClassDetail () {
             {/* { Object.values(classes).map((el) => (
                 <span></span>
             ))} */}
+                No classes scheduled.
+                Feature coming soon!
             </div>
             <br></br>
             </div>

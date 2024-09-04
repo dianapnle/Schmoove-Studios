@@ -55,6 +55,7 @@ img.picture {
     margin-top: 20px;
     overflow-x: auto;
     width: 100%;
+    text-align: center;
 }
 
 .profilePic {
