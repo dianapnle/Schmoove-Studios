@@ -234,3 +234,38 @@ img.picture {
 .individual-instructor-area {
     text-align: center;
 }
+
+
+.tab-area {
+    margin-top: 20px;
+}
+
+.tab-bar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tab-both {
+    padding: 10px;
+}
+
+.active-tab-both {
+    border-bottom: solid 3px #e1eed8;
+    cursor: default;
+}
+
+.inactive-tab-both {
+    border-bottom: solid 3px transparent;
+    color: Gray;
+}
+
+.inactive-tab-both:hover {
+    color: Black;
+    border-bottom: solid 3px #c3ddb0;
+    cursor: pointer;
+}
+
+.tab-main {
+    border-top: solid 1px #dee2e6;
+    margin-top: 3px;
+}

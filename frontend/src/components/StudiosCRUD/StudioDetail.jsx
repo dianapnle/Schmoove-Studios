@@ -97,12 +97,18 @@ function StudioDetail ({showEdit}) {
             <br></br>
             <br></br>
             <br></br>
-            <div className={"tab"}>
-                <button className="tablinks classes-tab" onClick={() =>{setActiveTab(0)}}>Classes</button>
-                <button className="tablinks reviews-tab" onClick={() => {setActiveTab(1)}}>Reviews</button>
-            </div>
-            {activeTab === 0 ? <div><ClassList studioId={id} showEdit={showEdit} /></div> : <div><ReviewList studioId={id} /></div>}
-            <br></br>
+                <div className="tab-area">
+                    <div className="tab-bar">
+                        <span onClick={() => setActiveTab(0)} className={activeTab === 0 ? "tab-both active-tab-both" : "tab-both inactive-tab-both"} > Classes </span>
+                        <span onClick={() => setActiveTab(1)} className={activeTab === 1 ? "tab-both active-tab-both" : "tab-both inactive-tab-both"}> Reviews </span>
+                    </div>
+                <div className="tab-main">
+                    { activeTab === 0 && <div><ClassList studioId={id} showEdit={showEdit} /></div> }
+                    { activeTab === 1 && <div><ReviewList studioId={id} /></div> }
+                </div>
+        </div>
+            {/* {activeTab === 0 ? <div><ClassList studioId={id} showEdit={showEdit} /></div> : <div><ReviewList studioId={id} /></div>}
+            <br></br> */}
             </div>
             </div>
         </div>
