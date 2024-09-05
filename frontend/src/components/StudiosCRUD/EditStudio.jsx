@@ -41,7 +41,7 @@ const EditStudioModal = ({studioId}) => {
         if (!description) errors.description = 'Description is required';
         // if ((pic === undefined)) errors.pic = 'Image needed in .png, .jpg, or .jpeg';
         // if ((logo  === undefined) ) errors.logo = 'Image needed in .png, .jpg, or .jpeg';
-
+        setErrors(errors)
       }, [description, name])
 
 
@@ -74,7 +74,7 @@ const EditStudioModal = ({studioId}) => {
 
     return (
         <div className='modal-login'>
-          <h1>Update Studio</h1>
+          <h1 className={"edit-studio-h1"}>Update Studio</h1>
         <br></br>
         <form onSubmit={handleSubmit}>
           <div className="area">
@@ -83,14 +83,14 @@ const EditStudioModal = ({studioId}) => {
               <input
                 type="text"
                 value={name}
-                className="input-field"
+                className="input-field studio-name"
                 placeholder="Studio Name"
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
             {hasSubmitted===true && errors.name && <div className={`errors`}>{errors.name}</div>}
             </div>
-          <div className="area">
+          <div className="area edit-studio-img">
             <label>
             <div className="labels">Logo</div>
             <input
@@ -103,7 +103,7 @@ const EditStudioModal = ({studioId}) => {
             </label>
             {hasSubmitted===true && errors.logo && <div className={`errors`}>{errors.logo}</div>}
           </div>
-            <div className="area">
+            <div className="area edit-studio-img">
             <label>
             <div className="labels">Pic</div>
             <input
@@ -116,21 +116,20 @@ const EditStudioModal = ({studioId}) => {
             </label>
             {hasSubmitted===true && errors.pic && <div className={`errors`}>{errors.pic}</div>}
             </div>
-            <div className="area">
+            <div className="area area-edit-description">
             <label>
             <div className="labels">Description</div>
-            <input
-              type="text"
+              <textarea
+              className={`text-area-description`}
+              placeholder='Description'
               value={description}
-              className="input-field"
-              placeholder="Description"
               onChange={(e) => setDescription(e.target.value)}
-            />
+              ></textarea>
             </label>
             {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
             </div>
             <div className="buttons-container">
-              <button type="submit" className="submit-btn">Update Studio</button>
+              <button type="submit" className="submit-btn submit-btn-update-studio">Update Studio</button>
           </div>
         </form>
         </div>

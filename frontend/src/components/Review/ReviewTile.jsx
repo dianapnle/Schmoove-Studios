@@ -33,7 +33,7 @@ function ReviewTile ({ reviewId, studioId }) {
         </div>
         <div className={`review-date-area`}>
             <span className={`review-date`}>{monthNames[date.getMonth()]} {date.getFullYear()}</span></div>
-        <div className={`review-body`}> {review?.review}</div>
+        <div className={`review-body review-text`}> {review?.review}</div>
         </div>
         </>
     )

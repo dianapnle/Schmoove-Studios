@@ -113,13 +113,12 @@ const CreateStudioModal = () => {
           <div className="area">
           <label>
           <div className="labels">Description</div>
-          <input
-            type="text"
-            value={description}
-            className="input-field"
-             placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <textarea
+              className={`text-area-description`}
+              placeholder='Description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
           </label>
           {hasSubmitted===true && errors.description && <div className={`errors`}>{errors.description}</div>}
           </div>

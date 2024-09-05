@@ -112,3 +112,31 @@ button:disabled.submit-btn{
   color: white;
   height: 50px;
 }
+
+
+input.studio-name {
+    width: 295px;
+}
+
+.area-edit-description {
+    margin-top: -20px;
+}
+
+
+.edit-studio-img {
+    margin-top: -10px;
+}
+
+.modal-login .edit-studio-h1 {
+    margin-bottom: -19px;
+}
+
+.submit-btn-update-studio {
+    margin-top: 10px;
+}
+
+.text-area-description {
+    width: 295px;
+    height: 40px;
+
+}
