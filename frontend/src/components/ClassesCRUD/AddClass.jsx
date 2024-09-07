@@ -42,11 +42,10 @@ const AddClassModal = ({studioId}) => {
         //grab the studio's instructors and classes
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
-         dispatch(thunkGetAllClasses(studioId))
-         .then(() => {
-          dispatch(thunkGetAllDanceStyles());
-         })
-         })
+         dispatch(thunkGetAllClasses(studioId))})
+        .then(() => {
+         dispatch(thunkGetAllDanceStyles());
+        })
 
     }, [dispatch, studioId])
 
