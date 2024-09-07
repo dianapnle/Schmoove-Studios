@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import { thunkGetAllClasses, thunkCreateClass } from "../../store/classes";
 import { thunkGetAllStudioInstructors } from "../../store/instructors";
+import { thunkGetAllDanceStyles } from "../../store/dancestyles";
 import "./AddModal.css"
 
 
@@ -42,6 +43,9 @@ const AddClassModal = ({studioId}) => {
 
          dispatch(thunkGetAllStudioInstructors(studioId)).then(() => {
          dispatch(thunkGetAllClasses(studioId))
+         .then(() => {
+          dispatch(thunkGetAllDanceStyles());
+         })
          })
 
     }, [dispatch, studioId])
