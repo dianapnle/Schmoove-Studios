@@ -65,7 +65,7 @@ Delete:
 
 ##### Instructors
 
-Urban Steps also lets studio owners to add instructors to the studios that they own. Heading over to "manage studios" link, under a studio that they own,there will be three links. One to edit the studio, one to delete the studio, and one that is labeled "Edit Instructors". Clicking that button opens a modal with a text box to add instructors to the studio. The available instructors to add are users who indicate that they are an instructor upon signing up. The instructors will be added under the studio in the studio detail page.
+Urban Steps also lets studio owners to add instructors to the studios that they own. Heading over to "manage studios" link, under a studio that they own, there will be three links. One to edit the studio, one to delete the studio, and one that is labeled "Edit Instructors". Clicking that button opens a modal with a text box to add instructors to the studio. The available instructors to add are users who indicate that they are an instructor upon signing up. These instructors are the same list of available instructors that show up for each studio registered on the platform, allowing for instructors to teach at multiple studios. The instructors will be added under the studio in the studio detail page.
 
 Example Create Instructor
 <img src="frontend/images/createinstructors.png" />
