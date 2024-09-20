@@ -81,7 +81,7 @@ export const thunkUpdateInstructor = (payload, profilePic, instructorId) => asyn
 
 export const thunkCreateInstructor = (payload, profilePic, studioId) => async (dispatch) => {
 
-  const pic_b64data = await toBase64(profilePic)
+  const pic_b64data = profilePic ? await toBase64(profilePic) : undefined
 
   // create a new json object with the payload + b64 data
   const data_to_upload = {...payload, profilePic: pic_b64data};

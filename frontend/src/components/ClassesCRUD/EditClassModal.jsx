@@ -111,7 +111,7 @@ const EditClassModal = ({classId}) => {
 
     return (
         <div className='modal-classes'>
-        <h1>Modify Classes</h1>
+        <h1>Modify Class</h1>
         <form>
           <div className="class-area">
             <label>

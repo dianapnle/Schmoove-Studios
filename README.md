@@ -2,7 +2,7 @@
 
 Click the following link: [Urban Steps](https://urbansteps.onrender.com/)
 
-Urban Steps is a website and online directory that helps people discover and get involved in local dance studios in their area. Urban Steps' users can view dance studios, instructors, classes, and write reviews. Studio owners can add instructors to their studios and be able to have class schedules on here too! This website is perfect for studio owners who do not have their own website as they can display class schedules for their respective dance studios. This website is also perfect for studio owners who already have a website as it can be another avenue of discovery for people who are interested in taking classes. The backend of Spirited Get Away is built on SQL, sequelize, and express with a PostgreSQL database. Frontend rendering is handled with React and Redux.
+Urban Steps is a website and online directory that helps people discover and get involved in local dance studios in their area. Urban Steps' users can view dance studios, instructors, classes, and write reviews. Studio owners can add instructors to their studios and be able to have class schedules on here too! This website is perfect for studio owners who do not have their own website as they can display class schedules for their respective dance studios. This website is also perfect for studio owners who already have a website as it can be another avenue of discovery for people who are interested in taking classes. The backend of Urban Steps is built on SQL, sequelize, and express with a PostgreSQL database. Frontend rendering is handled with React and Redux.
 
 ## How to clone
 

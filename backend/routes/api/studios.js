@@ -11,6 +11,7 @@ const { S3Client, PutObjectCommand, DeleteObjectCommand } = require ("@aws-sdk/c
 
 
 
+
 const validateStudio = [
     check('name')
     .exists({ checkFalsy: true })
@@ -657,12 +658,12 @@ router.get("/:studioId/instructors", async (req, res) => {
 })
 
 
-const validateInstructor = [
-  check('profilePic')
-  .exists({ checkFalsy: true })
-  .withMessage('Profile pic img url is required'),
-  handleValidationErrors
-];
+// const validateInstructor = [
+//   check('profilePic')
+//   .exists({ checkFalsy: true })
+//   .withMessage('Profile pic img url is required'),
+//   handleValidationErrors
+// ];
 
 
 async function checkIfDuplicate (req, res, next) {
@@ -684,7 +685,7 @@ async function checkIfDuplicate (req, res, next) {
 }
 
 //create an instructor for a studio
-router.post('/:studioId/instructors', requireAuth, validateInstructor, checkIfDuplicate, validateStudioUser, async (req, res) => {
+router.post('/:studioId/instructors', requireAuth, checkIfDuplicate, validateStudioUser, async (req, res) => {
   const { userId, profilePic } = req.body;
   const { studioId } = req.params;
 
@@ -703,7 +704,7 @@ router.post('/:studioId/instructors', requireAuth, validateInstructor, checkIfDu
       };
 
 
-      const profilepic_url = await S3upload(profilePic)
+      const profilepic_url = profilePic ? await S3upload(profilePic) : "https://urbanstepsproject.s3.us-east-2.amazonaws.com/No_Image_Available.jpg"
 
 
       const el = await Instructor.create({
