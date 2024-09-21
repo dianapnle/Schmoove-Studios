@@ -1,4 +1,3 @@
-import { SiSequelize } from "react-icons/si";
 # Urban Steps
 
 Click the following link: [Urban Steps](https://urbansteps.onrender.com/)
