@@ -1,9 +1,7 @@
 # Urban Steps
 
 <p align="center">
-  <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=js,sqlite,nodejs,sequelize,postgres,react,redux,express,aws" />
-  </a>
 </p>
 
 Click the following link: [Urban Steps](https://urbansteps.onrender.com/)
