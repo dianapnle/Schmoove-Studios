@@ -1,92 +1,90 @@
 .form.login {
-    border-radius: 1px 1px 1px 1px;;
-    border: 5px solid rgb(255, 255, 255);
-    background: white;
-    padding: 10px;
-    height: 350px;
-    width: 300px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  border-radius: 1px 1px 1px 1px;
+  border: 5px solid rgb(255, 255, 255);
+  background: white;
+  padding: 10px;
+  height: 350px;
+  width: 300px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
-
 
 .errors {
-    color: #fd5c63;
+  color: #fd5c63;
 }
 
-
-button:disabled.loginButton{
-    background-color: white;
-    color: rgb(131, 129, 129);
-    width: 100%;
-    height: 50px;
-    border: 1px solid black;
+button:disabled.loginButton {
+  background-color: white;
+  color: rgb(131, 129, 129);
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
 }
 
 .userinput {
-    background-color: #e1eed8;
-    box-sizing: border-box;
-    width: 100%;
-    border: 2px black solid;
+  background-color: #e1eed8;
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px black solid;
 }
 
 .text {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .passwordinput {
-    background-color: #e1eed8;
-    box-sizing: border-box;
-    width: 100%;
-    border: 2px black solid;
+  background-color: #e1eed8;
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px black solid;
 }
 
 button:enabled.loginButton {
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    font-weight: bold;
-    height: 50px;
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  font-weight: bold;
+  height: 50px;
 }
 
 button:enabled.loginButton:hover {
-    width: 300px;
-    background-color: #000000;
-    color: white;
-    height: 50px;
-    font-weight: bold;
+  width: 300px;
+  background-color: #000000;
+  color: white;
+  height: 50px;
+  font-weight: bold;
 }
 
 button:enabled.demouserbutton {
-    margin-top: 10px;
-    width: 300px;
-    background-color: #e1eed8;
-    color: rgb(36, 36, 36);
-    height: 50px;
-    font-weight: bold;
+  margin-top: 10px;
+  width: 300px;
+  background-color: #e1eed8;
+  color: rgb(36, 36, 36);
+  height: 50px;
+  font-weight: bold;
 }
 
 button:enabled.demouserbutton:hover {
-    margin-top: 10px;
-    width: 300px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    height: 50px;
-    font-weight: bold;
+  margin-top: 10px;
+  width: 300px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  height: 50px;
+  font-weight: bold;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .login-errors-container {
-    height: 35px;
-    margin-bottom: -20px;
+  height: 35px;
+  margin-bottom: -20px;
 }
 
 .login h1 {
-    height: 30px
+  height: 30px;
 }

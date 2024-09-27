@@ -1,271 +1,264 @@
 img.logo {
-    width: 200px;
-    height: 100px
+  width: 200px;
+  height: 100px;
 }
 
 img.picture {
-    width: 300px;
-    height: 300px
+  width: 300px;
+  height: 300px;
 }
 
-
 .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 19px;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 19px;
+  justify-content: center;
 }
 
 .pricing-stars {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.pricing-stars h2, .instructorOverall h2, .classes h2, .reviews h2 {
-    color: black
+.pricing-stars h2,
+.instructorOverall h2,
+.classes h2,
+.reviews h2 {
+  color: black;
 }
 
-.studios-area{
-    display: flex;
-    grid-template-columns: repeat(auto-fill, 350px);
-    margin: 0 auto;
-    max-width: 1430px;
-    justify-content: center;
-    grid-gap: 10px;
+.studios-area {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, 350px);
+  margin: 0 auto;
+  max-width: 1430px;
+  justify-content: center;
+  grid-gap: 10px;
 }
-
 
 .overallContainer {
-    display: flex;
-    grid-template-columns: 1fr;
-    max-width: 1000px;
-    margin: 0px auto;
-    background-color: white;
-    margin-top: 10px
+  display: flex;
+  grid-template-columns: 1fr;
+  max-width: 1000px;
+  margin: 0px auto;
+  background-color: white;
+  margin-top: 10px;
 }
 
 .none {
-    text-align: center;
-    margin: auto;
+  text-align: center;
+  margin: auto;
 }
 
 .instructors-area {
-    display: inline-block;
-    margin-top: 20px;
-    overflow-x: auto;
-    width: 100%;
-    text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
 }
 
 .profilePic {
-    height: 96px;
-    width: 96px;
-    border-radius: 50%;
-    border: 2px solid white;
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
-
-
 .instructors {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 2px;
-    height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2px;
+  height: 110px;
 }
 
 .individualinstructor {
-    height: 100px;
-    width: 100px;
-    border: 2px solid transparent;
-    box-shadow: inset 0 100vw white;
-    background-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
-    margin-left: 1px;
-    margin-right: 1px;
-    text-align: center;
-    border-radius: 50% 50% 50% 50%;
+  height: 100px;
+  width: 100px;
+  border: 2px solid transparent;
+  box-shadow: inset 0 100vw white;
+  background-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
+  margin-left: 1px;
+  margin-right: 1px;
+  text-align: center;
+  border-radius: 50% 50% 50% 50%;
 }
-
 
 .firstName {
-    text-align: center;
-    margin-top: 15px;
+  text-align: center;
+  margin-top: 15px;
 }
-
 
 .contentBody {
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    width: 1000px;
-    padding-bottom: 30px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  width: 1000px;
+  padding-bottom: 30px;
 }
-
 
 .pictureDetail {
-    width: 500px;
-    height: 400px
+  width: 500px;
+  height: 400px;
 }
 
-
 .description {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-left: 15px;
 }
 
 .tab {
-    margin-top: 25px;
-    margin-bottom: 10px;
-    text-align: center;
-    background-color: rgb(195, 192, 192);
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: rgb(195, 192, 192);
 }
 
 .tablinks {
-    font-size: 17px;
+  font-size: 17px;
 }
 
-.classes-tab:focus, .classes-tab:target {
-    background-color: #000000;
-    color: white;
-    width: fit-content;
-    height: 30px;
+.classes-tab:focus,
+.classes-tab:target {
+  background-color: #000000;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
 .classes-tab:hover {
-    background-color: #000000;
-    color: white;
-    width: fit-content;
-    height: 30px;
+  background-color: #000000;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
-.reviews-tab:focus, .reviews-tab:target {
-    background-color: #000000;
-    color: white;
-    width: fit-content;
-    height: 30px;
+.reviews-tab:focus,
+.reviews-tab:target {
+  background-color: #000000;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
 .reviews-tab:hover {
-    background-color: #000000;
-    color: white;
-    width: fit-content;
-    height: 30px;
+  background-color: #000000;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
-
-.reviews-tab, .classes-tab {
-    background-color: #4b4949;
-    color: white;
-    width: fit-content;
-    height: 30px;
+.reviews-tab,
+.classes-tab {
+  background-color: #4b4949;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
 .classes-tab {
-    margin-right: 3px;
+  margin-right: 3px;
 }
 
 .post-review-button {
-    width: 200px;
-    background-color: #4b4949;
-    color: white;
-    width: fit-content;
-    height: 30px;
+  width: 200px;
+  background-color: #4b4949;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
 
 .post-review-button:hover {
-    background-color: #000000;
-    color: white;
-    width: fit-content;
-    height: 30px;
+  background-color: #000000;
+  color: white;
+  width: fit-content;
+  height: 30px;
 }
-
 
 .pencil-delete {
-    display: inline-flex;
-    gap: 2px;
-    margin-top: 5px;
+  display: inline-flex;
+  gap: 2px;
+  margin-top: 5px;
 }
 
-
 .edit-button-pencil {
-    color: rgb(0, 0, 0);
-    width: fit-content;
-    padding: 3px;
-    border-radius: 4px;
+  color: rgb(0, 0, 0);
+  width: fit-content;
+  padding: 3px;
+  border-radius: 4px;
 }
 
 .edit-button-pencil:hover {
-    width: fit-content;
-    cursor: pointer;
-    background-color: rgb(237, 236, 236);
-    color: rgb(0, 0, 0);
-    padding: 3px;
-    border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+  background-color: rgb(237, 236, 236);
+  color: rgb(0, 0, 0);
+  padding: 3px;
+  border-radius: 4px;
 }
 
 .delete-button-x {
-    width: fit-content;
-    color: rgb(0, 0, 0);
-    padding: 3px;
-    border-radius: 4px;
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  padding: 3px;
+  border-radius: 4px;
 }
 
 .delete-button-x:hover {
-    width: fit-content;
-    cursor: pointer;
-    background-color: rgb(237, 236, 236);
-    color: rgb(0, 0, 0);
-    padding: 3px;
-    border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+  background-color: rgb(237, 236, 236);
+  color: rgb(0, 0, 0);
+  padding: 3px;
+  border-radius: 4px;
 }
 
 .instructorOverall {
-    text-align: center;
+  text-align: center;
 }
 
-
 .add {
-    text-align: center;
+  text-align: center;
 }
 
 .individual-instructor-area {
-    text-align: center;
+  text-align: center;
 }
 
-
 .tab-area {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .tab-bar {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .tab-both {
-    padding: 10px;
+  padding: 10px;
 }
 
 .active-tab-both {
-    border-bottom: solid 3px #e1eed8;
-    cursor: default;
+  border-bottom: solid 3px #e1eed8;
+  cursor: default;
 }
 
 .inactive-tab-both {
-    border-bottom: solid 3px transparent;
-    color: Gray;
+  border-bottom: solid 3px transparent;
+  color: Gray;
 }
 
 .inactive-tab-both:hover {
-    color: Black;
-    border-bottom: solid 3px #c3ddb0;
-    cursor: pointer;
+  color: Black;
+  border-bottom: solid 3px #c3ddb0;
+  cursor: pointer;
 }
 
 .tab-main {
-    border-top: solid 1px #dee2e6;
-    margin-top: 3px;
+  border-top: solid 1px #dee2e6;
+  margin-top: 3px;
 }

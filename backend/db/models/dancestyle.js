@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class DanceStyle extends Model {
     /**
@@ -11,20 +9,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      DanceStyle.hasMany(models.ClassDanceStyle, {foreignKey: "danceStyleId", onDelete: "CASCADE", hooks: true})
+      DanceStyle.hasMany(models.ClassDanceStyle, {
+        foreignKey: 'danceStyleId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      })
     }
   }
-  DanceStyle.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: {args:[0,49], msg: "Name must be less than 50 characters"}
-    }
-    }
-  }, {
-    sequelize,
-    modelName: 'DanceStyle',
-  });
-  return DanceStyle;
-};
+  DanceStyle.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: { args: [0, 49], msg: 'Name must be less than 50 characters' },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: 'DanceStyle',
+    },
+  )
+  return DanceStyle
+}

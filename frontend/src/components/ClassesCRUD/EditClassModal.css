@@ -1,123 +1,120 @@
 .modal-classes h1 {
-    margin-bottom: 0px;
-    margin-top: 10px;
-    text-align: center;
-  }
+  margin-bottom: 0px;
+  margin-top: 10px;
+  text-align: center;
+}
 
-.class-area{
-    height: 75px
+.class-area {
+  height: 75px;
 }
 
 .drop-area-class {
-    height: 50px;
+  height: 50px;
 }
 
 .modal-classes {
-    display: inline-grid;
-    margin: auto;
-    width: 400px;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    justify-content: center;
-    border: 4px solid rgb(0, 0, 0);
+  display: inline-grid;
+  margin: auto;
+  width: 400px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  justify-content: center;
+  border: 4px solid rgb(0, 0, 0);
 }
 
-  .modal-classes form {
-    border-radius: 1px 1px 1px 1px;;
-    border: 5px solid rgb(255, 255, 255);
-    background: white;
-    padding: 15px;
-    height: 400px;
-    width: 300px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+.modal-classes form {
+  border-radius: 1px 1px 1px 1px;
+  border: 5px solid rgb(255, 255, 255);
+  background: white;
+  padding: 15px;
+  height: 400px;
+  width: 300px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 .errors {
-    font-size: 12.5px;
-    margin: 0px;
-    color: #fd5c63
+  font-size: 12.5px;
+  margin: 0px;
+  color: #fd5c63;
 }
 
 .class-description {
-    height: 45px;
-    width: 300px;
+  height: 45px;
+  width: 300px;
 }
 
 .input-field {
-    width: 100%;
-    height: 20px;
-    margin: 5px 0;
-    color: rgb(57, 57, 62);
+  width: 100%;
+  height: 20px;
+  margin: 5px 0;
+  color: rgb(57, 57, 62);
 }
 
 .intensity {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .class-name {
-    margin-bottom: 5px;
-    text-align: center;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 input:focus {
-    border: 1px solid;
+  border: 1px solid;
 }
 
 .class-options-dropdown {
-    text-align: center;
+  text-align: center;
 }
 
 .buttons-container {
-    height: 35px;
-    margin-bottom: px;
+  height: 35px;
+  margin-bottom: px;
 }
 
-button:enabled.submit-btn{
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    height: 50px;
+button:enabled.submit-btn {
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  height: 50px;
 }
 
-button:enabled.save-btn:hover{
+button:enabled.save-btn:hover {
   width: 300px;
   background-color: #000000;
   color: white;
   height: 50px;
 }
 
-
-button:enabled.save-btn{
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    height: 50px;
+button:enabled.save-btn {
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  height: 50px;
 }
 
-button:enabled.save-btn:hover{
+button:enabled.save-btn:hover {
   width: 300px;
   background-color: #000000;
   color: white;
   height: 50px;
 }
 
-button:disabled.save-btn{
-    background-color: white;
-    color: rgb(131, 129, 129);
-    width: 100%;
-    height: 50px;
+button:disabled.save-btn {
+  background-color: white;
+  color: rgb(131, 129, 129);
+  width: 100%;
+  height: 50px;
 }
-
 
 .delete-modal h2 {
-    color: black
+  color: black;
 }
 
-
 .top-container .edit-class-button {
-    margin-right: 5px;
+  margin-right: 5px;
 }

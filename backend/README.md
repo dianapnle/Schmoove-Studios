@@ -5,16 +5,18 @@
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
+
 ### All endpoints that require authentication
 
 All endpoints that require a current user to be logged in.
 
-* Request: endpoints that require authentication
-* Error Response: Require authentication
-  * Status Code: 401
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Request: endpoints that require authentication
+- Error Response: Require authentication
+
+  - Status Code: 401
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -27,12 +29,13 @@ All endpoints that require a current user to be logged in.
 All endpoints that require authentication and the current user does not have the
 correct role(s) or permission(s).
 
-* Request: endpoints that require proper authorization
-* Error Response: Require proper authorization
-  * Status Code: 403
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Request: endpoints that require proper authorization
+- Error Response: Require proper authorization
+
+  - Status Code: 403
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -44,17 +47,19 @@ correct role(s) or permission(s).
 
 Returns the information about the current user that is logged in.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response when there is a logged in user
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/
+  - Body: none
+
+- Successful Response when there is a logged in user
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -70,11 +75,12 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-* Successful Response when there is no logged in user
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response when there is no logged in user
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -87,13 +93,14 @@ Returns the information about the current user that is logged in.
 Logs in a current user with valid credentials and returns the current user's
 information.
 
-* Require Authentication: false
-* Request
-  * Method: POST
-  * URL: /api/session
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: false
+- Request
+
+  - Method: POST
+  - URL: /api/session
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -102,11 +109,12 @@ information.
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -121,11 +129,12 @@ information.
     }
     ```
 
-* Error Response: Invalid credentials
-  * Status Code: 401
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Invalid credentials
+
+  - Status Code: 401
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -133,11 +142,12 @@ information.
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -154,13 +164,14 @@ information.
 Creates a new user, logs them in as the current user, and returns the current
 user's information.
 
-* Require Authentication: false
-* Request
-  * Method: POST
-  * URL: /api/users
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: false
+- Request
+
+  - Method: POST
+  - URL: /api/users
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -173,11 +184,12 @@ user's information.
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -192,11 +204,12 @@ user's information.
     }
     ```
 
-* Error response: User already exists with the specified email
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: User already exists with the specified email
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -207,11 +220,12 @@ user's information.
     }
     ```
 
-* Error response: User already exists with the specified email
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: User already exists with the specified email
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -222,11 +236,12 @@ user's information.
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -247,17 +262,19 @@ user's information.
 
 Returns all the studios.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/studios
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -288,23 +305,23 @@ Returns all the studios.
     }
     ```
 
-
-
 ### Get Details of the Studio based on id
 
 Returns the details of a studio specified by its id.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/studios/:studioId
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios/:studioId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -319,11 +336,12 @@ Returns the details of a studio specified by its id.
     }
     ```
 
-* Error response: Couldn't find a Server with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Server with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -335,28 +353,30 @@ Returns the details of a studio specified by its id.
 
 Creates and returns a new studio.
 
-* Require Authentication: true
-* Request
-  * Method: POST
-  * URL: /api/studios
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Request
+
+  - Method: POST
+  - URL: /api/studios
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "name": "Studio 1",
       "logo": "img url",
       "pic": "img url",
-      "description": "This studio offers great variety of classes!",
+      "description": "This studio offers great variety of classes!"
     }
     ```
 
-* Successful Response
-  * Status Code: 201
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -369,11 +389,12 @@ Creates and returns a new studio.
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -387,34 +408,35 @@ Creates and returns a new studio.
     }
     ```
 
-
 ### Edit a Studio
 
 Updates and returns an existing studio.
 
-* Require Authentication: true
-* Require proper authorization: Studio must belong to the current user
-* Request
-  * Method: PUT
-  * URL: /api/studios/:studioId
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Studio must belong to the current user
+- Request
+
+  - Method: PUT
+  - URL: /api/studios/:studioId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
-       "name": "Updated studio name",
-        "logo": "Updated logo img url",
-        "pic": "Updated pic img url",
-        "description": "BEST STUDIO IN SD!"
+      "name": "Updated studio name",
+      "logo": "Updated logo img url",
+      "pic": "Updated pic img url",
+      "description": "BEST STUDIO IN SD!"
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -423,15 +445,16 @@ Updates and returns an existing studio.
       "name": "Updated studio name",
       "logo": "Updated logo img url",
       "pic": "Updated pic img url",
-      "description": "BEST STUDIO IN SD!",
+      "description": "BEST STUDIO IN SD!"
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -445,11 +468,12 @@ Updates and returns an existing studio.
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -461,18 +485,20 @@ Updates and returns an existing studio.
 
 Deletes an existing studio.
 
-* Require Authentication: true
-* Require proper authorization: Studio must belong to the current user
-* Request
-  * Method: DELETE
-  * URL: /api/studios/:studioId
-  * Body: none
+- Require Authentication: true
+- Require proper authorization: Studio must belong to the current user
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: DELETE
+  - URL: /api/studios/:studioId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -480,11 +506,12 @@ Deletes an existing studio.
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -498,17 +525,19 @@ Deletes an existing studio.
 
 Returns all the classess of current studio.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/studios/:studioId/classes
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios/:studioId/classes
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -524,7 +553,7 @@ Returns all the classess of current studio.
             "firstName": "Diana",
             "lastName": "Le",
             "profilePic": "picture url"
-            },
+          }
         },
         {
           "id": 2,
@@ -537,25 +566,25 @@ Returns all the classess of current studio.
             "firstName": "John",
             "lastName": "Smith",
             "profilePic": "picture url"
-            }
+          }
         }
       ]
     }
     ```
 
-
 ### Create a Class for a Studio based on the Studio's id
 
 Create and return a new class for a studio specified by id.
 
-* Require Authentication: true
-* Require proper authorization: Studio must belong to the current user
-* Request
-  * Method: POST
-  * URL: /api/studios/:studioId/classes
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Studio must belong to the current user
+- Request
+
+  - Method: POST
+  - URL: /api/studios/:studioId/classes
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -563,15 +592,16 @@ Create and return a new class for a studio specified by id.
       "studioId": 1,
       "description": "Well-paced heels choreography",
       "instructorId": 1,
-      "danceStyles": [1,2]
+      "danceStyles": [1, 2]
     }
     ```
 
-* Successful Response
-  * Status Code: 201
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -580,15 +610,16 @@ Create and return a new class for a studio specified by id.
       "studioId": 1,
       "description": "Well-paced heels choreography",
       "instructorId": 1,
-      "danceStyles": [1,2]
+      "danceStyles": [1, 2]
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -602,11 +633,12 @@ Create and return a new class for a studio specified by id.
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -614,19 +646,19 @@ Create and return a new class for a studio specified by id.
     }
     ```
 
-
 ### Edit a Class
 
 Update and return an existing class.
 
-* Require Authentication: true
-* Require proper authorization: Class must belong to the current user/studio owner
-* Request
-  * Method: PUT
-  * URL: /api/classes/:classId
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Class must belong to the current user/studio owner
+- Request
+
+  - Method: PUT
+  - URL: /api/classes/:classId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -634,15 +666,16 @@ Update and return an existing class.
       "studioId": 1,
       "description": "Choreography with across the floors",
       "instructorId": 1,
-      "danceStyles": [1,2]
+      "danceStyles": [1, 2]
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -651,15 +684,16 @@ Update and return an existing class.
       "studioId": 1,
       "description": "Choreography with across the floors",
       "instructorId": 1,
-      "danceStyles": [1,2]
+      "danceStyles": [1, 2]
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -673,11 +707,12 @@ Update and return an existing class.
     }
     ```
 
-* Error response: Couldn't find a Class with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Class with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -689,18 +724,20 @@ Update and return an existing class.
 
 Delete an existing class.
 
-* Require Authentication: true
-* Require proper authorization: Class must belong to the current user/studio owner
-* Request
-  * Method: DELETE
-  * URL: /api/classes/:classId
-  * Body: none
+- Require Authentication: true
+- Require proper authorization: Class must belong to the current user/studio owner
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: DELETE
+  - URL: /api/classes/:classId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -708,11 +745,12 @@ Delete an existing class.
     }
     ```
 
-* Error response: Couldn't find a Class with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Class with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -726,17 +764,19 @@ Delete an existing class.
 
 Return all the events a specific class has.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/classes/:classId
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/classes/:classId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -759,12 +799,12 @@ Return all the events a specific class has.
     }
     ```
 
+- Error response: Couldn't find a Class with the specified id
 
-* Error response: Couldn't find a Class with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -772,51 +812,52 @@ Return all the events a specific class has.
     }
     ```
 
-
-
 ### Create a Class Event for a Class based on the Class's id
 
 Create and return a new class event for a class specified by id.
 
-* Require Authentication: true
-* Required Authorization: Must be studio owner to create class event
-* Request
-  * Method: POST
-  * URL: /api/classes/:classId/events
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Required Authorization: Must be studio owner to create class event
+- Request
+
+  - Method: POST
+  - URL: /api/classes/:classId/events
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "classId": 1,
-      "price": 30.00,
+      "price": 30.0,
       "startTime": "2011-10-05T14:48:00.000Z",
       "endTime": "2011-10-05T14:48:00.000Z"
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "id": 3,
       "classId": 1,
-      "price": 30.00,
+      "price": 30.0,
       "startTime": "2023-10-05T14:48:00.000Z",
       "endTime": "2023-10-05T14:48:00.000Z"
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -829,11 +870,12 @@ Create and return a new class event for a class specified by id.
     }
     ```
 
-* Error response: Couldn't find a Class with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Class with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -841,49 +883,51 @@ Create and return a new class event for a class specified by id.
     }
     ```
 
-
 ### Edit a Class Event
 
 Update and return an existing class event.
 
-* Require Authentication: true
-* Require proper authorization: Class event must belong to studio owner
-* Request
-  * Method: PUT
-  * URL: /api/events/:eventId
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Class event must belong to studio owner
+- Request
+
+  - Method: PUT
+  - URL: /api/events/:eventId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
-      "price": 30.00,
+      "price": 30.0,
       "startTime": "2023-10-05T14:48:00.000Z",
       "endTime": "2023-10-05T14:48:00.000Z"
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "id": 1,
       "classId": 1,
-      "price": 35.00,
+      "price": 35.0,
       "startTime": "2011-10-05T14:48:00.000Z",
       "endTime": "2011-10-05T14:48:00.000Z"
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -896,11 +940,12 @@ Update and return an existing class event.
     }
     ```
 
-* Error response: Couldn't find a Class Event with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Class Event with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -908,23 +953,24 @@ Update and return an existing class event.
     }
     ```
 
-
 ### Delete a Class Event
 
 Delete an existing class event.
 
-* Require Authentication: true
-* Require proper authorization: Class and class event must belong to the current user/studio owner
-* Request
-  * Method: DELETE
-  * URL: /api/events/:eventId
-  * Body: none
+- Require Authentication: true
+- Require proper authorization: Class and class event must belong to the current user/studio owner
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: DELETE
+  - URL: /api/events/:eventId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -932,11 +978,12 @@ Delete an existing class event.
     }
     ```
 
-* Error response: Couldn't find a Class event with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Class event with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -944,55 +991,57 @@ Delete an existing class event.
     }
     ```
 
-
 ## REVIEWS
 
 ### Get all reviews for a studio
 
 Return all the reviews that the studio has.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/studios/:studioId/reviews
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios/:studioId/reviews
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "Reviews": [
         {
-           "id": 1,
-           "studioId": 1,
-           "userId": 1,
-           "rating": 5,
-           "review": "Great!",
-           "createdAt": "2011-10-05T14:48:00.000Z",
-           "updatedAt": "2011-10-05T14:48:00.000Z"
+          "id": 1,
+          "studioId": 1,
+          "userId": 1,
+          "rating": 5,
+          "review": "Great!",
+          "createdAt": "2011-10-05T14:48:00.000Z",
+          "updatedAt": "2011-10-05T14:48:00.000Z"
         },
         {
-           "id": 2,
-           "studioId": 1,
-           "userId": 2,
-           "review": "Meh",
-           "rating": 2,
-           "createdAt": "2011-10-05T14:48:00.000Z",
-           "updatedAt": "2011-10-05T14:48:00.000Z"
+          "id": 2,
+          "studioId": 1,
+          "userId": 2,
+          "review": "Meh",
+          "rating": 2,
+          "createdAt": "2011-10-05T14:48:00.000Z",
+          "updatedAt": "2011-10-05T14:48:00.000Z"
         }
       ]
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1004,13 +1053,14 @@ Return all the reviews that the studio has.
 
 Create and return a new review for a studio specified by id.
 
-* Require Authentication: true
-* Request
-  * Method: POST
-  * URL: /api/studios/:studioId/reviews
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Request
+
+  - Method: POST
+  - URL: /api/studios/:studioId/reviews
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1019,11 +1069,12 @@ Create and return a new review for a studio specified by id.
     }
     ```
 
-* Successful Response
-  * Status Code: 201
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1037,11 +1088,12 @@ Create and return a new review for a studio specified by id.
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1053,11 +1105,12 @@ Create and return a new review for a studio specified by id.
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1065,32 +1118,33 @@ Create and return a new review for a studio specified by id.
     }
     ```
 
-
 ### Updated a Review
 
 Update and return an existing review.
 
-* Require Authentication: true
-* Require proper authorization: Review must belong to current user
-* Request
-  * Method: PUT
-  * URL: /api/reviews/:reviewId
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Review must belong to current user
+- Request
+
+  - Method: PUT
+  - URL: /api/reviews/:reviewId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "rating": 3,
-      "review": "I decently enjoyed my time here. Could use improvements.",
+      "review": "I decently enjoyed my time here. Could use improvements."
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1104,11 +1158,12 @@ Update and return an existing review.
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1120,11 +1175,12 @@ Update and return an existing review.
     }
     ```
 
-* Error response: Couldn't find a Review with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Review with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1132,24 +1188,24 @@ Update and return an existing review.
     }
     ```
 
-
-
 ### Delete a Review
 
 Delete an existing review for a Studio.
 
-* Require Authentication: true
-* Require proper authorization: Review must belong to the current user
-* Request
-  * Method: DELETE
-  * URL: /api/reviews/:reviewId
-  * Body: none
+- Require Authentication: true
+- Require proper authorization: Review must belong to the current user
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: DELETE
+  - URL: /api/reviews/:reviewId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1157,11 +1213,12 @@ Delete an existing review for a Studio.
     }
     ```
 
-* Error response: Couldn't find a Review with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Review with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1169,23 +1226,24 @@ Delete an existing review for a Studio.
     }
     ```
 
-
 ## INSTRUCTORS
 
-
 ### Get all instructors
-Return all users that indicate they are an instructor on the platform.
-* Required Authentication: falsez
-* Request
-  * Method: GET
-  * URL: /api/instructors
-  * Body: none
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+Return all users that indicate they are an instructor on the platform.
+
+- Required Authentication: falsez
+- Request
+
+  - Method: GET
+  - URL: /api/instructors
+  - Body: none
+
+- Successful Response
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
     ```json
     {
       "Users": [
@@ -1209,48 +1267,49 @@ Return all users that indicate they are an instructor on the platform.
     }
     ```
 
-
-
 ### Get all instructors for a studio
 
 Return all the instructors that the studio has.
 
-* Require Authentication: true
-* Request
-  * Method: GET
-  * URL: /api/studios/:studioId/instructors
-  * Body: none
+- Require Authentication: true
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios/:studioId/instructors
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
       "Instructors": [
         {
-           "id": 1,
-           "studioId": 1,
-           "userId": 1,
-           "proflePic": "img url"
+          "id": 1,
+          "studioId": 1,
+          "userId": 1,
+          "proflePic": "img url"
         },
         {
-           "id": 2,
-           "studioId": 1,
-           "userId": 2,
-           "profilePic": "img url"
+          "id": 2,
+          "studioId": 1,
+          "userId": 2,
+          "profilePic": "img url"
         }
       ]
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1262,13 +1321,14 @@ Return all the instructors that the studio has.
 
 Create and return a new iunstructor for a studio specified by id.
 
-* Require Authentication: true
-* Request
-  * Method: POST
-  * URL: /api/studios/:studioId/instructors
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Request
+
+  - Method: POST
+  - URL: /api/studios/:studioId/instructors
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1277,11 +1337,12 @@ Create and return a new iunstructor for a studio specified by id.
     }
     ```
 
-* Successful Response
-  * Status Code: 201
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1292,11 +1353,12 @@ Create and return a new iunstructor for a studio specified by id.
     }
     ```
 
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1307,11 +1369,12 @@ Create and return a new iunstructor for a studio specified by id.
     }
     ```
 
-* Error response: Couldn't find a Studio with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Studio with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1319,19 +1382,19 @@ Create and return a new iunstructor for a studio specified by id.
     }
     ```
 
-
 ### Updated an Instructor
 
 Update and return an existing instructor.
 
-* Require Authentication: true
-* Require proper authorization: Studio must belong to current user
-* Request
-  * Method: PUT
-  * URL: /api/instructors/:instructorId
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Require Authentication: true
+- Require proper authorization: Studio must belong to current user
+- Request
+
+  - Method: PUT
+  - URL: /api/instructors/:instructorId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1340,11 +1403,12 @@ Update and return an existing instructor.
     }
     ```
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1355,11 +1419,12 @@ Update and return an existing instructor.
     }
     ```
 
-* Error response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Body validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1370,11 +1435,12 @@ Update and return an existing instructor.
     }
     ```
 
-* Error response: Couldn't find a Instructor with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Instructor with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1382,24 +1448,24 @@ Update and return an existing instructor.
     }
     ```
 
-
-
 ### Delete an Instructor
 
 Delete an existing instructor for a Studio.
 
-* Require Authentication: true
-* Require proper authorization: Studio must belong to the current user
-* Request
-  * Method: DELETE
-  * URL: /api/instructors/:instructorId
-  * Body: none
+- Require Authentication: true
+- Require proper authorization: Studio must belong to the current user
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: DELETE
+  - URL: /api/instructors/:instructorId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1407,11 +1473,12 @@ Delete an existing instructor for a Studio.
     }
     ```
 
-* Error response: Couldn't find a Instructor with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error response: Couldn't find a Instructor with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1419,27 +1486,27 @@ Delete an existing instructor for a Studio.
     }
     ```
 
-
-
 ## Add Query Filters to Get All Studios
 
 Return studios filtered by query parameters.
 
-* Require Authentication: false
-* Request
-  * Method: GET
-  * URL: /api/studios
-  * Query Parameters
-    * page: integer, minimum: 1, maximum: 10, default: 1
-    * size: integer, minimum: 1, maximum: 20, default: 20
-    * styleId: integer, optional
-  * Body: none
+- Require Authentication: false
+- Request
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+  - Method: GET
+  - URL: /api/studios
+  - Query Parameters
+    - page: integer, minimum: 1, maximum: 10, default: 1
+    - size: integer, minimum: 1, maximum: 20, default: 20
+    - styleId: integer, optional
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1450,10 +1517,7 @@ Return studios filtered by query parameters.
           "logo": "img url",
           "pic": "img url",
           "description": "Offers a variety of styles!",
-          "DanceStyles":
-          [
-            {"name": "Int Heels", "id": 1}
-          ]
+          "DanceStyles": [{ "name": "Int Heels", "id": 1 }]
         }
       ],
       "page": 2,
@@ -1461,11 +1525,12 @@ Return studios filtered by query parameters.
     }
     ```
 
-* Error Response: Query parameter validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+- Error Response: Query parameter validation errors
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
 
     ```json
     {
@@ -1473,7 +1538,7 @@ Return studios filtered by query parameters.
       "errors": {
         "page": "Page must be greater than or equal to 1",
         "size": "Size must be greater than or equal to 1",
-        "styleId": "Style cannot be found",
+        "styleId": "Style cannot be found"
       }
     }
     ```

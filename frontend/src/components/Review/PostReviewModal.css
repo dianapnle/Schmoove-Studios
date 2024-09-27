@@ -1,61 +1,56 @@
 .review-modal {
-    padding: 20px;
-    height: 300px;
-    width: 300px;
-    display: block;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    border-radius: 1px;
-    border: 4px solid rgb(0, 0, 0);
+  padding: 20px;
+  height: 300px;
+  width: 300px;
+  display: block;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  border-radius: 1px;
+  border: 4px solid rgb(0, 0, 0);
 }
 
 .text-area {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid black;
-    height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid black;
+  height: 100px;
 }
-
-
 
 button:enabled.submit-review-button {
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    height: 50px;
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  height: 50px;
 }
-
-
 
 button:enabled.submit-review-button:hover {
-    width: 300px;
-    background-color: #000000;
-    color: white;
-    height: 50px;
+  width: 300px;
+  background-color: #000000;
+  color: white;
+  height: 50px;
 }
 
-
-button:disabled.submit-review-button{
-    background-color: white;
-    color: rgb(131, 129, 129);
-    width: 100%;
-    height: 50px;
-    border: 1px solid black;
+button:disabled.submit-review-button {
+  background-color: white;
+  color: rgb(131, 129, 129);
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
 }
 
 .star-area {
-    justify-content: center;
-    align-content: center;
-    margin-bottom: 20px;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 20px;
 }
 .star1 {
-    font-size: 30px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(0, 0, 0);
+  font-size: 30px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 .star1:hover {
-    cursor: pointer
+  cursor: pointer;
 }

@@ -1,105 +1,115 @@
-import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { FiMenu } from 'react-icons/fi';
-import { FaUserCircle } from 'react-icons/fa';
-import * as sessionActions from '../../store/session';
+import { useState, useEffect, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { FiMenu } from 'react-icons/fi'
+import { FaUserCircle } from 'react-icons/fa'
+import * as sessionActions from '../../store/session'
 // import OpenModalButton from "../../src/components/OpenModalButton"
-import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../LoginFormModal/LoginFormModal';
-import SignupFormModal from '../SignupFormModal/SignupFormModal';
-import { NavLink, useNavigate } from 'react-router-dom';
+import OpenModalMenuItem from './OpenModalMenuItem'
+import LoginFormModal from '../LoginFormModal/LoginFormModal'
+import SignupFormModal from '../SignupFormModal/SignupFormModal'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const [showMenu, setShowMenu] = useState(false)
+  const ulRef = useRef()
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-    setShowMenu(!showMenu);
-  };
+    e.stopPropagation() // Keep from bubbling up to document and triggering closeMenu
+    setShowMenu(!showMenu)
+  }
 
   useEffect(() => {
-    if (!showMenu) return;
+    if (!showMenu) return
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
+    }
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener('click', closeMenu)
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    return () => document.removeEventListener('click', closeMenu)
+  }, [showMenu])
 
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => setShowMenu(false)
 
   const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-    closeMenu();
+    e.preventDefault()
+    dispatch(sessionActions.logout())
+    closeMenu()
     navigate('/')
-  };
+  }
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden')
 
-  const handleSubmit =  () => {
-               dispatch()
-  };
+  const handleSubmit = () => {
+    dispatch()
+  }
 
   return (
     <>
-    <div className={`profile-button profileButtonBox`}>
-      <button className={'menu-icons'} onClick={toggleMenu}>
-        <div className={`both-icons`}>
-        <div style={{fontSize: "20px" }}>
-          <div>
-        <FiMenu className={`menu`}/>
+      <div className={`profile-button profileButtonBox`}>
+        <button className={'menu-icons'} onClick={toggleMenu}>
+          <div className={`both-icons`}>
+            <div style={{ fontSize: '20px' }}>
+              <div>
+                <FiMenu className={`menu`} />
+              </div>
+              <div>
+                <FaUserCircle className={`profile`} />
+              </div>
+            </div>
           </div>
-          <div>
-        <FaUserCircle className={`profile`}/>
-        </div>
-        </div>
-        </div>
-      </button></div>
+        </button>
+      </div>
       <div className={`${ulClassName} profileButtonList`} ref={ulRef}>
         {user ? (
           <>
             <div className={`text`}>Hello, {user.firstName}</div>
             <div className={`text`}>{user.email}</div>
             <hr></hr>
-            <div><NavLink to="/studios/current" onClick={handleSubmit} className={`manage-studios-link text`}>Manage Studios</NavLink></div>
             <div>
-            <hr></hr>
-            <button className={`logout-button`} onClick={logout}>Log Out</button>
+              <NavLink
+                to='/studios/current'
+                onClick={handleSubmit}
+                className={`manage-studios-link text`}
+              >
+                Manage Studios
+              </NavLink>
+            </div>
+            <div>
+              <hr></hr>
+              <button className={`logout-button`} onClick={logout}>
+                Log Out
+              </button>
             </div>
           </>
         ) : (
           <>
-          <div className={`signup-dropdown`}>
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </div>
-          <div className={`login-dropdown`}>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-          </div>
+            <div className={`signup-dropdown`}>
+              <OpenModalMenuItem
+                itemText='Sign Up'
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </div>
+            <div className={`login-dropdown`}>
+              <OpenModalMenuItem
+                itemText='Log In'
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
           </>
         )}
       </div>
     </>
-  );
+  )
 }
 
-
-export default ProfileButton;
+export default ProfileButton

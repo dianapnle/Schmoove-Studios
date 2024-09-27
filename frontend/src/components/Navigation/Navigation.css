@@ -1,124 +1,120 @@
-
 .hidden {
-    display: none
+  display: none;
 }
-
 
 .profile-button {
-    border-radius: 25px;
-    border: 1px solid rgb(167, 159, 159);
-    background: white;
-    padding: 10px;
-    width: 60px;
-    height: 20px;
+  border-radius: 25px;
+  border: 1px solid rgb(167, 159, 159);
+  background: white;
+  padding: 10px;
+  width: 60px;
+  height: 20px;
 }
 
-
 .menu-icons {
-    display: flex;
-    justify-content: center;
-    width: 60px;
-    height: 20px;
-    background: white;
-    border: white;
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  height: 20px;
+  background: white;
+  border: white;
 }
 
 .both-icons {
-    display: inline;
-    width: 60px;
-    background: white;
+  display: inline;
+  width: 60px;
+  background: white;
 }
 
-
 .menu {
-    display: inline;
-    float: left;
-    background: white;
+  display: inline;
+  float: left;
+  background: white;
 }
 
 .profile {
-    display: inline;
-    float: right;
-    background: white;
+  display: inline;
+  float: right;
+  background: white;
 }
 
 .overall-block {
-    display: flex;
-    justify-content: space-between;
-    background-color: rgb(255, 255, 255);
-    max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  max-width: 100%;
 }
 
 .profile-area {
-    display: inline-flex;
-    margin-top: 20px;
+  display: inline-flex;
+  margin-top: 20px;
 }
 
 .createstudiolink {
-    align-content: center;
+  align-content: center;
 }
 
 .itemText {
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-size: 15px;
-    color: rgb(0, 0, 0);
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
 }
 
 .ulClassName {
-    display: block;
+  display: block;
 }
 
 .menu-items:hover {
-    font-size: 100px;
-    border: rgb(223, 223, 148) 1px solid;
+  font-size: 100px;
+  border: rgb(223, 223, 148) 1px solid;
 }
 
-.profileButtonBox{
-    margin-right: 30px;
-    justify-self: flex-end;
-    position: relative;
+.profileButtonBox {
+  margin-right: 30px;
+  justify-self: flex-end;
+  position: relative;
 }
 
 .profileButtonList {
-    position: absolute;
-    background: white;
-    width: 150px;
-    right: 0.3%;
-    z-index: 1;
-    border: 1px solid black;
-    text-align: center;
-    padding: 10px;
+  position: absolute;
+  background: white;
+  width: 150px;
+  right: 0.3%;
+  z-index: 1;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
 }
 
 .home-block {
-    margin: 10px;
+  margin: 10px;
 }
 
 .profile-block {
-    margin: 10px;
-    /* border: 1px red solid */
+  margin: 10px;
+  /* border: 1px red solid */
 }
 
-.logout-button{
-    border-radius: 25px;
-    background: rgb(130, 128, 128);
-    width: 80px;
-    height: 30px;
-    color: white;
+.logout-button {
+  border-radius: 25px;
+  background: rgb(130, 128, 128);
+  width: 80px;
+  height: 30px;
+  color: white;
 }
 
 .logout-button:hover {
-    border-radius: 25px;
-    border: 2px solid rgb(13, 13, 13);
-    background: rgb(0, 0, 0);
-    background-color: black;
-    width: 80px;
-    height: 30px;
-    color: white;
+  border-radius: 25px;
+  border: 2px solid rgb(13, 13, 13);
+  background: rgb(0, 0, 0);
+  background-color: black;
+  width: 80px;
+  height: 30px;
+  color: white;
 }
 
 .dropdown:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }

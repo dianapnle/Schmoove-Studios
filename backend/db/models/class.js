@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Class extends Model {
     /**
@@ -11,31 +9,46 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Class.belongsTo(models.Studio, {foreignKey: "studioId"})
-      Class.belongsTo(models.Instructor, {foreignKey: "instructorId"})
-      Class.hasMany(models.ClassDanceStyle, {foreignKey: "classId",  onDelete: "CASCADE", hooks: true})
-      Class.hasMany(models.ClassEvent, {foreignKey: "classId",  onDelete: "CASCADE", hooks: true})
-      Class.hasMany(models.Booking, {foreignKey: "classId", onDelete: "CASCADE", hooks: true})
+      Class.belongsTo(models.Studio, { foreignKey: 'studioId' })
+      Class.belongsTo(models.Instructor, { foreignKey: 'instructorId' })
+      Class.hasMany(models.ClassDanceStyle, {
+        foreignKey: 'classId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      })
+      Class.hasMany(models.ClassEvent, {
+        foreignKey: 'classId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      })
+      Class.hasMany(models.Booking, {
+        foreignKey: 'classId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      })
     }
   }
-  Class.init({
-    name: {
-      type: DataTypes.STRING
+  Class.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+      },
+      studioId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      instructorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.TEXT,
+      },
     },
-    studioId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'Class',
     },
-    instructorId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    description: {
-      type: DataTypes.TEXT
-    }
-  }, {
-    sequelize,
-    modelName: 'Class',
-  });
-  return Class;
-};
+  )
+  return Class
+}

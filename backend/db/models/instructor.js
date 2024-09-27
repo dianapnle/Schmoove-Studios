@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Instructor extends Model {
     /**
@@ -11,27 +9,34 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Instructor.belongsTo(models.User, {foreignKey: "userId"})
-      Instructor.belongsTo(models.Studio, {foreignKey: "studioId"})
-      Instructor.hasMany(models.Class, {foreignKey: "instructorId", onDelete: "CASCADE", hooks: true})
+      Instructor.belongsTo(models.User, { foreignKey: 'userId' })
+      Instructor.belongsTo(models.Studio, { foreignKey: 'studioId' })
+      Instructor.hasMany(models.Class, {
+        foreignKey: 'instructorId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      })
     }
   }
-  Instructor.init({
-    profilePic: {
-      type: DataTypes.TEXT,
-      allowNull: false
+  Instructor.init(
+    {
+      profilePic: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      studioId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    studioId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'Instructor',
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    modelName: 'Instructor',
-  });
-  return Instructor;
-};
+  )
+  return Instructor
+}

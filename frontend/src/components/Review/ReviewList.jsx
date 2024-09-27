@@ -1,47 +1,53 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllReviews } from "../../store/reviews";
-import OpenModalReviewButton from "./OpenModalReviewButton";
-import ReviewTile from "../Review/ReviewTile";
-import PostReviewModal from "./PostReviewModal";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { thunkGetAllReviews } from '../../store/reviews'
+import OpenModalReviewButton from './OpenModalReviewButton'
+import ReviewTile from '../Review/ReviewTile'
+import PostReviewModal from './PostReviewModal'
 
 function ReviewList({ studioId }) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const reviews = useSelector(state => state.reviews)
-    const sessionUser = useSelector(state => state.session.user)
-    const studio = useSelector(state => state.studios[studioId])
-    const existingReview = [];
+  const [isLoaded, setIsLoaded] = useState(false)
+  const reviews = useSelector((state) => state.reviews)
+  const sessionUser = useSelector((state) => state.session.user)
+  const studio = useSelector((state) => state.studios[studioId])
+  const existingReview = []
 
-    for (const review of Object.values(reviews)) {
-        if (sessionUser && sessionUser.id === review.userId) {
-            existingReview.push(review)
-        }
+  for (const review of Object.values(reviews)) {
+    if (sessionUser && sessionUser.id === review.userId) {
+      existingReview.push(review)
     }
+  }
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(thunkGetAllReviews(studioId)).then(() => {
-            setIsLoaded(true)
-        })
+  useEffect(() => {
+    dispatch(thunkGetAllReviews(studioId)).then(() => {
+      setIsLoaded(true)
+    })
+  }, [studioId, dispatch, setIsLoaded])
 
-    }, [studioId, dispatch, setIsLoaded])
-
-    return (
-        <div className={`reviews`}>
-        <h2>Reviews:</h2>
-        {existingReview.length === 0 && sessionUser && sessionUser?.id !== studio.ownerId && <div className={`add`}>
-        <OpenModalReviewButton modalComponent={<PostReviewModal studioId={studioId}/>} />
-        </div>}
-        <br></br>
-        {!isLoaded || Object.values(reviews).length === 0
-            ? <div className={`none`}>No reviews yet!</div>
-            : Object.values(reviews).map((el) => (
-            <ReviewTile key={`${el.id}`} reviewId={el.id} studioId={studioId}  />
-        ))}
-        </div>
-    )
-
+  return (
+    <div className={`reviews`}>
+      <h2>Reviews:</h2>
+      {existingReview.length === 0 &&
+        sessionUser &&
+        sessionUser?.id !== studio.ownerId && (
+          <div className={`add`}>
+            <OpenModalReviewButton
+              modalComponent={<PostReviewModal studioId={studioId} />}
+            />
+          </div>
+        )}
+      <br></br>
+      {!isLoaded || Object.values(reviews).length === 0 ? (
+        <div className={`none`}>No reviews yet!</div>
+      ) : (
+        Object.values(reviews).map((el) => (
+          <ReviewTile key={`${el.id}`} reviewId={el.id} studioId={studioId} />
+        ))
+      )}
+    </div>
+  )
 }
 
-export default ReviewList;
+export default ReviewList

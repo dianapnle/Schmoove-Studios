@@ -1,108 +1,104 @@
-
 .studiopic {
-    width: 100%;
-    height: 248px;
-    border: 2px solid black;
-    box-sizing: border-box;
+  width: 100%;
+  height: 248px;
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
 .studiologo {
-    width: 100%;
-    height: 100px;
-    border: 2px solid black;
-    box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
-
-.studioscontainer{
-    height: 360px;
+.studioscontainer {
+  height: 360px;
 }
 
 .child {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.studioname{
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    font-weight: bold;
+.studioname {
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .rating {
-    color: rgb(0, 0, 0);
-    font-size: 15px
+  color: rgb(0, 0, 0);
+  font-size: 15px;
 }
 
 .top-text {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 20px;
-    margin: 0 auto;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  margin: 0 auto;
 }
 
 .star {
-    color: rgb(251, 223, 15);
-    font-weight: bold;
-    font-size: 18px;
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: rgb(0, 0, 0);
+  color: rgb(251, 223, 15);
+  font-weight: bold;
+  font-size: 18px;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 .bottom-text {
-    width: 100%;
-    display: inline-flex;
-    gap: 2px;
+  width: 100%;
+  display: inline-flex;
+  gap: 2px;
 }
 
 .update-button {
-    display: inline-block;
-    width: 100px;
-    background-color: #8a8787;
-    color: white;
-    width: fit-content;
-    height: 30px;
-    margin-right: 10px;
+  display: inline-block;
+  width: 100px;
+  background-color: #8a8787;
+  color: white;
+  width: fit-content;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .studioTileContainer {
-    position: relative;
-    cursor: pointer;
-    height: 400px;
+  position: relative;
+  cursor: pointer;
+  height: 400px;
 }
 
-.header{
-    display: inline-block;
-    justify-content: start;
-    max-width: 1000px;
-    padding-left: 90px;
+.header {
+  display: inline-block;
+  justify-content: start;
+  max-width: 1000px;
+  padding-left: 90px;
 }
-
 
 .tooltip:hover:before {
-    display:block;
-    content: attr(data-text);
-    position:absolute;
-    padding: 5px;
-    background:#242424;
-    color: #fff;
-    text-align:center;
-    box-sizing: content-box;
+  display: block;
+  content: attr(data-text);
+  position: absolute;
+  padding: 5px;
+  background: #242424;
+  color: #fff;
+  text-align: center;
+  box-sizing: content-box;
 }
 
-
 .tooltip {
-    background-color: white;
+  background-color: white;
 }
 
 .studioitem {
-    background-color: white;
-    height: 380px;
-    width: 100%;
+  background-color: white;
+  height: 380px;
+  width: 100%;
 }
 
 .studiopanel {
-    margin-bottom: 2px;
+  margin-bottom: 2px;
 }

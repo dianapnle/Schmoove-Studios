@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class ClassEvent extends Model {
     /**
@@ -11,50 +9,53 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ClassEvent.belongsTo(models.Class, {foreignKey: "classId"})
+      ClassEvent.belongsTo(models.Class, { foreignKey: 'classId' })
     }
   }
-  ClassEvent.init({
-    price:{
-      allowNull: false,
-      type:DataTypes.DECIMAL,
-      isNumeric: true,
-      validate: {
-        min: {args: ["0.0"], msg: "Price per day must be positive"}
-      }
+  ClassEvent.init(
+    {
+      price: {
+        allowNull: false,
+        type: DataTypes.DECIMAL,
+        isNumeric: true,
+        validate: {
+          min: { args: ['0.0'], msg: 'Price per day must be positive' },
+        },
+      },
+      classId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      startTime: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        validate: {
+          isAfter(value) {
+            const modifiedValue = new Date(value)
+            let current = new Date()
+            if (modifiedValue < current) {
+              throw new Error('startTime cannot be in the past')
+            }
+          },
+        },
+      },
+      endTime: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        validate: {
+          isGreaterThanstartDate(value) {
+            //both values should be in utc time
+            if (value <= this.startTime) {
+              throw new Error('endTime cannot be on or before startTime')
+            }
+          },
+        },
+      },
     },
-    classId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'ClassEvent',
     },
-    startTime: {
-      allowNull: false,
-      type: DataTypes.DATE,
-      validate: {
-        isAfter(value) {
-          const modifiedValue = new Date(value)
-          let current = new Date()
-          if(modifiedValue < current){
-            throw new Error("startTime cannot be in the past")
-          }
-        }
-      }
-    },
-    endTime: {
-      allowNull: false,
-      type: DataTypes.DATE,
-      validate: {
-        isGreaterThanstartDate(value) {
-          //both values should be in utc time
-          if (value <= this.startTime) {
-            throw new Error("endTime cannot be on or before startTime");
-          }
-        }
-      }
-    }
-  }, {
-    sequelize,
-    modelName: 'ClassEvent',
-  });
-  return ClassEvent;
-};
+  )
+  return ClassEvent
+}

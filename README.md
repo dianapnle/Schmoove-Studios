@@ -60,16 +60,17 @@ Studios are the core of Urban Steps. All functionalities center around them. The
 
 <img src="frontend/images/addstudio.png" />
 
-
 Urban Steps lets studio owners create, read, update, and destroy studios. React components and functionalities have been implemented for each corresponding action in the app. Information needed for all components or users actions are managed with redux states.
 
 Users can update the details of the studio that they own as well as delete it under a `Manage Studios` link. The link has a list of studios that the user has made along with update or delete functionalities. Once an update or delete has been made:
 
 Update:
+
 1. An update studio form will appear with values pre-populated into the input boxes. Users can change details accordingly.
 2. When user clicks update, a call is made to the backend to update the details in the database. Then, the store receives the studio's updated details, and then re-renders to display the studio's details and all associated details.
 
 Delete:
+
 1. A user can delete a studio with a click of a button. Upon clicking "Delete", a modal will pop up. This delete button will prompt the user to reconfirm if the user wants to delete the studio or not.
 2. If no, the modal will close and the studio will remain. If yes, there will be a call made to the backend to delete the studio. Once the store receives the changes in the user's studios, the manage studios browser will re-render and remove the studio that was just deleted and close the modal.
 

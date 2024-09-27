@@ -1,90 +1,96 @@
-import { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch} from 'react-redux';
-import { useModal } from '../../context/Modal';
-import './LoginForm.css';
+import { useState } from 'react'
+import * as sessionActions from '../../store/session'
+import { useDispatch } from 'react-redux'
+import { useModal } from '../../context/Modal'
+import './LoginForm.css'
 
-function LoginFormModal () {
-    const dispatch = useDispatch();
+function LoginFormModal() {
+  const dispatch = useDispatch()
 
-    const [ credential, setCredential ] = useState("");
-    const [ password, setPassword ] = useState("")
-    const [ errors, setErrors ] = useState({});
-    const { closeModal } = useModal();
+  const [credential, setCredential] = useState('')
+  const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({})
+  const { closeModal } = useModal()
 
-
-
-    const toggle = () => {
-      if (credential.length < 4 || password.length < 6) {
-        return true
-      }
-      return false
+  const toggle = () => {
+    if (credential.length < 4 || password.length < 6) {
+      return true
     }
+    return false
+  }
 
-    const demoUser = (e) => {
-      const credential = 'demousername';
-      const password = 'password';
-      e.preventDefault();
-      return dispatch(sessionActions.login({ credential, password }))
+  const demoUser = (e) => {
+    const credential = 'demousername'
+    const password = 'password'
+    e.preventDefault()
+    return dispatch(sessionActions.login({ credential, password }))
       .then(() => {
-        setErrors({});
+        setErrors({})
       })
-      .then((closeModal))
-    }
+      .then(closeModal)
+  }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors({});
-        return dispatch(sessionActions.login({ credential, password }))
-          .then(closeModal)
-          .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.message) {
-              setErrors({message: data.message});
-            }
-          });
-      };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setErrors({})
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json()
+        if (data && data.message) {
+          setErrors({ message: data.message })
+        }
+      })
+  }
 
-    return (
-        <>
-        <div className={`form login`}>
+  return (
+    <>
+      <div className={`form login`}>
         <h1>Log In</h1>
-        <div className="login-errors-container">
-        {errors.message && <div className={`errors`}>The provided credentials were invalid.</div>}
+        <div className='login-errors-container'>
+          {errors.message && (
+            <div className={`errors`}>
+              The provided credentials were invalid.
+            </div>
+          )}
         </div>
 
-          <br></br>
+        <br></br>
         <form onSubmit={handleSubmit}>
           <div>
             <label>
-            <input
+              <input
                 className={`userinput`}
-                type="text"
+                type='text'
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
                 placeholder='Username or Email'
-          />
+              />
             </label>
-            </div>
-            <br></br>
-            <div>
+          </div>
+          <br></br>
+          <div>
             <label>
-            <input
-               className={`passwordinput`}
-                type="password"
+              <input
+                className={`passwordinput`}
+                type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Password'
-            />
+              />
             </label>
-            </div>
-            <br></br>
-            <button className={`loginButton`} type="submit" disabled={toggle()}>Log In</button>
-            <br></br>
-            <button className={`demouserbutton`} onClick={demoUser}>Demo User</button>
+          </div>
+          <br></br>
+          <button className={`loginButton`} type='submit' disabled={toggle()}>
+            Log In
+          </button>
+          <br></br>
+          <button className={`demouserbutton`} onClick={demoUser}>
+            Demo User
+          </button>
         </form>
-        </div>
-        </>
-    )
+      </div>
+    </>
+  )
 }
-export default LoginFormModal;
+export default LoginFormModal

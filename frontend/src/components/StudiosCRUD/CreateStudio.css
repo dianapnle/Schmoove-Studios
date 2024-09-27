@@ -1,142 +1,138 @@
 .modal-login h1 {
-    margin-bottom: 0px;
-    margin-top: 10px;
-    text-align: center;
-  }
+  margin-bottom: 0px;
+  margin-top: 10px;
+  text-align: center;
+}
 
-
-.modal-login, .delete-modal {
-    display: inline-grid;
-    margin: auto;
-    width: 400px;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    justify-content: center
-  }
+.modal-login,
+.delete-modal {
+  display: inline-grid;
+  margin: auto;
+  width: 400px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  justify-content: center;
+}
 
 .delete-modal {
   height: 380px;
 }
 
 .modal-login form {
-    border-radius: 1px 1px 1px 1px;;
-    border: 5px solid rgb(255, 255, 255);
-    background: white;
-    padding: 15px;
-    height: 380px;
-    width: 300px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  border-radius: 1px 1px 1px 1px;
+  border: 5px solid rgb(255, 255, 255);
+  background: white;
+  padding: 15px;
+  height: 380px;
+  width: 300px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 .modal-login label {
-    color: rgb(51, 51, 53);
-    margin-top: 20px;
+  color: rgb(51, 51, 53);
+  margin-top: 20px;
 }
 
-
 .labels {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .errors {
-    font-size: 12.5px;
-    margin: 0px;
-    color: #fd5c63
+  font-size: 12.5px;
+  margin: 0px;
+  color: #fd5c63;
 }
 
 .input-field {
-    width: 100%;
-    height: 20px;
-    margin: 5px 0;
-    color: rgb(57, 57, 62);
+  width: 100%;
+  height: 20px;
+  margin: 5px 0;
+  color: rgb(57, 57, 62);
 }
 
 .file-field {
-    width: 100%;
-    height: 25px;
-    margin: 5px 0;
-    color: rgb(57, 57, 62);
+  width: 100%;
+  height: 25px;
+  margin: 5px 0;
+  color: rgb(57, 57, 62);
 }
 
 input:focus {
-    border: 1px solid;
+  border: 1px solid;
 }
-
 
 .buttons-container {
-    height: 35px;
-    margin-bottom: px;
+  height: 35px;
+  margin-bottom: px;
 }
 
-button:enabled.submit-btn{
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    height: 50px;
+button:enabled.submit-btn {
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  height: 50px;
 }
 
-button:enabled.submit-btn:hover{
+button:enabled.submit-btn:hover {
   width: 300px;
   background-color: #000000;
   color: white;
   height: 50px;
 }
 
-button:disabled.submit-btn{
-    background-color: white;
-    color: rgb(131, 129, 129);
-    width: 100%;
-    height: 50px;
-    border: 1px solid black;
+button:disabled.submit-btn {
+  background-color: white;
+  color: rgb(131, 129, 129);
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
 }
 
 .area {
-    height: 84px
+  height: 84px;
 }
 
-
-.delete-post-button, .no-post-button {
-    width: 300px;
-    background-color: #4b4949;
-    color: white;
-    height: 50px;
+.delete-post-button,
+.no-post-button {
+  width: 300px;
+  background-color: #4b4949;
+  color: white;
+  height: 50px;
 }
 
-.delete-post-button:hover, .no-post-button:hover {
+.delete-post-button:hover,
+.no-post-button:hover {
   width: 300px;
   background-color: #000000;
   color: white;
   height: 50px;
 }
 
-
 input.studio-name {
-    width: 295px;
+  width: 295px;
 }
 
 .area-edit-description {
-    margin-top: -20px;
+  margin-top: -20px;
 }
 
-
 .edit-studio-img {
-    margin-top: -10px;
+  margin-top: -10px;
 }
 
 .modal-login .edit-studio-h1 {
-    margin-bottom: -19px;
+  margin-bottom: -19px;
 }
 
 .submit-btn-update-studio {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .text-area-description {
-    width: 295px;
-    height: 40px;
-
+  width: 295px;
+  height: 40px;
 }
