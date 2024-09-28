@@ -70,7 +70,7 @@ function StudioDetail({ showEdit }) {
             </div>
             <div className='description'>
               <h3>{studio?.description.split("\n").map((x) =>
-                <div className='description-part'>
+                <div key={studio.description} className='description-part'>
                   <br></br>{x}<br></br>
                 </div>
               )}</h3>
