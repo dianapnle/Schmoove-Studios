@@ -69,7 +69,11 @@ function StudioDetail({ showEdit }) {
               <img className='pictureDetail' src={studio?.pic} />
             </div>
             <div className='description'>
-              <h3>{studio?.description}</h3>
+              <h3>{studio?.description.split("\n").map((x) =>
+                <div className='description-part'>
+                  <br></br>{x}<br></br>
+                </div>
+              )}</h3>
             </div>
             <br></br>
             <div className={`studio-details`}>

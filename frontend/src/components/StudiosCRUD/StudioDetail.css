@@ -103,7 +103,7 @@ img.picture {
   height: 400px;
 }
 
-.description {
+.description, .description-part {
   display: flex;
   justify-content: center;
   align-content: center;
