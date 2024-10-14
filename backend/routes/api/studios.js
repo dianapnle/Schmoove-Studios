@@ -657,12 +657,6 @@ router.get('/:studioId/instructors', async (req, res) => {
   })
 })
 
-// const validateInstructor = [
-//   check('profilePic')
-//   .exists({ checkFalsy: true })
-//   .withMessage('Profile pic img url is required'),
-//   handleValidationErrors
-// ];
 
 async function checkIfDuplicate(req, res, next) {
   const studioId = Number(req.params.studioId)
